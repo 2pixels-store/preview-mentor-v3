@@ -110,6 +110,9 @@ function pinPress(d) {
 function pickMentor(el) {
   document.querySelectorAll('.mentor-opt').forEach(o => o.classList.remove('sel'));
   el.classList.add('sel');
+  document.getElementById('mentorPick').classList.add('has-sel');
+  var cta = document.getElementById('mentorCta');
+  if (cta) cta.removeAttribute('disabled');
 }
 
 /* ---------- pregunta secreta ---------- */

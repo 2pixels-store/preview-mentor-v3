@@ -337,6 +337,11 @@ textarea { min-height: 84px; resize: vertical; }
 }
 .mentor-opt:active { transform: scale(.97); }
 .mentor-opt.sel { border-color: var(--rose); box-shadow: 0 0 0 3px rgba(196,112,90,.18); }
+/* S2: al elegir, el otro mentor se atenúa */
+.mentor-pick .mentor-opt { transition: opacity .2s var(--ease), filter .2s var(--ease), transform .12s var(--ease), box-shadow .12s var(--ease), border-color .12s var(--ease); }
+.mentor-pick.has-sel .mentor-opt:not(.sel) { opacity: .5; filter: saturate(.6); }
+/* S2: CTA deshabilitado hasta elegir mentor (sistema de estados: 40%) */
+.btn.primary:disabled { opacity: .4; box-shadow: none; transform: none; pointer-events: none; }
 .mentor-opt .mentor-ava { width: 76px; height: 76px; margin: 0 auto 8px; }
 .mentor-opt b { display: block; font-size: var(--t-body); color: var(--ink); }
 .mentor-opt span { font-size: var(--t-small); color: var(--ink-soft); }

@@ -34,6 +34,7 @@ es: {
 "onb.w.name": "Ponle el nombre que quieras",
 "onb.w.name.ph": "Ej.: Doña Rosa",
 "onb.w.note": "Se guarda en tu teléfono. La próxima vez te dirá “bienvenido de nuevo”.",
+"onb.w.change": "Podrás cambiar de mentor en Ajustes.",
 "onb.w.cta": "Empezar",
 "onb.w.skip": "Omitir tour",
 
@@ -361,8 +362,9 @@ en: {
 "onb.w.sofi": "Sofi",
 "onb.w.matt": "Matt",
 "onb.w.name": "Give them any name you like",
-"onb.w.name.ph": "E.g.: Doña Rosa",
+"onb.w.name.ph": "E.g.: Mrs. Rosa",
 "onb.w.note": "Saved on your phone. Next time they'll say “welcome back”.",
+"onb.w.change": "You can change your mentor later in Settings.",
 "onb.w.cta": "Get started",
 "onb.w.skip": "Skip tour",
 

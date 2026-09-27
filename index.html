@@ -114,33 +114,27 @@
 <section class="screen" id="s-onb-mentor">
   <div class="wrap" style="padding-top:26px">
     <div class="onb-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-    <div class="kicker" data-i18n="onb.w.kicker">Bienvenida · paso 1 de 5</div>
     <h1 class="onb-title" data-i18n="onb.w.title">Elige a tu <em>mentor</em></h1>
-    <p class="onb-lede" data-i18n="onb.w.lede">Elige quién te acompaña: ambos te guían igual, paso a paso.</p>
+    <p class="onb-lede" data-i18n="onb.w.same">El mismo mentor, la misma guía — solo cambia quién te acompaña.</p>
 
-    <div class="mentor-pick">
-      <div class="mentor-opt sel" onclick="pickMentor(this)">
-        <span class="mentor-ava"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+    <div class="mentor-pick" id="mentorPick">
+      <div class="mentor-opt" onclick="pickMentor(this)">
+        <span class="mentor-ava"><img class="ava3d" src="img/mentor-sofi-solo.jpg" alt="Sofi"></span>
         <b data-i18n="onb.w.sofi">Sofi</b>
       </div>
       <div class="mentor-opt" onclick="pickMentor(this)">
-        <span class="mentor-ava"><img class="ava3d" src="img/matt.webp" alt="Matt"></span>
+        <span class="mentor-ava"><img class="ava3d" src="img/mentor-matt-solo.jpg" alt="Matt"></span>
         <b data-i18n="onb.w.matt">Matt</b>
       </div>
     </div>
-    <p class="hint" style="text-align:center;margin-top:4px" data-i18n="onb.w.same">El mismo mentor, la misma guía — solo cambia quién te acompaña.</p>
 
     <div class="field">
       <span class="lbl" data-i18n="onb.w.name">Ponle el nombre que quieras</span>
       <input type="text" data-i18n-ph="onb.w.name.ph" placeholder="Ej.: Doña Rosa" maxlength="30">
     </div>
-    <p class="hint" data-i18n="onb.w.note">Se guarda en tu teléfono. La próxima vez te dirá “bienvenido de nuevo”.</p>
+    <p class="hint" data-i18n="onb.w.change">Podrás cambiar de mentor en Ajustes.</p>
 
-    <button class="btn primary" onclick="go('onb-pin')" data-i18n="onb.w.cta">Empezar</button>
-    <div style="text-align:center;display:flex;gap:18px;justify-content:center">
-      <button class="link-quiet" onclick="go('tour')" data-i18n="onb.w.tour">Ver tour guiado</button>
-      <button class="link-quiet" onclick="go('home')" data-i18n="onb.w.skip">Omitir tour</button>
-    </div>
+    <button class="btn primary" id="mentorCta" onclick="go('onb-pin')" data-i18n="onb.w.cta" disabled>Empezar</button>
   </div>
 </section>
 
