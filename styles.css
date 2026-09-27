@@ -356,11 +356,10 @@ textarea { min-height: 84px; resize: vertical; }
 .mentor-pick.full .mentor-opt.sel { background: rgba(196,112,90,.07); }
 .mentor-opt.full.sel .stage::before { opacity: 1; transform: translateX(-50%) scale(1.1); }
 
-/* S19: saludo del mentor — foto en tarjeta cálida estilo v1 */
-.hello-card { border-radius: 28px; overflow: hidden; margin: 4px 0 18px;
-  background: linear-gradient(150deg, #cf9377 0%, #a0685f 45%, #5c4457 100%);
+/* S19: saludo del mentor — retrato fotográfico estilo v1 */
+.hello-card { max-width: 340px; margin: 4px auto 18px; border-radius: 28px; overflow: hidden;
   box-shadow: var(--sh-2); }
-.hello-img { display: block; width: 100%; height: 300px; object-fit: contain; }
+.hello-img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
 #helloTitle { margin-bottom: 14px; }
 #s-onb-hello .onb-lede { margin-bottom: 12px; }
 #s-onb-hello .btn.primary { margin-top: 14px; }

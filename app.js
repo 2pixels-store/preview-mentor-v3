@@ -117,12 +117,12 @@ function pickMentor(el) {
 }
 
 /* ---------- S19: saludo del mentor (foto + nombre dinámicos) ---------- */
-var helloMentor = { img: 'img/mentor-matt-solo.png', name: 'Matt' };
+var helloMentor = { img: 'img/mentor-matt-hello.jpg', name: 'Matt' };
 function goHello() {
   var sel = document.querySelector('#mentorPick .mentor-opt.sel img');
   var custom = document.getElementById('mentorNameInput');
   if (sel) {
-    helloMentor.img = sel.getAttribute('src');
+    helloMentor.img = sel.getAttribute('src').replace('-solo.png', '-hello.jpg');
     var dflt = sel.getAttribute('alt') || 'Matt';
     var typed = custom ? custom.value.trim() : '';
     helloMentor.name = typed || dflt;
