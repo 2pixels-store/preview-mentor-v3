@@ -26,7 +26,7 @@ es: {
 
 /* ---- onboarding · elige tu mentor ---- */
 "onb.w.kicker": "Bienvenida · paso 1 de 5",
-"onb.w.title": "Elige a tu <em>mentor</em>",
+"onb.w.title": "¿A quién quieres en tu <em>esquina</em>?",
 "onb.w.lede": "Elige quién te acompaña: ambos te guían igual, paso a paso.",
 "onb.w.same": "El mismo mentor, la misma guía — solo cambia quién te acompaña.",
 "onb.w.sofi": "Sofi",
@@ -356,7 +356,7 @@ en: {
 
 /* ---- onboarding · choose your mentor ---- */
 "onb.w.kicker": "Welcome · step 1 of 5",
-"onb.w.title": "Choose your <em>mentor</em>",
+"onb.w.title": "Who do you want in your <em>corner</em>?",
 "onb.w.lede": "Choose who walks with you: both guide you the same, step by step.",
 "onb.w.same": "The same mentor, the same guidance — only who walks with you changes.",
 "onb.w.sofi": "Sofi",
