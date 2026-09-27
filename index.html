@@ -76,12 +76,17 @@
 <div class="phone" id="phone">
 
 <!-- ================= ONBOARDING · BIENVENIDA (S1) ================= -->
-<section class="screen" id="s-onb-welcome">
-  <div class="wrap" style="padding-top:44px; text-align:center">
-    <div class="kicker" style="text-align:center" data-i18n="onb.welcome.kicker">Repostería Mentor</div>
-    <div class="app-hero"><img src="img/ambos.webp" alt="Sofi y Matt"></div>
-    <h1 class="onb-title" data-i18n="onb.welcome.title">Tu mentor de <em>repostería</em></h1>
-    <div style="height:10px"></div>
+<section class="screen s1" id="s-onb-welcome">
+  <div class="s1-hero">
+    <img src="img/ambos.webp" alt="Sofi y Matt te dan la bienvenida">
+    <div class="s1-lang langSegX">
+      <button data-lang="es" class="on" onclick="setLang('es')">Español</button>
+      <span aria-hidden="true">|</span>
+      <button data-lang="en" onclick="setLang('en')">English</button>
+    </div>
+  </div>
+  <div class="s1-foot">
+    <div class="wordmark">Mentor</div>
     <button class="btn primary" onclick="go('onb-app')" data-i18n="onb.welcome.cta">Empezar</button>
   </div>
 </section>

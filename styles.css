@@ -830,6 +830,34 @@ input[type="range"] { width: 100%; accent-color: var(--rose); height: 32px; curs
 }
 .app-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 12%; display: block; }
 
+/* ---- S1 bienvenida: hero a sangre (receta v1) ---- */
+#s-onb-welcome { padding-bottom: 24px; }
+.s1-hero { position: relative; margin: 0; }
+.s1-hero img {
+  width: 100%; height: 440px; object-fit: cover; object-position: center 8%;
+  display: block;
+  -webkit-mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 82%, transparent 100%);
+}
+/* chip de idioma sobre el hero: zona limpia, alto contraste */
+.s1-lang {
+  position: absolute; top: 14px; right: 14px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--line); border-radius: var(--r-pill);
+  padding: 9px 15px; box-shadow: var(--sh-2);
+  font-size: var(--t-small); font-weight: 700;
+}
+.s1-lang button { background: none; border: 0; padding: 0; font: inherit; color: var(--faint); cursor: pointer; }
+.s1-lang button.on { color: var(--rose); }
+.s1-lang span { color: var(--line); font-weight: 400; }
+.s1-foot { padding: 4px 26px 0; text-align: center; }
+.s1-foot .btn { width: 100%; }
+.wordmark {
+  font-size: 15px; font-weight: 800; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--rose); text-align: center; margin: 12px 0 14px;
+}
+
 /* ---- ajustes ---- */
 .set-row { display: flex; align-items: center; gap: 12px; padding: 14px 16px; margin-bottom: 12px; }
 .set-txt { flex: 1; min-width: 0; }
