@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repostería Mentor · Prototipo Hi-Fi</title>
+<meta name="description" content="Prototipo de alta fidelidad — Repostería Mentor. Estático y navegable.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ CHROME DEL PROTOTIPO (solo revisión) ============ -->
+<div class="proto-bar">
+  <span class="proto-title" data-i18n="chrome.title">Repostería Mentor · Prototipo Hi-Fi</span>
+  <select id="screenJump" aria-label="Pantalla">
+    <option value="onb-welcome" data-i18n="screen.onb-welcome">Onboarding · Bienvenida</option>
+    <option value="onb-app" data-i18n="screen.onb-app">Onboarding · Qué es la app</option>
+    <option value="onb-mentor" data-i18n="screen.onb-mentor">Onboarding · Elige tu mentor</option>
+    <option value="onb-pin" data-i18n="screen.onb-pin">Onboarding · Crear PIN</option>
+    <option value="onb-disclaimer" data-i18n="screen.onb-disclaimer">Onboarding · Disclaimer</option>
+    <option value="onb-recovery" data-i18n="screen.onb-recovery">Onboarding · Código de recuperación</option>
+    <option value="onb-question" data-i18n="screen.onb-question">Onboarding · Pregunta secreta</option>
+    <option value="onb-back" data-i18n="screen.onb-back">Demo · Bienvenido de nuevo</option>
+    <option value="home" data-i18n="screen.home">Inicio · Panel</option>
+    <option value="recetas" data-i18n="screen.recetas">Recetas</option>
+    <option value="receta-detalle" data-i18n="screen.receta-detalle">Detalle de receta</option>
+    <option value="costeo" data-i18n="screen.costeo">Costeo · Tres cajones</option>
+    <option value="precios" data-i18n="screen.precios">Precios · Calculadora</option>
+    <option value="convertidor" data-i18n="screen.convertidor">Convertidor de medidas</option>
+    <option value="colab" data-i18n="screen.colab">Colaboraciones</option>
+    <option value="tour" data-i18n="screen.tour">Tour guiado</option>
+    <option value="ajustes" data-i18n="screen.ajustes">Ajustes</option>
+    <option value="mas" data-i18n="screen.mas">Más · Hub</option>
+  </select>
+  <div class="seg-mini" id="langSeg">
+    <button data-lang="es" class="on" onclick="setLang('es')">ES</button>
+    <button data-lang="en" onclick="setLang('en')">EN</button>
+  </div>
+  <div class="seg-mini" id="themeSeg">
+    <button data-theme="light" class="on" onclick="setTheme('light')" data-i18n="chrome.theme.light">Claro</button>
+    <button data-theme="dark" onclick="setTheme('dark')" data-i18n="chrome.theme.dark">Oscuro</button>
+  </div>
+  <div class="jump-row" id="jumpRow"><span class="jlab">Jump to:</span></div>
+</div>
+
+<!-- ============ SPRITE SVG (íconos + mentores, dibujo propio) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!-- ÍCONOS duotono: outline currentColor + acento var(--rose) -->
+<symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/></g><rect class="acc" x="10" y="14.5" width="4" height="5.5" rx="1"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.7A1.7 1.7 0 0 0 5 19.7Z"/><path d="M5 19.7A1.7 1.7 0 0 1 6.7 18H19v3H6.5A1.5 1.5 0 0 1 5 19.7Z"/><path d="M9 8h7M9 12h5"/></g><path class="acc" d="M16.3 3H19v5.6l-1.35-1.1L16.3 8.6Z"/></symbol>
+<symbol id="i-calc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="3" width="12" height="18" rx="2.5"/><path d="M9 12h.01M12 12h.01M15 12h.01M9 15.5h.01M12 15.5h.01M15 15.5h.01"/></g><rect class="acc" x="9" y="6" width="6" height="2.8" rx="1.4"/></symbol>
+<symbol id="i-tag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 12V4.5A1 1 0 0 1 4.5 3.5H12L20.5 12a1.4 1.4 0 0 1 0 2L14 20.5a1.4 1.4 0 0 1-2 0Z"/></g><circle class="acc" cx="8.5" cy="8.5" r="1.7"/></symbol>
+<symbol id="i-dots" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="5" cy="12" r="1.8"/><circle class="acc" cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></g></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><rect class="acc" x="10.9" y="5" width="2.2" height="14" rx="1.1"/><rect class="acc" x="5" y="10.9" width="14" height="2.2" rx="1.1"/></symbol>
+<symbol id="i-chevL" viewBox="0 0 24 24"><path d="M14.5 5.5L8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></g><circle class="acc" cx="11" cy="11" r="2.4"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.6-7.5 9-4.3-1.4-7.5-4.5-7.5-9V6Z"/></g><path class="accs" stroke-width="2" d="M9 12l2.2 2.2L15.5 10"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path class="accs" stroke-width="2.6" d="M4.5 12.5l5 5L19.5 7"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path class="acc-soft" d="M19 7l-2.5 6a3.5 3.5 0 0 0 7 0L21 7Z"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 7l7-3 7 3"/><path d="M5 7l-2.5 6a3.5 3.5 0 0 0 7 0L7 7M19 7l-2.5 6a3.5 3.5 0 0 0 7 0L21 7"/></g></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path class="acc-soft" d="M3.5 8L12 3.5 20.5 8 12 12.5Z"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8L12 3.5 20.5 8v8L12 20.5 3.5 16Z"/><path d="M3.5 8L12 12.5 20.5 8M12 12.5V20.5"/></g></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path class="acc" d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 15.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9Z"/></g></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect class="acc-soft" x="9" y="9" width="11" height="11" rx="2.5"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></g></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/></g><path class="accs" stroke-width="2" d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle class="acc" cx="9" cy="8" r="3.5"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20c.6-3.4 2.8-5 5.5-5s4.9 1.6 5.5 5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.6c2.9.1 4.4 1.7 5 4.4"/></g></symbol>
+<symbol id="i-print" viewBox="0 0 24 24"><rect class="acc-soft" x="7" y="14" width="10" height="6.5" rx="1"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8V3.5h10V8"/><rect x="4" y="8" width="16" height="8" rx="2"/><rect x="7" y="14" width="10" height="6.5" rx="1"/></g></symbol>
+<symbol id="i-grad" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4L2.5 9 12 14l9.5-5Z"/><path d="M6.5 11.5V16c0 1.5 2.5 3 5.5 3s5.5-1.5 5.5-3v-4.5"/></g><path class="accs" stroke-width="2" d="M21.5 9v4"/><circle class="acc" cx="21.5" cy="14.6" r="1.4"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle class="acc" cx="12" cy="12" r="3.2"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2.8v3M12 18.2v3M2.8 12h3M18.2 12h3M5.5 5.5l2.1 2.1M16.4 16.4l2.1 2.1M18.5 5.5l-2.1 2.1M7.6 16.4l-2.1 2.1"/></g></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5L22 20H2Z"/></g><path class="accs" stroke-width="2" d="M12 10v4.2"/><circle class="acc" cx="12" cy="17.2" r="1.3"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path class="acc-soft" d="M2.5 6.5h11v10h-11Z"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h11v10h-11Z"/><path d="M13.5 10h4l3 3.5v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></g></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4v15.5h16"/><path d="M8.5 15.5v-5M17.5 15.5v-3"/></g><path class="accs" stroke-width="3.6" d="M13 15.5V8.5"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path class="acc-soft" d="M5 10h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5Z"/><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h12v6a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 7c0-1.5 1-1.5 1-3M12 7c0-1.5 1-1.5 1-3"/></g></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 6 0l3-3a4 4 0 0 0-6-6l-1.5 1.5"/></g><path class="accs" stroke-width="2" d="M14 10a4 4 0 0 0-6 0l-3 3a4 4 0 0 0 6 6l1.5-1.5"/></symbol>
+</svg>
+
+<div class="phone" id="phone">
+
+<!-- ================= ONBOARDING · BIENVENIDA (S1) ================= -->
+<section class="screen" id="s-onb-welcome">
+  <div class="wrap" style="padding-top:44px; text-align:center">
+    <div class="kicker" style="text-align:center" data-i18n="onb.welcome.kicker">Repostería Mentor</div>
+    <div class="app-hero"><img src="img/ambos.webp" alt="Sofi y Matt"></div>
+    <h1 class="onb-title" data-i18n="onb.welcome.title">Tu mentor de <em>repostería</em></h1>
+    <div style="height:10px"></div>
+    <button class="btn primary" onclick="go('onb-app')" data-i18n="onb.welcome.cta">Empezar</button>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · QUÉ ES LA APP ================= -->
+<section class="screen" id="s-onb-app">
+  <div class="wrap" style="padding-top:26px">
+    <div class="kicker" data-i18n="onb.app.kicker">Repostería Mentor</div>
+    <div class="app-hero"><img src="img/ambos.webp" alt="Sofi y Matt"></div>
+    <h1 class="onb-title" data-i18n="onb.app.title">No es una calculadora, <em>es tu mentor</em></h1>
+
+    <div class="quote-card"><p data-i18n="onb.app.body">Piensa en mí como tu mentor. Estoy aquí para ayudarte a entender de verdad tus números — para que tus postres dejen de ser solo deliciosos y empiecen a ser rentables. Iremos sección por sección, paso a paso. Siempre te explicaré el porqué antes de pedirte un solo número. Y si algo no está claro, toca el <strong>?</strong> junto a cualquier sección. Estoy para explicar — nunca para juzgar.</p></div>
+
+    <div class="card" style="padding:6px 16px">
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b1">Costea cada receta con tus números reales</span></div>
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b2">Pon precios con margen, sin adivinar</span></div>
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b3">Aprende el porqué detrás de cada cuenta</span></div>
+    </div>
+
+    <button class="btn primary" onclick="go('onb-mentor')" data-i18n="onb.app.cta">Elegir a mi mentor</button>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · ELIGE TU MENTOR ================= -->
+<section class="screen" id="s-onb-mentor">
+  <div class="wrap" style="padding-top:26px">
+    <div class="onb-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    <div class="kicker" data-i18n="onb.w.kicker">Bienvenida · paso 1 de 5</div>
+    <h1 class="onb-title" data-i18n="onb.w.title">Elige a tu <em>mentor</em></h1>
+    <p class="onb-lede" data-i18n="onb.w.lede">Elige quién te acompaña: ambos te guían igual, paso a paso.</p>
+
+    <div class="mentor-pick">
+      <div class="mentor-opt sel" onclick="pickMentor(this)">
+        <span class="mentor-ava"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+        <b data-i18n="onb.w.sofi">Sofi</b>
+      </div>
+      <div class="mentor-opt" onclick="pickMentor(this)">
+        <span class="mentor-ava"><img class="ava3d" src="img/matt.webp" alt="Matt"></span>
+        <b data-i18n="onb.w.matt">Matt</b>
+      </div>
+    </div>
+    <p class="hint" style="text-align:center;margin-top:4px" data-i18n="onb.w.same">El mismo mentor, la misma guía — solo cambia quién te acompaña.</p>
+
+    <div class="field">
+      <span class="lbl" data-i18n="onb.w.name">Ponle el nombre que quieras</span>
+      <input type="text" data-i18n-ph="onb.w.name.ph" placeholder="Ej.: Doña Rosa" maxlength="30">
+    </div>
+    <p class="hint" data-i18n="onb.w.note">Se guarda en tu teléfono. La próxima vez te dirá “bienvenido de nuevo”.</p>
+
+    <button class="btn primary" onclick="go('onb-pin')" data-i18n="onb.w.cta">Empezar</button>
+    <div style="text-align:center;display:flex;gap:18px;justify-content:center">
+      <button class="link-quiet" onclick="go('tour')" data-i18n="onb.w.tour">Ver tour guiado</button>
+      <button class="link-quiet" onclick="go('home')" data-i18n="onb.w.skip">Omitir tour</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · CREAR PIN ================= -->
+<section class="screen" id="s-onb-pin">
+  <div class="wrap" style="padding-top:26px">
+    <div class="onb-dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
+    <div class="kicker" data-i18n="onb.pin.kicker">Bienvenida · paso 2 de 5</div>
+    <h1 class="onb-title" data-i18n="onb.pin.title">Tus costos <em>no los ve nadie</em></h1>
+    <p class="onb-lede" data-i18n="onb.pin.lede">Crea un PIN de 4 dígitos para abrir la app.</p>
+
+    <div class="pin-dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
+
+    <div class="pin-pad">
+      <button class="pin-key" onclick="pinPress(1)">1</button>
+      <button class="pin-key" onclick="pinPress(2)">2<small>ABC</small></button>
+      <button class="pin-key" onclick="pinPress(3)">3<small>DEF</small></button>
+      <button class="pin-key" onclick="pinPress(4)">4<small>GHI</small></button>
+      <button class="pin-key" onclick="pinPress(5)">5<small>JKL</small></button>
+      <button class="pin-key" onclick="pinPress(6)">6<small>MNO</small></button>
+      <button class="pin-key" onclick="pinPress(7)">7<small>PQRS</small></button>
+      <button class="pin-key" onclick="pinPress(8)">8<small>TUV</small></button>
+      <button class="pin-key" onclick="pinPress(9)">9<small>WXYZ</small></button>
+      <button class="pin-key fn" onclick="toast('toast.r2')">···</button>
+      <button class="pin-key" onclick="pinPress(0)">0</button>
+      <button class="pin-key fn" onclick="pinPress('del')" data-i18n="onb.pin.del">Borrar</button>
+    </div>
+
+    <div style="height:18px"></div>
+    <label class="switch-row">
+      <span class="txt"><b data-i18n="onb.pin.face.t">Usar Face ID</b><span data-i18n="onb.pin.face.d">Entra más rápido, sin escribir el PIN.</span></span>
+      <span class="switch"><input type="checkbox" checked><i></i></span>
+    </label>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · DISCLAIMER ================= -->
+<section class="screen" id="s-onb-disclaimer">
+  <div class="wrap" style="padding-top:26px">
+    <div class="onb-dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
+    <div class="kicker" data-i18n="onb.dis.kicker">Bienvenida · paso 3 de 5</div>
+    <h1 class="onb-title" data-i18n="onb.dis.title">Una cosa <em>importante</em></h1>
+
+    <div class="disclaimer-box">
+      <div class="shield">
+        <svg width="46" height="46" style="color:var(--gold)"><use href="#i-shield"/></svg>
+      </div>
+      <p><strong data-i18n="onb.dis.p1">Tu privacidad es total, y eso es tu responsabilidad.</strong></p>
+      <p data-i18n="onb.dis.p2">Tus datos viven únicamente en tu teléfono. Ni nosotros ni nadie más puede verlos ni recuperarlos.</p>
+      <p data-i18n="onb.dis.p3">Si olvidas tu PIN, tienes <strong>dos llaves</strong>: tu código de recuperación y tu pregunta de respuesta secreta. Guárdalas como oro: tómalas en pantallazo, envíatelas por correo, anótalas en papel.</p>
+      <p data-i18n="onb.dis.p4">Y ojo con tu respuesta secreta: usa algo que solo tú sepas y no vayas a olvidar — escríbela tal como la responderías después.</p>
+      <p><strong data-i18n="onb.dis.p5">Sin esas llaves, nadie —ni siquiera nosotros— podrá abrir tu información.</strong></p>
+    </div>
+
+    <button class="btn primary" onclick="go('onb-recovery')" data-i18n="onb.dis.cta">Entendí</button>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · CÓDIGO DE RECUPERACIÓN ================= -->
+<section class="screen" id="s-onb-recovery">
+  <div class="wrap" style="padding-top:26px">
+    <div class="onb-dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
+    <div class="kicker" data-i18n="onb.rec.kicker">Bienvenida · paso 4 de 5</div>
+    <h1 class="onb-title" data-i18n="onb.rec.title">Tu <em>código</em> de recuperación</h1>
+    <p class="onb-lede" data-i18n="onb.rec.lede">6 palabras. Escríbelas en papel o tómalas en pantallazo. Sin ellas, nadie podrá ayudarte.</p>
+
+    <div class="recovery-words">
+      <span><b>1</b><i data-i18n="onb.rec.w1">cacao</i></span>
+      <span><b>2</b><i data-i18n="onb.rec.w2">vainilla</i></span>
+      <span><b>3</b><i data-i18n="onb.rec.w3">horno</i></span>
+      <span><b>4</b><i data-i18n="onb.rec.w4">miel</i></span>
+      <span><b>5</b><i data-i18n="onb.rec.w5">canela</i></span>
+      <span><b>6</b><i data-i18n="onb.rec.w6">nube</i></span>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn ghost sm" onclick="toast('toast.copied')"><svg width="16" height="16"><use href="#i-copy"/></svg><span data-i18n="onb.rec.copy">Copiar</span></button>
+      <button class="btn primary" style="flex:2" onclick="go('onb-question')" data-i18n="onb.rec.cta">Ya lo guardé</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ONBOARDING · PREGUNTA SECRETA ================= -->
+<section class="screen" id="s-onb-question">
+  <div class="wrap" style="padding-top:26px">
+    <div class="onb-dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
+    <div class="kicker" data-i18n="onb.q.kicker">Bienvenida · paso 5 de 5</div>
+    <h1 class="onb-title" data-i18n="onb.q.title">Tu pregunta de <em>respuesta secreta</em></h1>
+    <p class="onb-lede" data-i18n="onb.q.lede">Si olvidas tu PIN, esta es tu segunda llave.</p>
+
+    <div class="q-opt sel" onclick="pickQ(this,false)"><span class="radio"></span><span data-i18n="onb.q.1">¿Cómo se llamaba tu primera mascota?</span></div>
+    <div class="q-opt" onclick="pickQ(this,false)"><span class="radio"></span><span data-i18n="onb.q.2">¿A qué concierto fuiste primero?</span></div>
+    <div class="q-opt" onclick="pickQ(this,false)"><span class="radio"></span><span data-i18n="onb.q.3">¿En qué ciudad naciste?</span></div>
+    <div class="q-opt" onclick="pickQ(this,false)"><span class="radio"></span><span data-i18n="onb.q.4">¿Cómo se llama tu mejor amigo de la infancia?</span></div>
+    <div class="q-opt" onclick="pickQ(this,false)"><span class="radio"></span><span data-i18n="onb.q.5">¿Cuál fue tu primer trabajo?</span></div>
+    <div class="q-opt" onclick="pickQ(this,true)"><span class="radio"></span><span data-i18n="onb.q.custom">Escribe tu propia pregunta</span></div>
+
+    <div class="field" id="qCustomWrap" style="display:none">
+      <input type="text" data-i18n-ph="onb.q.custom.ph" placeholder="Escribe tu pregunta…">
+    </div>
+    <div class="field">
+      <span class="lbl" data-i18n="onb.q.answer">Tu respuesta secreta</span>
+      <input type="text" data-i18n-ph="onb.q.answer.ph" placeholder="Escríbela tal como la responderías después" autocomplete="off">
+    </div>
+
+    <button class="btn primary" onclick="go('home')" data-i18n="onb.q.cta">Guardar y entrar</button>
+  </div>
+</section>
+
+<!-- ================= DEMO · BIENVENIDO DE NUEVO ================= -->
+<section class="screen" id="s-onb-back">
+  <div class="wrap" style="padding-top:40px; text-align:center">
+    <div class="kicker" style="text-align:center" data-i18n="onb.back.kicker">Demo · usuaria recurrente</div>
+    <div class="mentor-ava" style="width:120px;height:120px;margin:10px auto 18px;border-width:3px">
+      <img class="ava3d" src="img/sofi.webp" alt="Sofi">
+    </div>
+    <h1 class="onb-title" data-i18n="onb.back.title">Bienvenida de <em>nuevo</em>, Sofi</h1>
+    <p class="onb-lede" data-i18n="onb.back.lede">Qué bueno verte otra vez. ¿Qué costeamos hoy?</p>
+    <button class="btn primary" onclick="go('home')" data-i18n="onb.back.cta">Entrar</button>
+  </div>
+</section>
+
+<!-- ================= HOME ================= -->
+<section class="screen" id="s-home">
+  <div class="home-top">
+    <div class="app-id">
+      <span class="mentor-ava sm"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+      <div class="app-id-txt">
+        <b>Repostería Mentor</b>
+        <span data-i18n="home.top.tag">Tu mentor de repostería rentable</span>
+      </div>
+    </div>
+    <button class="icon-btn" onclick="go('ajustes')" aria-label="Ajustes"><svg width="20" height="20"><use href="#i-gear"/></svg></button>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="home.qa.t">Accesos rápidos</div>
+    <div class="qa-row">
+      <button class="qa-card" onclick="go('precios')"><svg width="22" height="22"><use href="#i-calc"/></svg><span data-i18n="home.qa.calc">Calculadora de precios</span></button>
+      <button class="qa-card" onclick="go('convertidor')"><svg width="22" height="22"><use href="#i-scale"/></svg><span data-i18n="home.qa.conv">Convertidor de medidas</span></button>
+    </div>
+    <div class="mentor-card">
+      <span class="mentor-ava"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p data-i18n="home.mentor.p">¿Qué costeamos hoy? Te guío <strong>pregunta por pregunta</strong>, sin jerga y con tus números.</p>
+        <div class="btn-row">
+          <button class="btn plum sm" onclick="go('costeo')" data-i18n="home.mentor.cta">Costear con la mentora</button>
+        </div>
+        <button class="link-quiet" onclick="toastRound2()" data-i18n="home.mentor.mute">Silenciar mentora</button>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="home.panel">Panel del negocio</div>
+    <div class="stats">
+      <div class="stat"><small data-i18n="home.s.ventas">Ventas</small><b class="num">$486.00</b></div>
+      <div class="stat"><small data-i18n="home.s.costos">Costos</small><b class="num">$172.40</b></div>
+      <div class="stat"><small data-i18n="home.s.gastos">Gastos</small><b class="num">$84.00</b></div>
+      <div class="stat good"><small data-i18n="home.s.neta">Utilidad neta</small><b class="num">$229.60</b></div>
+    </div>
+    <div class="formula-note" data-i18n="home.formula">Ingresos − costos = utilidad bruta [+] · Utilidad bruta − gastos = utilidad neta [+]</div>
+
+    <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="home.search.ph">Buscar receta, cliente o gasto…</span></div>
+
+    <div class="kicker" data-i18n="home.check">Checklist de costeo</div>
+    <div class="card" style="padding:6px 16px">
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="home.check.1">Ingredientes costeados</span></div>
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="home.check.2">Merma aplicada</span></div>
+      <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.3">Mi hora incluida</span></div>
+      <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.4">Precio con margen</span></div>
+    </div>
+
+    <div class="season">
+      <span class="orb o1"></span>
+      <span class="count num" data-i18n="home.season.count">Faltan 21 días</span>
+      <h3 data-i18n="home.season.t">San Valentín</h3>
+      <p data-i18n="home.season.p">¿Ya tienes tus precios de temporada?</p>
+      <button class="btn soft sm" onclick="toastRound2()" data-i18n="home.season.cta">Ver calendario</button>
+    </div>
+
+    <div class="made" data-i18n="made">Hecho en NYC · Two Pixels</div>
+  </div>
+</section>
+
+<!-- ================= RECETAS ================= -->
+<section class="screen" id="s-recetas">
+  <div class="hdr">
+    <h1 data-i18n="rec.title">Recetas</h1>
+    <button class="btn primary sm" onclick="toastRound2()"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="rec.new">+ Nueva</span></button>
+  </div>
+  <div class="wrap">
+    <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="rec.search.ph">Buscar receta…</span></div>
+    <div class="chips">
+      <button class="chip on" data-i18n="rec.chip.all">Todas</button>
+      <button class="chip" data-i18n="rec.chip.tortas">Tortas</button>
+      <button class="chip" data-i18n="rec.chip.cupcakes">Cupcakes</button>
+      <button class="chip" data-i18n="rec.chip.galletas">Galletas</button>
+      <button class="chip" data-i18n="rec.chip.temp">Temporada</button>
+      <button class="chip add" onclick="toastRound2()" data-i18n="rec.chip.new">+ Nueva categoría</button>
+    </div>
+
+    <div class="recipe-card" onclick="go('receta-detalle')">
+      <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7DDD2,#E8B4A0)"><svg width="40" height="40" style="color:#A85640"><use href="#i-cup"/></svg></div>
+      <div class="info">
+        <b data-i18n="rec.c1.t">Torta de vainilla</b>
+        <span class="cat" data-i18n="rec.c1.c">Tortas · 12 porciones</span>
+        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$19.48</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$31.99</b></span></div>
+        <div class="recipe-actions"><span class="margin-badge num">39% <span data-i18n="rec.margin">Margen</span></span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="toastRound2()">
+      <div class="recipe-thumb" style="background:linear-gradient(135deg,#EAD9C9,#C9A24B)"><svg width="40" height="40" style="color:#7A5A1E"><use href="#i-cup"/></svg></div>
+      <div class="info">
+        <b data-i18n="rec.c2.t">Cupcakes de chocolate</b>
+        <span class="cat" data-i18n="rec.c2.c">Cupcakes · 24 unidades</span>
+        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$9.60</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$36.00</b></span></div>
+        <div class="recipe-actions"><span class="margin-badge num">73% <span data-i18n="rec.margin">Margen</span></span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="toastRound2()">
+      <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><svg width="40" height="40" style="color:#9A7420"><use href="#i-cup"/></svg></div>
+      <div class="info">
+        <b data-i18n="rec.c3.t">Pan de banano</b>
+        <span class="cat" data-i18n="rec.c3.c">Panes · 1 unidad</span>
+        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$4.20</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$12.99</b></span></div>
+        <div class="recipe-actions"><span class="margin-badge num">68% <span data-i18n="rec.margin">Margen</span></span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="toastRound2()">
+      <div class="recipe-thumb" style="background:linear-gradient(135deg,#D9C6CF,#A68E9B)"><svg width="40" height="40" style="color:#5B3A4E"><use href="#i-cup"/></svg></div>
+      <div class="info">
+        <b data-i18n="rec.c4.t">Alfajores</b>
+        <span class="cat" data-i18n="rec.c4.c">Galletas · 12 unidades</span>
+        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$5.10</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$18.00</b></span></div>
+        <div class="recipe-actions"><span class="margin-badge num">72% <span data-i18n="rec.margin">Margen</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DETALLE DE RECETA ================= -->
+<section class="screen" id="s-receta-detalle">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="rec.c1.t">Torta de vainilla</h1>
+  </div>
+  <div class="wrap">
+    <div class="detail-hero">
+      <div class="ph-img">
+        <svg width="86" height="86" style="color:rgba(255,255,255,.9)"><use href="#i-cup"/></svg>
+      </div>
+      <div class="body">
+        <h2 data-i18n="rec.c1.t">Torta de vainilla</h2>
+        <p class="desc" data-i18n="det.desc">Bizcocho húmedo de vainilla con buttercream de queso crema. La favorita de los cumpleaños.</p>
+        <div class="meta-row">
+          <span class="meta-pill"><svg width="14" height="14"><use href="#i-users"/></svg><span data-i18n="det.m1">12 porciones</span></span>
+          <span class="meta-pill"><svg width="14" height="14"><use href="#i-clock"/></svg><span data-i18n="det.m2">45 min</span></span>
+          <span class="meta-pill"><svg width="14" height="14"><use href="#i-chart"/></svg><span data-i18n="det.m3">Dificultad media</span></span>
+        </div>
+        <div class="meta-row" style="margin-top:8px">
+          <span class="meta-pill alg"><svg width="14" height="14"><use href="#i-alert"/></svg><span data-i18n="det.contains">Contiene:</span>&nbsp;Leche · Huevo · Trigo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="det.scale">Escalado de receta</div>
+    <div class="card">
+      <button class="btn primary" onclick="toastRound2()"><svg width="17" height="17"><use href="#i-scale"/></svg><span data-i18n="det.scale.cta">Escalar receta</span></button>
+      <div style="height:12px"></div>
+      <div class="seg" id="modeSeg">
+        <button class="on" onclick="setMode('a',this)" data-i18n="det.mode.a">Modo A · Por cantidad</button>
+        <button onclick="setMode('b',this)" data-i18n="det.mode.b">Modo B · Por ingrediente</button>
+      </div>
+      <div id="modeA">
+        <div class="field"><span class="lbl" data-i18n="det.a.label">¿Cuántas porciones quieres hacer?</span>
+          <input type="number" value="200"></div>
+        <div class="scale-result">
+          <span class="num" style="color:var(--faint);font-size:12px" data-i18n="det.a.result">×16.7 tu receta</span>
+          <span class="big num" data-i18n="det.a.big">200 porciones ≈ 4.2 kg</span>
+          <span style="color:var(--ink-soft)" data-i18n="det.a.note">Harina 500 g → 8.3 kg · Huevos 4 → 67 · Las sub-recetas escalan solas.</span>
+        </div>
+      </div>
+      <div id="modeB" style="display:none">
+        <div class="field"><span class="lbl" data-i18n="det.b.ing">¿Qué ingrediente tienes?</span>
+          <select><option>Harina</option><option>Azúcar</option><option>Mantequilla</option></select></div>
+        <div class="field"><span class="lbl" data-i18n="det.b.qty">¿Cuánto tienes?</span>
+          <input type="text" value="5 lb"></div>
+        <div class="scale-result">
+          <span class="big num" data-i18n="det.b.big">≈ 54 porciones</span>
+          <span style="color:var(--ink-soft)" data-i18n="det.b.note">Con 5 lb de harina (2.27 kg) rindes 4.5 tandas de esta receta.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="det.sub">Sub-recetas</div>
+    <div class="card">
+      <div class="tree">
+        <div class="lvl1" data-i18n="rec.c1.t">Torta de vainilla</div>
+        <div class="lvl2">Bizcocho de vainilla</div>
+        <div class="lvl3">Syrup de vainilla</div>
+        <div class="lvl2 last">Buttercream de queso crema</div>
+      </div>
+      <p class="hint" style="margin:10px 0 0" data-i18n="det.sub.note">Orden de preparación: la app ordena qué hacer primero.</p>
+    </div>
+
+    <div class="kicker" data-i18n="det.ing">Ingredientes y costo</div>
+    <div class="card" style="padding:8px 14px">
+      <table class="cost">
+        <tr><th data-i18n="det.th.ing">Ingrediente</th><th data-i18n="det.th.qty">Qty</th><th data-i18n="det.th.cost">Costo</th></tr>
+        <tr><td>Harina</td><td class="num">500 g</td><td class="num">$1.20</td></tr>
+        <tr><td>Azúcar</td><td class="num">400 g</td><td class="num">$0.72</td></tr>
+        <tr><td>Mantequilla</td><td class="num">250 g</td><td class="num">$1.63</td></tr>
+        <tr><td>Huevos</td><td class="num">4 u</td><td class="num">$0.80</td></tr>
+        <tr><td>Leche</td><td class="num">200 ml</td><td class="num">$0.30</td></tr>
+        <tr><td>Vainilla</td><td class="num">10 ml</td><td class="num">$0.85</td></tr>
+        <tr><td>Polvo de hornear</td><td class="num">15 g</td><td class="num">$0.18</td></tr>
+        <tr><td><b data-i18n="det.total">Costo ingredientes</b></td><td></td><td class="num"><b>$5.68</b></td></tr>
+      </table>
+    </div>
+
+    <button class="btn primary" onclick="go('costeo')" data-i18n="det.cta.cost">Costear esta receta</button>
+    <div class="btn-row">
+      <button class="btn ghost" onclick="go('convertidor')" data-i18n="det.cta.conv">Convertidor</button>
+      <button class="btn ghost" onclick="toastRound2()" data-i18n="det.cta.card">Tarjeta</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COSTEO · TRES CAJONES ================= -->
+<section class="screen" id="s-costeo">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="cos.title">Costeo</h1>
+  </div>
+  <div class="wrap">
+    <div class="mentor-card">
+      <span class="mentor-ava"><img class="ava3d" src="img/matt-chef.webp" alt="Matt"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p data-i18n="cos.mentor.p">Costea conmigo, <strong>paso a paso</strong>. Nada de jerga.</p>
+        <div class="btn-row"><button class="btn plum sm" onclick="toastRound2()" data-i18n="cos.mentor.cta">Empezar modo guiado</button></div>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="cos.ing">Costo de ingredientes</div>
+    <div class="card" style="padding:8px 14px">
+      <table class="cost">
+        <tr><td>Harina 500 g + 6 más</td><td class="num"><b>$5.68</b></td></tr>
+        <tr><td><span data-i18n="cos.merma">Merma (5%)</span><button class="plus" onclick="toastRound2()">+</button></td><td class="num"><b>$0.28</b></td></tr>
+        <tr><td colspan="2" style="border:none;padding-top:0"><span class="hint" style="margin:0" data-i18n="cos.merma.note">Pérdida natural del proceso — va dentro del costo.</span></td></tr>
+        <tr><td data-i18n="cos.labor">Mano de obra · 1.5 h × $8</td><td class="num"><b>$12.00</b></td></tr>
+      </table>
+    </div>
+
+    <div class="card" style="border-left:4px solid var(--rose)">
+      <h2 class="sec-t" data-i18n="cos.pack.t">Empaque · costo directo</h2>
+      <p class="hint" style="margin:0" data-i18n="cos.pack.p">Caja + base + etiqueta: <b>$1.10 por unidad</b>. Se suma, no se prorratea. Si no lo metes, lo regalas.</p>
+    </div>
+
+    <div class="kicker" data-i18n="cos.drawers">Equipos · tres cajones</div>
+
+    <div class="drawer d1">
+      <div class="d-head"><span class="d-num">1</span><b data-i18n="cos.d1.t">Costo directo</b><span class="amt num">$19.06</span></div>
+      <div class="d-body">
+        <div class="rowline"><span data-i18n="cos.d1.r1">Ingredientes</span><b class="num">$5.68</b></div>
+        <div class="rowline"><span data-i18n="cos.d1.r2">Merma</span><b class="num">$0.28</b></div>
+        <div class="rowline"><span data-i18n="cos.d1.r3">Mano de obra</span><b class="num">$12.00</b></div>
+        <div class="rowline"><span data-i18n="cos.d1.r4">Empaque</span><b class="num">$1.10</b></div>
+      </div>
+    </div>
+
+    <div class="drawer d2">
+      <div class="d-head"><span class="d-num">2</span><b data-i18n="cos.d2.t">Equipo / amortización</b><span class="amt num">$0.42</span></div>
+      <div class="d-body">
+        <div class="rowline"><span data-i18n="cos.d2.r1">Durables: batidora, horno</span></div>
+        <div class="rowline"><span data-i18n="cos.d2.r2">Consumibles: papel, mangas</span></div>
+        <div class="rowline"><span><span data-i18n="cos.d2.r3">Depreciación simple</span><button class="plus" onclick="toastRound2()">+</button></span><b class="num">$0.42</b></div>
+      </div>
+    </div>
+
+    <div class="drawer d3">
+      <div class="d-head"><span class="d-num">3</span><b data-i18n="cos.d3.t">Gasto fijo</b><span class="amt num">$36.00</span></div>
+      <div class="d-body">
+        <div class="rowline"><span data-i18n="cos.d3.r1">Arriendo + servicios / mes</span><b class="num">$36.00</b></div>
+        <div class="ponque-note" data-i18n="cos.ponque">Traducido: debes vender <b>14 ponqués</b> para cubrirlo.</div>
+      </div>
+    </div>
+
+    <div class="total-card">
+      <span class="orb o1"></span>
+      <div class="k" data-i18n="cos.total.k">Costo total</div>
+      <div class="big num">$19.48</div>
+      <div class="sub" data-i18n="cos.total.per">por tanda · $1.62 por porción</div>
+    </div>
+
+    <button class="btn primary" onclick="go('precios')"><span data-i18n="cos.cta">Poner precio</span><svg width="16" height="16" style="transform:scaleX(-1)"><use href="#i-chevL"/></svg></button>
+  </div>
+</section>
+
+<!-- ================= PRECIOS · CALCULADORA ================= -->
+<section class="screen" id="s-precios">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="pre.title">Precios</h1>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="pre.k">Calculadora con margen</div>
+
+    <div class="card">
+      <div class="price-hero">
+        <div class="k" data-i18n="pre.sug">Precio sugerido</div>
+        <div class="big num">$31.99</div>
+        <div class="per" data-i18n="pre.per">por torta · 12 porciones</div>
+      </div>
+      <div class="slider-row">
+        <div class="lab"><span data-i18n="pre.margin">Margen objetivo</span><b class="num">40%</b></div>
+        <input type="range" min="0" max="90" value="40">
+      </div>
+      <div style="height:8px"></div>
+      <div class="break-row"><span data-i18n="pre.c.cost">Costo total</span><span class="num">$19.48</span></div>
+      <div class="break-row"><span data-i18n="pre.c.margin">Margen aplicado</span><span class="num">40%</span></div>
+      <div class="break-row"><span data-i18n="pre.c.calc">Precio calculado</span><span class="num">$32.47</span></div>
+      <div class="break-row total"><span data-i18n="pre.c.psy">Precio psicológico</span><span class="num">$31.99</span></div>
+      <div class="break-row profit"><span data-i18n="pre.c.profit">Ganancia por torta</span><span class="num">$12.51</span></div>
+    </div>
+
+    <div class="mentor-card anti">
+      <span class="mentor-ava"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p data-i18n="pre.anti">La mentora te frena: si intentas poner un precio <strong>por debajo de tu costo</strong>, te aviso. Cobra tu trabajo.</p>
+      </div>
+    </div>
+
+    <div class="tip-mentor">
+      <span class="mentor-ava"><img class="ava3d" src="img/matt.webp" alt="Matt"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p style="font-size:13px;color:var(--ink-soft)" data-i18n="pre.tip">¿Quieres más margen? Prueba <strong>frambuesa → fresa</strong>: −$1.80 por torta, sin que el cliente note la diferencia.</p>
+      </div>
+    </div>
+
+    <button class="btn primary" onclick="toastRound2()" data-i18n="pre.cta">Cotizar pedido personalizado</button>
+  </div>
+</section>
+
+<!-- ================= MÁS · HUB ================= -->
+<section class="screen" id="s-mas">
+  <div class="hdr"><h1 data-i18n="more.title">Más</h1></div>
+  <div class="wrap">
+    <div class="hub-grid">
+      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-chart"/></svg><b data-i18n="more.negocio.t">Negocio</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.negocio.d">Ventas, gastos y reportes</span></button>
+      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-users"/></svg><b data-i18n="more.clientes.t">Clientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.clientes.d">Fichas de clientes y pedidos</span></button>
+      <button class="hub-card" onclick="go('colab')"><svg><use href="#i-link"/></svg><b data-i18n="more.colab.t">Colaboraciones</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.colab.d">Comparte recetas con tu equipo</span></button>
+      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-box"/></svg><b data-i18n="more.ing.t">Ingredientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.ing.d">Catálogo de ingredientes y stock</span></button>
+      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-print"/></svg><b data-i18n="more.print.t">Imprimibles</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.print.d">Tarjetas y etiquetas para imprimir</span></button>
+      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-grad"/></svg><b data-i18n="more.learn.t">Aprender</b><span class="kind-tag guide" data-i18n="more.kind.guide">Guía</span><span class="hub-d" data-i18n="more.learn.d">Ebook y glosario para aprender</span></button>
+      <button class="hub-card" onclick="go('ajustes')"><svg><use href="#i-gear"/></svg><b data-i18n="more.set.t">Ajustes</b><span class="kind-tag info" data-i18n="more.kind.info">Información</span><span class="hub-d" data-i18n="more.set.d">Idioma, tema y respaldo</span></button>
+    </div>
+    <div class="made" data-i18n="made">Hecho en NYC · Two Pixels</div>
+  </div>
+</section>
+
+<!-- ================= AJUSTES ================= -->
+<section class="screen" id="s-ajustes">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="screen.ajustes">Ajustes</h1>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="ajustes.kicker">Ajustes</div>
+    <h1 class="onb-title" style="margin-top:0" data-i18n="ajustes.title">Todo a tu <em>manera</em></h1>
+
+    <div class="card set-row">
+      <div class="set-txt"><b data-i18n="ajustes.lang.t">Idioma</b><span data-i18n="ajustes.lang.d">Español o English, desde el primer día</span></div>
+      <div class="seg langSegX">
+        <button data-lang="es" onclick="setLang('es')">ES</button>
+        <button data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+
+    <div class="card set-row">
+      <div class="set-txt"><b data-i18n="ajustes.theme.t">Apariencia</b><span data-i18n="ajustes.theme.d">Claro de día, oscuro de noche</span></div>
+      <div class="seg themeSegX">
+        <button data-theme="light" onclick="setTheme('light')" data-i18n="ajustes.theme.light">Claro</button>
+        <button data-theme="dark" onclick="setTheme('dark')" data-i18n="ajustes.theme.dark">Oscuro</button>
+      </div>
+    </div>
+
+    <div class="card set-row">
+      <span class="mentor-ava sm"><img class="ava3d" src="img/matt.webp" alt="Matt"></span>
+      <div class="set-txt"><b data-i18n="ajustes.backup.t">Respaldo</b><span data-i18n="ajustes.backup.d">Tu información vive en tu teléfono. Respáldala como oro.</span></div>
+      <button class="btn soft sm" onclick="toast('toast.copied')" data-i18n="ajustes.backup.cta">Hacer respaldo ahora</button>
+    </div>
+
+    <div class="card set-row">
+      <div class="set-txt"><b data-i18n="ajustes.tour.t">Tour guiado</b><span data-i18n="ajustes.tour.d">Repasar los gestos: tocar, deslizar, mantener</span></div>
+      <button class="btn ghost sm" onclick="go('tour')" data-i18n="ajustes.tour.cta">Ver tour</button>
+    </div>
+
+    <div class="made" data-i18n="made">Hecho en NYC · Two Pixels</div>
+    <div class="ver-tag" data-i18n="version.tag">Mentor UI v3 (2026-09-27)</div>
+  </div>
+</section>
+
+<!-- ================= CONVERTIDOR ================= -->
+<section class="screen" id="s-convertidor">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="screen.convertidor">Convertidor de medidas</h1>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="conv.kicker">Herramienta</div>
+    <h1 class="onb-title" style="margin-top:0" data-i18n="conv.title">Convertidor de <em>medidas</em></h1>
+    <p class="onb-lede" data-i18n="conv.lede">¿La receta viene en tazas y tu balanza en gramos? Resuelto.</p>
+
+    <div class="card">
+      <div class="field"><span class="lbl" data-i18n="conv.ing">Ingrediente</span>
+        <select id="convIng" onchange="convCalc()">
+          <option value="120" data-i18n="conv.i.harina">Harina</option>
+          <option value="200" data-i18n="conv.i.azucar">Azúcar</option>
+          <option value="227" data-i18n="conv.i.mantequilla">Mantequilla</option>
+          <option value="240" data-i18n="conv.i.leche">Leche</option>
+          <option value="100" data-i18n="conv.i.cacao">Cacao</option>
+        </select>
+      </div>
+      <div class="field"><span class="lbl" data-i18n="conv.qty">Cantidad en tazas</span>
+        <input type="number" id="convQty" data-i18n-ph="conv.qty.ph" placeholder="Ej.: 2" value="2" min="0" step="0.25" oninput="convCalc()">
+      </div>
+      <div class="conv-result">
+        <span data-i18n="conv.result">Equivale a</span>
+        <b class="big num" id="convOut">240 g</b>
+      </div>
+      <p class="hint" style="margin:12px 0 0" data-i18n="conv.hint">Valores de referencia para repostería casera.</p>
+    </div>
+
+    <div class="tip-mentor">
+      <span class="mentor-ava"><img class="ava3d" src="img/sofi-chef.webp" alt="Sofi"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p style="font-size:13px;color:var(--ink-soft)" data-i18n="conv.tip">Pesa siempre que puedas: la taza miente, la balanza no.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COLABORACIONES ================= -->
+<section class="screen" id="s-colab">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="screen.colab">Colaboraciones</h1>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="colab.kicker">Herramienta</div>
+    <div class="app-hero"><img src="img/ambos.webp" alt="Sofi y Matt"></div>
+    <h1 class="onb-title" data-i18n="colab.title">Colabora <em>sin enredos</em></h1>
+    <p class="onb-lede" data-i18n="colab.lede">Comparte recetas, costos y precios con quien hornea contigo.</p>
+
+    <div class="card" style="padding:6px 16px">
+      <div class="colab-row"><svg width="22" height="22" style="color:var(--rose)"><use href="#i-book"/></svg><div><b data-i18n="colab.r1t">Recetas compartidas</b><span data-i18n="colab.r1d">Tu equipo ve las mismas recetas y costos.</span></div></div>
+      <div class="colab-row"><svg width="22" height="22" style="color:var(--rose)"><use href="#i-users"/></svg><div><b data-i18n="colab.r2t">Roles claros</b><span data-i18n="colab.r2d">Quién puede ver y quién puede editar.</span></div></div>
+      <div class="colab-row"><svg width="22" height="22" style="color:var(--rose)"><use href="#i-shield"/></svg><div><b data-i18n="colab.r3t">Todo queda en tu teléfono</b><span data-i18n="colab.r3d">Tú decides qué sale de tu app.</span></div></div>
+    </div>
+
+    <button class="btn primary" onclick="toastRound2()" data-i18n="colab.cta">Invitar a colaborar</button>
+  </div>
+</section>
+
+<!-- ================= TOUR GUIADO ================= -->
+<section class="screen" id="s-tour">
+  <div class="wrap" style="padding-top:26px">
+    <div class="kicker" data-i18n="tour.kicker">Tour guiado</div>
+    <h1 class="onb-title" data-i18n="tour.title">Muévete con <em>el dedo</em></h1>
+    <p class="onb-lede" data-i18n="tour.lede">Tres gestos y dominas toda la app.</p>
+
+    <div class="gest-card">
+      <svg class="gest-svg g-tap" viewBox="0 0 64 64" aria-hidden="true">
+        <circle class="g-ring" cx="32" cy="42" r="11"/>
+        <path class="g-finger" d="M26 42V20a6 6 0 0 1 12 0v22c0 3.3-2.7 6-6 6s-6-2.7-6-6z"/>
+      </svg>
+      <div><b data-i18n="tour.g1t">Tocar</b><span data-i18n="tour.g1d">Abre recetas, cajones y botones.</span></div>
+    </div>
+
+    <div class="gest-card">
+      <svg class="gest-svg g-swipe" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="g-arrow" d="M10 44h44M36 36l8 8-8 8"/>
+        <path class="g-finger" d="M26 44V22a6 6 0 0 1 12 0v22c0 3.3-2.7 6-6 6s-6-2.7-6-6z"/>
+      </svg>
+      <div><b data-i18n="tour.g2t">Deslizar</b><span data-i18n="tour.g2d">Muévete entre pantallas y listas.</span></div>
+    </div>
+
+    <div class="gest-card">
+      <svg class="gest-svg g-hold" viewBox="0 0 64 64" aria-hidden="true">
+        <circle class="g-ringfill" cx="32" cy="42" r="13"/>
+        <path class="g-finger" d="M26 42V20a6 6 0 0 1 12 0v22c0 3.3-2.7 6-6 6s-6-2.7-6-6z"/>
+      </svg>
+      <div><b data-i18n="tour.g3t">Mantener presionado</b><span data-i18n="tour.g3d">Despliega opciones y menús.</span></div>
+    </div>
+
+    <button class="btn primary" onclick="go('home')" data-i18n="tour.cta">Entrar a la app</button>
+  </div>
+</section>
+
+<!-- ================= TABBAR + TOAST ================= -->
+<nav class="tabbar" id="tabbar">
+  <button data-go="home" onclick="go('home')"><svg><use href="#i-home"/></svg><span data-i18n="tab.home">Inicio</span></button>
+  <button data-go="recetas" onclick="go('recetas')"><svg><use href="#i-book"/></svg><span data-i18n="tab.recetas">Recetas</span></button>
+  <button data-go="costeo" onclick="go('costeo')"><svg><use href="#i-calc"/></svg><span data-i18n="tab.costeo">Costeo</span></button>
+  <button data-go="precios" onclick="go('precios')"><svg><use href="#i-tag"/></svg><span data-i18n="tab.precios">Precios</span></button>
+  <button data-go="mas" onclick="go('mas')"><svg><use href="#i-dots"/></svg><span data-i18n="tab.mas">Más</span></button>
+</nav>
+<div class="toast" id="toast"></div>
+
+</div><!-- /phone -->
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

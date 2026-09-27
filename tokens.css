@@ -1,0 +1,102 @@
+/* ============================================================
+   Repostería Mentor — Design Tokens v1
+   Paleta cálida de repostería · glassmorphism premium
+   Modo claro + modo oscuro · 100% offline (sin CDNs)
+   ============================================================ */
+
+:root {
+  /* ---- color · modo claro ---- */
+  --bg:        #FDF9F4;   /* crema base */
+  --bg-soft:   #F9ECE6;   /* blush */
+  --surface:   #FFFFFF;   /* tarjetas */
+  --surface-2: #FFFDF9;   /* superficies elevadas suaves */
+  --glass:     rgba(255, 255, 255, .72);
+
+  --ink:       #3A2E39;   /* texto principal */
+  --ink-soft:  #6E5F68;   /* texto secundario (cacao) */
+  --faint:     #A68E9B;   /* texto tenue */
+  --line:      #EBDCD2;   /* bordes cálidos */
+
+  --plum:      #40263D;   /* ciruela marca */
+  --plum-deep: #2C1830;   /* ciruela profunda */
+  --rose:      #C4705A;   /* rosa terracota */
+  --rose-deep: #A85640;
+  --rose-soft: #F7DDD2;
+  --ember:     #E4572E;
+  --gold:      #C9A24B;   /* dorado mentor */
+  --gold-soft: #F7ECD4;
+  --gold-line: #EAD9AE;
+
+  --good:      #3E7C4F;
+  --good-soft: #E3F0E5;
+  --warn:      #B7791F;
+  --warn-soft: #F7ECD4;
+  --bad:       #C0392B;
+  --bad-soft:  #F9E2DE;
+
+  /* ---- tipografía ---- */
+  --font-display: Georgia, "Noto Serif", "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+
+  --t-hero:    30px;
+  --t-h1:      22px;
+  --t-h2:      17px;
+  --t-body:    15px;
+  --t-small:   13px;
+  --t-micro:   11px;
+
+  /* ---- forma ---- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-pill: 999px;
+
+  /* ---- sombras cálidas ---- */
+  --sh-1: 0 2px 10px rgba(64, 38, 61, .07);
+  --sh-2: 0 10px 30px rgba(64, 38, 61, .10);
+  --sh-3: 0 22px 60px rgba(64, 38, 61, .18);
+
+  /* ---- movimiento (principio del lago: solo transiciones) ---- */
+  --ease: cubic-bezier(.22, .9, .28, 1);
+  --dur: 280ms;
+
+  /* ---- layout ---- */
+  --phone-w: 390px;
+  --pad: 20px;
+  --tabbar-h: 72px;
+}
+
+/* ============ MODO OSCURO ============ */
+[data-theme="dark"] {
+  --bg:        #201318;
+  --bg-soft:   #2A1A21;
+  --surface:   #2E1F27;
+  --surface-2: #372630;
+  --glass:     rgba(46, 31, 39, .78);
+
+  --ink:       #F7ECE3;
+  --ink-soft:  #D9BCA9;
+  --faint:     #96707F;
+  --line:      #4C3542;
+
+  --plum:      #E9B79F;
+  --plum-deep: #F7E3D3;
+  --rose:      #E08A6D;
+  --rose-deep: #E89B7E;
+  --rose-soft: #4A2C26;
+  --gold:      #D9B25F;
+  --gold-soft: #4A3A1E;
+  --gold-line: #6B5527;
+
+  --good:      #7DBB8A;
+  --good-soft: #233A28;
+  --warn:      #D9A44E;
+  --warn-soft: #453413;
+  --bad:       #E08073;
+  --bad-soft:  #47231F;
+
+  --sh-1: 0 2px 10px rgba(0, 0, 0, .35);
+  --sh-2: 0 10px 30px rgba(0, 0, 0, .45);
+  --sh-3: 0 22px 60px rgba(0, 0, 0, .55);
+}
