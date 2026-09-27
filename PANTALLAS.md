@@ -7,9 +7,11 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 
 | S# | id (código) | Nombre | Qué contiene / propósito |
 |----|-------------|--------|--------------------------|
+| **Configuración inicial** (primera vez que se abre la app) | | | |
 | S1 | `onb-welcome` | Bienvenida | Pantalla inicial: ambos mentores, título de marca, botón "Empezar". |
 | S2 | `onb-mentor` | Elige tu mentor | Elegir avatar (Sofi o Matt) — ambos guían igual, sin FOMO. Nombre renombrable. Paso 1 de 5. |
-| S3 | `onb-back` | Bienvenido de nuevo | Demo de usuaria recurrente: saludo del mentor + "Entrar". |
+| S3 | `onb-back` | Bienvenido de nuevo | **Regreso** (segunda vez en adelante): saludo del mentor + "Entrar" → S12. |
+| **La app** | | | |
 | S4 | `costeo` | Costeo · Tres cajones | Costo de ingredientes + merma + mano de obra + empaque; cajones 1–3; costo total. |
 | S5 | `precios` | Precios · Calculadora | Calculadora con margen: precio sugerido, slider de margen, ganancia. Anti-precio-bajo-costo. |
 | S6 | `convertidor` | Convertidor de medidas | Tazas ↔ gramos funcional por ingrediente (harina, azúcar, mantequilla, leche, cacao). |
@@ -26,8 +28,9 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S17 | `ajustes` | Ajustes | Idioma, apariencia claro/oscuro, respaldo, tour; sello de versión "Mentor UI v3 (2026-09-27)". |
 | S18 | `mas` | Más · Hub | Tarjetas Negocio, Clientes, Colaboraciones, Ingredientes, Imprimibles, Aprender, Ajustes — cada una con etiqueta Herramienta / Guía / Información. |
 
-## Flujo de onboarding (orden vigente)
-S1 → S2 → S7 → S8 → S9 → S10 → S11 → S12 (home)
+## Flujos vigentes
+- **Primera vez:** S1 → S2 → S7 → S8 (¿proteger con PIN?) → con PIN: S9 → S10 → S11 → S12 · sin PIN (omitir): S12 directo.
+- **Regreso:** S3 → S12 (home).
 
 ## Notas
 - El "Jump to: S1…S18" del chrome del prototipo se genera desde `SCREENS` en `app.js` (fuente única).

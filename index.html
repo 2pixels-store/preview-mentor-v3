@@ -14,6 +14,7 @@
 <div class="proto-bar">
   <span class="proto-title" data-i18n="chrome.title">Repostería Mentor · Prototipo Hi-Fi</span>
   <select id="screenJump" aria-label="Pantalla">
+    <optgroup data-i18n="chrome.phase.setup" label="Configuración inicial">
     <option value="onb-welcome" data-i18n="screen.onb-welcome">Onboarding · Bienvenida</option>
     <option value="onb-mentor" data-i18n="screen.onb-mentor">Onboarding · Elige tu mentor</option>
     <option value="onb-hello" data-i18n="screen.onb-hello">Onboarding · Saludo del mentor</option>
@@ -21,7 +22,11 @@
     <option value="onb-disclaimer" data-i18n="screen.onb-disclaimer">Onboarding · Disclaimer</option>
     <option value="onb-recovery" data-i18n="screen.onb-recovery">Onboarding · Código de recuperación</option>
     <option value="onb-question" data-i18n="screen.onb-question">Onboarding · Pregunta secreta</option>
+    </optgroup>
+    <optgroup data-i18n="chrome.phase.returning" label="Regreso">
     <option value="onb-back" data-i18n="screen.onb-back">Demo · Bienvenido de nuevo</option>
+    </optgroup>
+    <optgroup data-i18n="chrome.phase.app" label="La app">
     <option value="home" data-i18n="screen.home">Inicio · Panel</option>
     <option value="recetas" data-i18n="screen.recetas">Recetas</option>
     <option value="receta-detalle" data-i18n="screen.receta-detalle">Detalle de receta</option>
@@ -32,6 +37,7 @@
     <option value="tour" data-i18n="screen.tour">Tour guiado</option>
     <option value="ajustes" data-i18n="screen.ajustes">Ajustes</option>
     <option value="mas" data-i18n="screen.mas">Más · Hub</option>
+    </optgroup>
   </select>
   <div class="seg-mini" id="langSeg">
     <button data-lang="es" class="on" onclick="setLang('es')">ES</button>

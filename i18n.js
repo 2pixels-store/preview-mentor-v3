@@ -7,6 +7,9 @@ es: {
 
 /* ---- chrome del prototipo ---- */
 "chrome.title": "Repostería Mentor · UI v3 (2026-09-27)",
+"chrome.phase.setup": "Configuración inicial",
+"chrome.phase.returning": "Regreso",
+"chrome.phase.app": "La app",
 "chrome.theme.light": "Claro",
 "chrome.theme.dark": "Oscuro",
 "chrome.goto": "Ir a…",
@@ -344,6 +347,9 @@ en: {
 
 /* ---- prototype chrome ---- */
 "chrome.title": "Repostería Mentor · UI v3 (2026-09-27)",
+"chrome.phase.setup": "Initial setup",
+"chrome.phase.returning": "Returning",
+"chrome.phase.app": "The app",
 "chrome.theme.light": "Light",
 "chrome.theme.dark": "Dark",
 "chrome.goto": "Go to…",
@@ -685,12 +691,13 @@ function t(k) {
   return v !== undefined ? v : k;
 }
 function applyLang() {
-  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+  document.querySelectorAll('[data-i18n]:not(optgroup)').forEach(el => { el.innerHTML = t(el.dataset.i18n); });
+  document.querySelectorAll('optgroup[data-i18n]').forEach(el => { el.label = t(el.dataset.i18n); });
   document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
   document.documentElement.lang = LANG;
   document.querySelectorAll('#langSeg button, .langSegX button').forEach(b =>
     b.classList.toggle('on', b.dataset.lang === LANG));
-  /* S19: el título del saludo lleva el nombre dinámico → re-renderizarlo */
+  /* S7: el título del saludo lleva el nombre dinámico → re-renderizarlo */
   if (typeof renderHello === 'function') {
     var hs = document.getElementById('s-onb-hello');
     if (hs && hs.classList.contains('active')) renderHello();
