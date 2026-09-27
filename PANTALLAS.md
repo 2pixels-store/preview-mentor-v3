@@ -16,7 +16,7 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S5 | `precios` | Precios · Calculadora | Calculadora con margen: precio sugerido, slider de margen, ganancia. Anti-precio-bajo-costo. |
 | S6 | `convertidor` | Convertidor de medidas | Tazas ↔ gramos funcional por ingrediente (harina, azúcar, mantequilla, leche, cacao). |
 | S7 | `onb-hello` | Saludo del mentor | Tras elegir mentor: retrato fotográfico del elegido saludando (estilo v1, fondo cálido) + "Hola, soy {nombre}." (nombre dinámico: personalizado o Matt/Sofi) + mensaje v1. ES/EN. Va después de S2, antes del PIN. |
-| S8 | `onb-pin` | Crear PIN | PIN de 4 dígitos + opción Face ID. Paso 2 de 5. |
+| S8 | `onb-pin` | PIN (opcional) | Pregunta "¿Proteger con PIN?": Crear PIN → teclado → S9 · Omitir → S12 directo. Paso 2 de 5. |
 | S9 | `onb-disclaimer` | Disclaimer de privacidad | Los datos viven en el teléfono; dos llaves de recuperación. Paso 3 de 5. |
 | S10 | `onb-recovery` | Código de recuperación | 6 palabras para anotar/tomar pantallazo. Paso 4 de 5. |
 | S11 | `onb-question` | Pregunta de respuesta secreta | Segunda llave: pregunta + respuesta secreta. Paso 5 de 5. |

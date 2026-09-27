@@ -43,6 +43,8 @@ function show(id) {
   // selector del chrome
   const sel = document.getElementById('screenJump');
   if (sel) sel.value = id;
+  // S8 (PIN): al entrar, mostrar siempre la pregunta, no el teclado
+  if (id === 'onb-pin' && typeof pinAskShow === 'function') pinAskShow(true);
   // botón S activo en el jump-row
   document.querySelectorAll('#jumpRow button[data-go]').forEach(b =>
     b.classList.toggle('on', b.dataset.go === id));
@@ -106,6 +108,18 @@ function pinPress(d) {
     setTimeout(() => { pinLen = 0; dots.forEach(x => x.classList.remove('fill')); go('onb-disclaimer'); }, 450);
   }
 }
+
+/* ---------- PIN opcional: pregunta → teclado ---------- */
+function pinAskShow(choice) {
+  document.getElementById('pinChoice').hidden = !choice;
+  document.getElementById('pinPadWrap').hidden = choice;
+  if (choice) {
+    pinLen = 0;
+    document.querySelectorAll('#pinDots i').forEach(x => x.classList.remove('fill'));
+  }
+}
+function pinAskYes() { pinAskShow(false); }
+function pinAskBack() { pinAskShow(true); }
 
 /* ---------- selección de mentor ---------- */
 function pickMentor(el) {

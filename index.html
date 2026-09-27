@@ -137,17 +137,30 @@
   </div>
 </section>
 
-<!-- ================= ONBOARDING · CREAR PIN ================= -->
+<!-- ================= ONBOARDING · PIN (opcional) ================= -->
 <section class="screen" id="s-onb-pin">
   <div class="wrap" style="padding-top:26px">
     <div class="onb-dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
     <div class="kicker" data-i18n="onb.pin.kicker">Bienvenida · paso 2 de 5</div>
-    <h1 class="onb-title" data-i18n="onb.pin.title">Tus costos <em>no los ve nadie</em></h1>
-    <p class="onb-lede" data-i18n="onb.pin.lede">Crea un PIN de 4 dígitos para abrir la app.</p>
 
-    <div class="pin-dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
+    <!-- pregunta: ¿proteger con PIN? -->
+    <div id="pinChoice">
+      <h1 class="onb-title" data-i18n="onb.pin.ask">¿Proteger con <em>PIN</em>?</h1>
+      <p class="onb-lede" data-i18n="onb.pin.ask.lede">Tus costos y recetas quedan privados en este teléfono. Puedes omitirlo y activarlo después en Ajustes.</p>
+      <div style="height:22px"></div>
+      <button class="btn primary" onclick="pinAskYes()" data-i18n="onb.pin.ask.yes">Crear PIN</button>
+      <div style="height:12px"></div>
+      <button class="btn ghost" onclick="go('home')" data-i18n="onb.pin.ask.skip">Omitir</button>
+    </div>
 
-    <div class="pin-pad">
+    <!-- teclado del PIN (solo si elige crearlo) -->
+    <div id="pinPadWrap" hidden>
+      <h1 class="onb-title" data-i18n="onb.pin.title">Tus costos <em>no los ve nadie</em></h1>
+      <p class="onb-lede" data-i18n="onb.pin.lede">Crea un PIN de 4 dígitos para abrir la app.</p>
+
+      <div class="pin-dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
+
+      <div class="pin-pad">
       <button class="pin-key" onclick="pinPress(1)">1</button>
       <button class="pin-key" onclick="pinPress(2)">2<small>ABC</small></button>
       <button class="pin-key" onclick="pinPress(3)">3<small>DEF</small></button>
@@ -167,6 +180,9 @@
       <span class="txt"><b data-i18n="onb.pin.face.t">Usar Face ID</b><span data-i18n="onb.pin.face.d">Entra más rápido, sin escribir el PIN.</span></span>
       <span class="switch"><input type="checkbox" checked><i></i></span>
     </label>
+    <div style="height:14px"></div>
+    <button class="btn ghost" onclick="pinAskBack()" data-i18n="onb.pin.back">Atrás</button>
+    </div><!-- /pinPadWrap -->
   </div>
 </section>
 
