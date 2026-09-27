@@ -663,7 +663,7 @@ en: {
 }
 };
 
-let LANG = 'es';
+let LANG = 'en';
 function t(k) {
   const v = (I18N[LANG] && I18N[LANG][k] !== undefined) ? I18N[LANG][k] : I18N.es[k];
   return v !== undefined ? v : k;
