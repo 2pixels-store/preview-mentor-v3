@@ -130,11 +130,23 @@
 
     <div class="field">
       <span class="lbl" data-i18n="onb.w.name">Ponle el nombre que quieras</span>
-      <input type="text" data-i18n-ph="onb.w.name.ph" placeholder="Ej.: Doña Rosa" maxlength="30">
+      <input type="text" id="mentorNameInput" data-i18n-ph="onb.w.name.ph" placeholder="Ej.: Doña Rosa" maxlength="30">
     </div>
     <p class="hint" data-i18n="onb.w.change">Podrás cambiar de mentor en Ajustes.</p>
 
-    <button class="btn primary" id="mentorCta" onclick="go('onb-pin')" data-i18n="onb.w.cta" disabled>Empezar</button>
+    <button class="btn primary" id="mentorCta" onclick="goHello()" data-i18n="onb.w.cta" disabled>Empezar</button>
+  </div>
+</section>
+
+<!-- S19 · Saludo del mentor (después de elegirlo; nombre dinámico) -->
+<section class="screen" id="s-onb-hello">
+  <div class="wrap" style="padding-top:26px">
+    <div class="hello-card"><img id="helloImg" class="hello-img" src="img/mentor-matt-solo.png" alt="Matt"></div>
+    <h1 class="onb-title" id="helloTitle">Hi, I'm Matt.</h1>
+    <p class="onb-lede" data-i18n="onb.hello.p1">Think of me as your guide. I'm here to help you truly understand your numbers — so your desserts stop being just delicious and start being profitable.</p>
+    <p class="onb-lede" data-i18n="onb.hello.p2">We'll go section by section, step by step. I'll always explain the why before asking you for a single number.</p>
+    <p class="onb-lede" data-i18n="onb.hello.p3">And if anything isn't clear, tap the ? next to any section. I'm here to explain — never to judge.</p>
+    <button class="btn primary" onclick="go('onb-pin')" data-i18n="onb.hello.cta">Continuar</button>
   </div>
 </section>
 

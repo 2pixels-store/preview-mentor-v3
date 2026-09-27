@@ -15,7 +15,8 @@ const SCREENS = [
   ['onb-app','S7'], ['onb-pin','S8'], ['onb-disclaimer','S9'],
   ['onb-recovery','S10'], ['onb-question','S11'], ['home','S12'],
   ['recetas','S13'], ['receta-detalle','S14'], ['colab','S15'],
-  ['tour','S16'], ['ajustes','S17'], ['mas','S18']
+  ['tour','S16'], ['ajustes','S17'], ['mas','S18'],
+  ['onb-hello','S19']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 
@@ -115,8 +116,28 @@ function pickMentor(el) {
   if (cta) cta.removeAttribute('disabled');
 }
 
-/* ---------- pregunta secreta ---------- */
-function pickQ(el, custom) {
+/* ---------- S19: saludo del mentor (foto + nombre dinámicos) ---------- */
+var helloMentor = { img: 'img/mentor-matt-solo.png', name: 'Matt' };
+function goHello() {
+  var sel = document.querySelector('#mentorPick .mentor-opt.sel img');
+  var custom = document.getElementById('mentorNameInput');
+  if (sel) {
+    helloMentor.img = sel.getAttribute('src');
+    var dflt = sel.getAttribute('alt') || 'Matt';
+    var typed = custom ? custom.value.trim() : '';
+    helloMentor.name = typed || dflt;
+  }
+  renderHello();
+  go('onb-hello');
+}
+function renderHello() {
+  var img = document.getElementById('helloImg');
+  if (img) { img.setAttribute('src', helloMentor.img); img.setAttribute('alt', helloMentor.name); }
+  var h = document.getElementById('helloTitle');
+  if (h) h.textContent = t('onb.hello.title').replace('{name}', helloMentor.name);
+}
+
+/* ---------- pregunta secreta ---------- */function pickQ(el, custom) {
   document.querySelectorAll('.q-opt').forEach(o => o.classList.remove('sel'));
   el.classList.add('sel');
   document.getElementById('qCustomWrap').style.display = custom ? 'block' : 'none';

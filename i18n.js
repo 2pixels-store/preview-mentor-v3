@@ -38,6 +38,14 @@ es: {
 "onb.w.cta": "Empezar",
 "onb.w.skip": "Omitir tour",
 
+/* ---- onboarding · saludo del mentor (S19) ---- */
+"screen.onb-hello": "Onboarding · Saludo del mentor",
+"onb.hello.title": "Hola, soy {name}.",
+"onb.hello.p1": "Piensa en mí como tu guía. Estoy aquí para ayudarte a entender de verdad tus números — para que tus postres dejen de ser solo deliciosos y empiecen a ser rentables.",
+"onb.hello.p2": "Iremos sección por sección, paso a paso. Siempre te explicaré el porqué antes de pedirte un solo número.",
+"onb.hello.p3": "Y si algo no queda claro, toca el ? junto a cualquier sección. Estoy aquí para explicar — nunca para juzgar.",
+"onb.hello.cta": "Continuar",
+
 /* ---- onboarding · PIN ---- */
 "onb.pin.kicker": "Bienvenida · paso 2 de 5",
 "onb.pin.title": "Tus costos <em>no los ve nadie</em>",
@@ -368,6 +376,14 @@ en: {
 "onb.w.cta": "Get started",
 "onb.w.skip": "Skip tour",
 
+/* ---- onboarding · mentor greeting (S19) ---- */
+"screen.onb-hello": "Onboarding · Mentor greeting",
+"onb.hello.title": "Hi, I'm {name}.",
+"onb.hello.p1": "Think of me as your guide. I'm here to help you truly understand your numbers — so your desserts stop being just delicious and start being profitable.",
+"onb.hello.p2": "We'll go section by section, step by step. I'll always explain the why before asking you for a single number.",
+"onb.hello.p3": "And if anything isn't clear, tap the ? next to any section. I'm here to explain — never to judge.",
+"onb.hello.cta": "Continue",
+
 /* ---- onboarding · PIN ---- */
 "onb.pin.kicker": "Welcome · step 2 of 5",
 "onb.pin.title": "No one sees <em>your costs</em>",
@@ -676,4 +692,9 @@ function applyLang() {
   document.documentElement.lang = LANG;
   document.querySelectorAll('#langSeg button, .langSegX button').forEach(b =>
     b.classList.toggle('on', b.dataset.lang === LANG));
+  /* S19: el título del saludo lleva el nombre dinámico → re-renderizarlo */
+  if (typeof renderHello === 'function') {
+    var hs = document.getElementById('s-onb-hello');
+    if (hs && hs.classList.contains('active')) renderHello();
+  }
 }
