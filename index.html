@@ -15,8 +15,8 @@
   <span class="proto-title" data-i18n="chrome.title">Repostería Mentor · Prototipo Hi-Fi</span>
   <select id="screenJump" aria-label="Pantalla">
     <option value="onb-welcome" data-i18n="screen.onb-welcome">Onboarding · Bienvenida</option>
-    <option value="onb-app" data-i18n="screen.onb-app">Onboarding · Qué es la app</option>
     <option value="onb-mentor" data-i18n="screen.onb-mentor">Onboarding · Elige tu mentor</option>
+    <option value="onb-hello" data-i18n="screen.onb-hello">Onboarding · Saludo del mentor</option>
     <option value="onb-pin" data-i18n="screen.onb-pin">Onboarding · Crear PIN</option>
     <option value="onb-disclaimer" data-i18n="screen.onb-disclaimer">Onboarding · Disclaimer</option>
     <option value="onb-recovery" data-i18n="screen.onb-recovery">Onboarding · Código de recuperación</option>
@@ -87,30 +87,11 @@
   </div>
   <div class="s1-foot">
     <div class="wordmark">Mentor</div>
-    <button class="btn primary" onclick="go('onb-app')" data-i18n="onb.welcome.cta">Empezar</button>
+    <button class="btn primary" onclick="go('onb-mentor')" data-i18n="onb.welcome.cta">Empezar</button>
   </div>
 </section>
 
-<!-- ================= ONBOARDING · QUÉ ES LA APP ================= -->
-<section class="screen" id="s-onb-app">
-  <div class="wrap" style="padding-top:26px">
-    <div class="kicker" data-i18n="onb.app.kicker">Repostería Mentor</div>
-    <div class="app-hero"><img src="img/ambos.webp" alt="Sofi y Matt"></div>
-    <h1 class="onb-title" data-i18n="onb.app.title">No es una calculadora, <em>es tu mentor</em></h1>
-
-    <div class="quote-card"><p data-i18n="onb.app.body">Piensa en mí como tu mentor. Estoy aquí para ayudarte a entender de verdad tus números — para que tus postres dejen de ser solo deliciosos y empiecen a ser rentables. Iremos sección por sección, paso a paso. Siempre te explicaré el porqué antes de pedirte un solo número. Y si algo no está claro, toca el <strong>?</strong> junto a cualquier sección. Estoy para explicar — nunca para juzgar.</p></div>
-
-    <div class="card" style="padding:6px 16px">
-      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b1">Costea cada receta con tus números reales</span></div>
-      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b2">Pon precios con margen, sin adivinar</span></div>
-      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="onb.app.b3">Aprende el porqué detrás de cada cuenta</span></div>
-    </div>
-
-    <button class="btn primary" onclick="go('onb-mentor')" data-i18n="onb.app.cta">Elegir a mi mentor</button>
-  </div>
-</section>
-
-<!-- ================= ONBOARDING · ELIGE TU MENTOR ================= -->
+<!-- ================= ONBOARDING · ELIGE TU MENTOR (S2) ================= -->
 <section class="screen" id="s-onb-mentor">
   <div class="wrap" style="padding-top:26px">
     <div class="onb-dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
@@ -138,7 +119,7 @@
   </div>
 </section>
 
-<!-- S19 · Saludo del mentor (después de elegirlo; nombre dinámico) -->
+<!-- S7 · Saludo del mentor (después de elegirlo; foto + nombre dinámicos) -->
 <section class="screen" id="s-onb-hello">
   <div class="wrap" style="padding-top:26px">
     <div class="hello-card"><img id="helloImg" class="hello-img" src="img/mentor-matt-hello.jpg" alt="Matt"></div>

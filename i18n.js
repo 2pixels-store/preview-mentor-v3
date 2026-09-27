@@ -242,7 +242,6 @@ es: {
 "toast.copied": "Copiado",
 
 /* ---- ronda 2 · pantallas nuevas ---- */
-"screen.onb-app": "Onboarding · Qué es la app",
 "screen.ajustes": "Ajustes",
 "screen.convertidor": "Convertidor de medidas",
 "screen.colab": "Colaboraciones",
@@ -580,7 +579,6 @@ en: {
 "toast.copied": "Copied",
 
 /* ---- round 2 · new screens ---- */
-"screen.onb-app": "Onboarding · What the app is",
 "screen.ajustes": "Settings",
 "screen.convertidor": "Unit converter",
 "screen.colab": "Collaborations",

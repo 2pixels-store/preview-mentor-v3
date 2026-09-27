@@ -8,15 +8,15 @@ const TAB_SCREENS = ['home', 'recetas', 'costeo', 'precios', 'mas'];
 
 /* ---------- mapa de pantallas S1..S18 (contrato estable, ver PANTALLAS.md) ----------
    S1-S6 conservan el significado de la UI v1. Las nuevas se agregan AL FINAL,
-   nunca se renumeran las existentes. */
+   nunca se renumeran las existentes.
+   S7 = saludo del mentor estilo v1 (foto + nombre dinámicos), va tras S2. */
 const SCREENS = [
   ['onb-welcome','S1'], ['onb-mentor','S2'], ['onb-back','S3'],
   ['costeo','S4'], ['precios','S5'], ['convertidor','S6'],
-  ['onb-app','S7'], ['onb-pin','S8'], ['onb-disclaimer','S9'],
+  ['onb-hello','S7'], ['onb-pin','S8'], ['onb-disclaimer','S9'],
   ['onb-recovery','S10'], ['onb-question','S11'], ['home','S12'],
   ['recetas','S13'], ['receta-detalle','S14'], ['colab','S15'],
-  ['tour','S16'], ['ajustes','S17'], ['mas','S18'],
-  ['onb-hello','S19']
+  ['tour','S16'], ['ajustes','S17'], ['mas','S18']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 
@@ -116,7 +116,7 @@ function pickMentor(el) {
   if (cta) cta.removeAttribute('disabled');
 }
 
-/* ---------- S19: saludo del mentor (foto + nombre dinámicos) ---------- */
+/* ---------- S7: saludo del mentor (foto + nombre dinámicos) ---------- */
 var helloMentor = { img: 'img/mentor-matt-hello.jpg', name: 'Matt' };
 function goHello() {
   var sel = document.querySelector('#mentorPick .mentor-opt.sel img');
@@ -166,5 +166,5 @@ document.addEventListener('DOMContentLoaded', () => {
     jr.appendChild(b);
   });
   convCalc();
-  show('onb-app');
+  show('onb-welcome');
 });

@@ -1,6 +1,10 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
-## 2026-09-27 — S19: saludo del mentor (nueva, en lote S2)
+## 2026-09-27 — S7: saludo del mentor (corrección de flujo)
+- El saludo del mentor pasa a ser **S7** (antes S19 provisional): el prototipo abre en S1 y el flujo queda **S1 → S2 → S7 → S8**. El "Jump to" muestra S7 como el saludo.
+- Se elimina la pantalla explicativa genérica (`onb-app`, "Qué es la app"): S7 ya no es esa pantalla, por decisión del usuario.
+- S7 estilo UI v1: retrato fotográfico cuadrado del mentor elegido saludando (Sofi/Matt generados por el usuario, fondo cálido tipo cortina, sin texto quemado) + título dinámico "Hola, soy {nombre}." / "Hi, I'm {name}." + mensaje de la v1 (ES/EN).
+- Matt v2: retrato más masculino (el v1 parecía tener senos en el recorte), corrección pedida por el usuario.
 - Nueva pantalla S19 (`onb-hello`) tras elegir mentor: foto del mentor elegido en tarjeta cálida + título dinámico "Hola, soy {nombre}." / "Hi, I'm {name}." (nombre personalizado o Matt/Sofi por defecto) + mensaje de la v1 (ES/EN).
 - El nombre es texto vivo (plantilla), no imagen: funciona con cualquier nombre ("Doña María", "Marcus") sin generar assets nuevos.
 - Copy ES con "tu guía" (neutro en género) en vez de "tu mentor".
