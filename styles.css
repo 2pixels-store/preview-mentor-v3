@@ -436,6 +436,35 @@ textarea { min-height: 84px; resize: vertical; }
 .disclaimer-box p strong { color: var(--ink); }
 .disclaimer-box p:last-child { margin-bottom: 0; }
 
+/* ---- S9–S11 · ronda de diseño v4 (2026-10-03) ---- */
+.keys-row { display: flex; gap: 10px; margin: 2px 0 14px; }
+.key-chip {
+  flex: 1; display: flex; align-items: center; gap: 8px;
+  background: var(--gold-soft); border: 1px solid var(--gold-line);
+  border-radius: var(--r-md); padding: 10px 12px;
+  font-size: var(--t-small); font-weight: 600; color: var(--ink);
+  box-shadow: var(--sh-1);
+}
+.key-chip svg { color: var(--gold); flex: none; }
+.callout-warn {
+  background: var(--warn-soft); border: 1px solid var(--gold-line);
+  border-left: 4px solid var(--warn);
+  border-radius: var(--r-sm); padding: 12px 14px; margin-top: 14px;
+}
+.callout-warn p { margin: 0 !important; color: var(--ink); }
+.vault-card {
+  background: var(--surface); border: 1.5px dashed var(--gold);
+  border-radius: var(--r-lg); padding: 18px; margin: 6px 0 18px;
+  box-shadow: var(--sh-2);
+}
+.vault-head {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: var(--t-micro); font-weight: 700; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+}
+.vault-card .recovery-words { margin: 0; justify-content: center; }
+#s-onb-disclaimer .ver-tag, #s-onb-recovery .ver-tag, #s-onb-question .ver-tag { margin-top: 18px; }
+
 /* ============ HOME · PANEL ============ */
 .greet { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
 .greet .txt { flex: 1; }

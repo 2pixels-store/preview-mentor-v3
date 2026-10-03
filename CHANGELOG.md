@@ -1,5 +1,12 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S9–S11: ronda de diseño
+- S9 Disclaimer: la caja pasa a "momento bóveda" — chips visuales de las dos llaves (código de recuperación + pregunta de respuesta secreta) con ícono propio `#i-key` (nuevo símbolo en el sprite, dorado); el aviso final ahora es un callout de advertencia (warn-soft + borde ámbar). Copy intacto, ES/EN.
+- S10 Código de recuperación: las 6 palabras ahora viven en una "vault card" dorada con encabezado "Guárdalo como oro" / "Guard it like gold" (nueva clave `onb.rec.vault` ES/EN).
+- S11 Pregunta secreta: sin cambios estructurales; solo etiqueta de versión.
+- Las tres pantallas llevan etiqueta visible "Mentor UI v4 (2026-10-03)". Navegación S8→S9→S10→S11→S12 sin cambios.
+- Alcance: solo se tocó S9–S11 (+ estilos e i18n aditivos). S1–S8 y S12+ intactos. Cero CDNs; claro/oscuro intactos.
+
 ## 2026-09-27 — S7: saludo del mentor (corrección de flujo)
 - El saludo del mentor pasa a ser **S7** (antes S19 provisional): el prototipo abre en S1 y el flujo queda **S1 → S2 → S7 → S8**. El "Jump to" muestra S7 como el saludo.
 - Se elimina la pantalla explicativa genérica (`onb-app`, "Qué es la app"): S7 ya no es esa pantalla, por decisión del usuario.

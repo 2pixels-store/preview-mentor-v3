@@ -71,6 +71,8 @@ es: {
 "onb.dis.p4": "Y ojo con tu respuesta secreta: usa algo que solo tú sepas y no vayas a olvidar — escríbela tal como la responderías después.",
 "onb.dis.p5": "Sin esas llaves, nadie —ni siquiera nosotros— podrá abrir tu información.",
 "onb.dis.cta": "Entendí",
+"onb.dis.key1": "Código de recuperación",
+"onb.dis.key2": "Pregunta de respuesta secreta",
 
 /* ---- onboarding · recuperación ---- */
 "onb.rec.kicker": "Bienvenida · paso 4 de 5",
@@ -80,6 +82,7 @@ es: {
 "onb.rec.w4": "miel", "onb.rec.w5": "canela", "onb.rec.w6": "nube",
 "onb.rec.copy": "Copiar",
 "onb.rec.cta": "Ya lo guardé",
+"onb.rec.vault": "Guárdalo como oro",
 
 /* ---- onboarding · pregunta secreta ---- */
 "onb.q.kicker": "Bienvenida · paso 5 de 5",
@@ -416,6 +419,8 @@ en: {
 "onb.dis.p4": "And mind your secret answer: use something only you know and won't forget — write it exactly as you'll answer it later.",
 "onb.dis.p5": "Without those keys, no one — not even us — will be able to open your information.",
 "onb.dis.cta": "I understand",
+"onb.dis.key1": "Recovery code",
+"onb.dis.key2": "Secret-answer question",
 
 /* ---- onboarding · recovery ---- */
 "onb.rec.kicker": "Welcome · step 4 of 5",
@@ -425,6 +430,7 @@ en: {
 "onb.rec.w4": "honey", "onb.rec.w5": "cinnamon", "onb.rec.w6": "cloud",
 "onb.rec.copy": "Copy",
 "onb.rec.cta": "I've saved it",
+"onb.rec.vault": "Guard it like gold",
 
 /* ---- onboarding · secret question ---- */
 "onb.q.kicker": "Welcome · step 5 of 5",
