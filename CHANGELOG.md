@@ -1,5 +1,13 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S21/S22: sección Canjes (idea nueva de Diego)
+- S21 Canjes (lista): tarjeta por trato con aliado, tipo (influencer/proveedor/negocio local), "Yo doy / Recibo", fecha límite y píldora de estado (Pendiente ámbar · Cumplido verde · Vencido rojo); buscador; botón "+ Nuevo". Se entra desde el hub (S18) con tarjeta nueva "Canjes".
+- S22 Nuevo canje: formulario (aliado, tipo con selector, qué doy, qué recibo, fecha límite, notas; Guardar → ronda 2). Ronda de diseño estática.
+- Datos de ejemplo ficticios: 3 tratos de repostería (@dulcesdemaria·influencer pendiente, Don Pedro·Harinas El Trigal·proveedor cumplido, Café La Esquina·negocio local vencido).
+- NUEVA y distinta de S15 `colab` (equipo): canjes = trueques con influencers/proveedores, no roles de equipo.
+- i18n ES/EN completo (inglés por defecto), paridad 376/376. Etiqueta visible "Mentor UI v4 (2026-10-03)".
+- Alcance: solo S21/S22 (+ CSS/i18n/JS aditivos: `.status-pill`, `.deal-lines`, `segPick()`). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.
+
 ## Mentor UI v4 (2026-10-03) — S19/S20: sección Clientes
 - S19 Clientes (lista): tarjetas con avatar de inicial, última compra y total gastado; buscador; botón "+ Nueva" (toast). Se entra desde el hub (S18) — la tarjeta Clientes ya no dice "Próximamente".
 - S20 Ficha de cliente: encabezado con nombre; resumen "Total comprado + nº de pedidos" (semilla de lifetime value, solo números, sin proyecciones); datos: contacto, alergias (aviso ámbar), preferencias, cumpleaños; historial de pedidos ordenado por fecha.

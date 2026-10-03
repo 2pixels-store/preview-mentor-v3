@@ -26,9 +26,11 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S15 | `colab` | Colaboraciones | Compartir recetas/costos con el equipo; roles; todo queda en el teléfono. |
 | S16 | `tour` | Tour guiado | Tres gestos (tocar, deslizar, mantener) con dedito animado; respeta prefers-reduced-motion. |
 | S17 | `ajustes` | Ajustes | Idioma, apariencia claro/oscuro, respaldo + recordatorio (frecuencia día/semana/mes/nunca con vista previa del pop-up), tour; sello de versión "Mentor UI v3 (2026-09-27)". |
-| S18 | `mas` | Más · Hub | Tarjetas Negocio, Clientes, Colaboraciones, Ingredientes, Imprimibles, Aprender, Ajustes — cada una con etiqueta Herramienta / Guía / Información. |
+| S18 | `mas` | Más · Hub | Tarjetas Negocio, Clientes, Colaboraciones (equipo), Canjes, Ingredientes, Imprimibles, Aprender, Ajustes — cada una con etiqueta Herramienta / Guía / Información. |
 | S19 | `clientes` | Clientes · Lista | Lista de clientas: avatar de inicial, última compra y total gastado; buscador; botón + Nueva. Se entra desde el hub (S18). |
 | S20 | `cliente-detalle` | Ficha de cliente | Encabezado con nombre; resumen total comprado + nº de pedidos (semilla de lifetime value); datos: contacto, alergias, preferencias, cumpleaños; historial de pedidos ordenado por fecha. |
+| S21 | `canjes` | Canjes · Lista | Canjes con influencers y proveedores: tarjeta por trato (aliado, tipo, qué doy / qué recibo, fecha límite, estado pendiente · cumplido · vencido), buscador, + Nuevo. Se entra desde el hub (S18). NUEVA — distinta de S15 `colab` (equipo). |
+| S22 | `canje-detalle` | Nuevo canje | Formulario: aliado, tipo (influencer/proveedor), qué doy, qué recibo, fecha límite, notas. Estático (Guardar → ronda 2). |
 
 ## Flujos vigentes
 - **Primera vez:** S1 → S2 → S7 → S8 (¿proteger con PIN?) → con PIN: S9 → S10 → S11 → S12 · sin PIN (omitir): S12 directo.

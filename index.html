@@ -616,6 +616,7 @@
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-chart"/></svg><b data-i18n="more.negocio.t">Negocio</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.negocio.d">Ventas, gastos y reportes</span></button>
       <button class="hub-card" onclick="go('clientes')"><svg><use href="#i-users"/></svg><b data-i18n="more.clientes.t">Clientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.clientes.d">Fichas de clientes y pedidos</span></button>
       <button class="hub-card" onclick="go('colab')"><svg><use href="#i-link"/></svg><b data-i18n="more.colab.t">Colaboraciones</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.colab.d">Comparte recetas con tu equipo</span></button>
+      <button class="hub-card" onclick="go('canjes')"><svg><use href="#i-tag"/></svg><b data-i18n="more.canjes.t">Canjes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.canjes.d">Trueques con influencers y proveedores</span></button>
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-box"/></svg><b data-i18n="more.ing.t">Ingredientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.ing.d">Catálogo de ingredientes y stock</span></button>
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-print"/></svg><b data-i18n="more.print.t">Imprimibles</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.print.d">Tarjetas y etiquetas para imprimir</span></button>
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-grad"/></svg><b data-i18n="more.learn.t">Aprender</b><span class="kind-tag guide" data-i18n="more.kind.guide">Guía</span><span class="hub-d" data-i18n="more.learn.d">Ebook y glosario para aprender</span></button>
@@ -821,6 +822,79 @@
 </section>
 
 
+
+<!-- ================= CANJES · S21 ================= -->
+<section class="screen" id="s-canjes">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="cnj.title">Canjes</h1>
+    <button class="btn primary sm" onclick="go('canje-detalle')"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="cnj.new">+ Nuevo</span></button>
+  </div>
+  <div class="wrap">
+    <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="cnj.search.ph">Buscar canje&hellip;</span></div>
+
+    <div class="recipe-card" onclick="go('canje-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><span style="color:#9A7420">D</span></div>
+      <div class="info">
+        <b>@dulcesdemaria</b>
+        <span class="cat"><span data-i18n="cnj.type.inf">Influencer</span> &middot; <span data-i18n="cnj.due">Límite</span>: <span data-i18n="cnj.c1.due">10 oct 2026</span></span>
+        <div class="deal-lines">
+          <span><b data-i18n="cnj.give">Yo doy:</b> <span data-i18n="cnj.c1.give">24 cupcakes de muestra</span></span>
+          <span><b data-i18n="cnj.get">Recibo:</b> <span data-i18n="cnj.c1.get">Historia en Instagram + etiqueta</span></span>
+        </div>
+        <div class="nums"><span class="status-pill warn" data-i18n="cnj.st.pending">Pendiente</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('canje-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#E3F0E5,#D9EAD9)"><span style="color:#3E7C4F">P</span></div>
+      <div class="info">
+        <b data-i18n="cnj.c2.name">Don Pedro · Harinas El Trigal</b>
+        <span class="cat"><span data-i18n="cnj.type.sup">Proveedor</span> &middot; <span data-i18n="cnj.due">Límite</span>: <span data-i18n="cnj.c2.due">30 sep 2026</span></span>
+        <div class="deal-lines">
+          <span><b data-i18n="cnj.give">Yo doy:</b> <span data-i18n="cnj.c2.give">Mención en 3 posts + logo en empaque</span></span>
+          <span><b data-i18n="cnj.get">Recibo:</b> <span data-i18n="cnj.c2.get">10 kg de harina + 5 kg de azúcar</span></span>
+        </div>
+        <div class="nums"><span class="status-pill good" data-i18n="cnj.st.done">Cumplido</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('canje-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#F9E2DE,#F2CFC8)"><span style="color:#A84A3A">C</span></div>
+      <div class="info">
+        <b data-i18n="cnj.c3.name">Café La Esquina</b>
+        <span class="cat"><span data-i18n="cnj.type.biz">Negocio local</span> &middot; <span data-i18n="cnj.due">Límite</span>: <span data-i18n="cnj.c3.due">5 oct 2026</span></span>
+        <div class="deal-lines">
+          <span><b data-i18n="cnj.give">Yo doy:</b> <span data-i18n="cnj.c3.give">Torta de zanahoria semanal × 4</span></span>
+          <span><b data-i18n="cnj.get">Recibo:</b> <span data-i18n="cnj.c3.get">Tarjetas en vitrina + mención</span></span>
+        </div>
+        <div class="nums"><span class="status-pill bad" data-i18n="cnj.st.overdue">Vencido</span></div>
+      </div>
+    </div>
+
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
+
+<!-- ================= NUEVO CANJE · S22 ================= -->
+<section class="screen" id="s-canje-detalle">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="cnj.f.title">Nuevo canje</h1>
+  </div>
+  <div class="wrap">
+    <div class="field"><span class="lbl" data-i18n="cnj.f.ally">Aliado</span><input type="text" data-i18n-ph="cnj.f.ally.ph" placeholder="Ej.: @dulcesdemaria" maxlength="40"></div>
+    <div class="field"><span class="lbl" data-i18n="cnj.f.type">Tipo</span>
+      <div class="seg"><button class="on" onclick="segPick(this)" data-i18n="cnj.type.inf">Influencer</button><button onclick="segPick(this)" data-i18n="cnj.type.sup">Proveedor</button></div>
+    </div>
+    <div class="field"><span class="lbl" data-i18n="cnj.f.give">¿Qué doy yo?</span><textarea data-i18n-ph="cnj.f.give.ph" placeholder="Ej.: 24 cupcakes de muestra"></textarea></div>
+    <div class="field"><span class="lbl" data-i18n="cnj.f.get">¿Qué recibo?</span><textarea data-i18n-ph="cnj.f.get.ph" placeholder="Ej.: Historia en Instagram + etiqueta"></textarea></div>
+    <div class="field"><span class="lbl" data-i18n="cnj.f.due">Fecha límite</span><input type="date"></div>
+    <div class="field"><span class="lbl" data-i18n="cnj.f.notes">Notas</span><textarea data-i18n-ph="cnj.f.notes.ph" placeholder="Ej.: Etiquetar @mi_bakery en la historia"></textarea></div>
+    <button class="btn primary" onclick="toastRound2()" data-i18n="cnj.f.save">Guardar canje</button>
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
 
 <!-- ================= TOUR GUIADO ================= -->
 <section class="screen" id="s-tour">

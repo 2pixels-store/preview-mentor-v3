@@ -6,7 +6,7 @@
 const stack = [];
 const TAB_SCREENS = ['home', 'recetas', 'costeo', 'precios', 'mas'];
 
-/* ---------- mapa de pantallas S1..S20 (contrato estable, ver PANTALLAS.md) ----------
+/* ---------- mapa de pantallas S1..S22 (contrato estable, ver PANTALLAS.md) ----------
    S1-S6 conservan el significado de la UI v1. Las nuevas se agregan AL FINAL,
    nunca se renumeran las existentes.
    S7 = saludo del mentor estilo v1 (foto + nombre dinámicos), va tras S2. */
@@ -16,7 +16,8 @@ const SCREENS = [
   ['onb-hello','S7'], ['onb-pin','S8'], ['onb-disclaimer','S9'],
   ['onb-recovery','S10'], ['onb-question','S11'], ['home','S12'],
   ['recetas','S13'], ['receta-detalle','S14'], ['colab','S15'],
-  ['tour','S16'], ['ajustes','S17'], ['mas','S18'], ['clientes','S19'], ['cliente-detalle','S20']
+  ['tour','S16'], ['ajustes','S17'], ['mas','S18'], ['clientes','S19'], ['cliente-detalle','S20'],
+  ['canjes','S21'], ['canje-detalle','S22']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 
@@ -184,6 +185,11 @@ function setMode(m, btn) {
   btn.classList.add('on');
   document.getElementById('modeA').style.display = (m === 'a') ? 'block' : 'none';
   document.getElementById('modeB').style.display = (m === 'b') ? 'block' : 'none';
+}
+/* selector genérico de segmento (ej. tipo de canje en S22) */
+function segPick(btn) {
+  btn.parentNode.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
 }
 
 /* ---------- backup: recordatorio + pop-up (diseño v4) ---------- */

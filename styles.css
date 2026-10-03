@@ -598,6 +598,17 @@ textarea { min-height: 84px; resize: vertical; }
   padding: 3px 10px; border-radius: var(--r-pill);
   align-self: flex-start; flex: none;
 }
+/* canjes · S21: líneas del trato + píldoras de estado */
+.deal-lines { display: flex; flex-direction: column; gap: 3px; font-size: var(--t-small); color: var(--ink-soft); margin: 6px 0 8px; }
+.deal-lines b { color: var(--ink); }
+.status-pill {
+  font-size: 10.5px; font-weight: 800;
+  padding: 3px 10px; border-radius: var(--r-pill);
+  align-self: flex-start; flex: none;
+}
+.status-pill.warn { background: var(--warn-soft); color: var(--warn); }
+.status-pill.good { background: var(--good-soft); color: var(--good); }
+.status-pill.bad { background: var(--bad-soft); color: var(--bad); }
 .recipe-actions { display: flex; gap: 8px; margin-top: 10px; }
 
 /* detalle receta */
