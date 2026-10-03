@@ -1090,3 +1090,10 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
 .hist-bar { flex: 1; height: 10px; border-radius: 99px; background: var(--line); overflow: hidden; }
 .hist-bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold), var(--rose)); }
 .hist-note { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 10px 12px; border-radius: var(--r-sm); background: var(--warn-soft); color: var(--warn); font-size: var(--t-small); font-weight: 600; }
+
+/* S20: fulfillment pills + direcciones de entrega (v4 2026-10-03, ajuste menor) */
+.order-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex: none; }
+.addr-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.addr-row:last-child { border-bottom: 0; }
+.addr-row b { display: block; }
+.addr-row > div span { display: block; margin-top: 2px; font-size: var(--t-small); color: var(--faint); }

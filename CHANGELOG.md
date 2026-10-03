@@ -1,5 +1,11 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S20: delivery en ficha de cliente (idea de Diego)
+- S20: cada pedido del historial muestra píldora de fulfillment — "Recogió" (verde) o "Delivery" (ámbar). Ejemplos: Torta de vainilla 28 sep → Recogió; Cupcakes 12 sep → Delivery; Pan de banano 30 ago → Recogió.
+- S20: nueva sub-sección "Direcciones de entrega" (después de Contacto): Casa (123 Main St, Apt 4B, Queens) y Trabajo (45-20 Roosevelt Ave, Jackson Heights); botón "+ Agregar" (toast); tip de la mentora: "En tu próximo pedido solo confirmas: ¿va para Casa?".
+- i18n ES/EN completo (inglés por defecto), paridad 9/9 en claves nuevas. Se mantiene etiqueta "Mentor UI v4 (2026-10-03)" (ajuste menor, sin v5).
+- Alcance: solo S20 (+ CSS/i18n aditivos: `.order-side`, `.addr-row`). Ninguna otra pantalla tocada. Cero CDNs.
+
 ## Mentor UI v4 (2026-10-03) — S23/S24/S25: sección Ingredientes (idea de Diego)
 - S23 Ingredientes (catálogo): 7 insumos (harina, azúcar, mantequilla, huevos, leche, vainilla, chocolate) con precio de compra + unidad, costo unitario automático ($/kg, $/100 g, $/u, $/L, $/100 ml) y semáforo de stock (En stock verde · Bajo ámbar · Agotado rojo); buscador; botón "+ Nuevo" (toast); tarjeta final "Lista de compras" → S25. Se entra desde el hub (S18) — la tarjeta Ingredientes ya no dice "Próximamente".
 - S24 Ficha de ingrediente: hero con costo unitario destacado + stock; compra (presentación, proveedor actual); comparativa de 2 proveedores (mejor precio marcado); mini-histórico de precios con barras (ago/sep/oct 2026 + aviso ámbar "Subió 9% en 2 meses"); equivalencias/sustitutos con delta de costo; stock con punto de reorden. Ronda estática: todos los insumos abren a Harina (precedente S20/Doña Rosa).

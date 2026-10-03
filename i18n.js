@@ -403,6 +403,15 @@ es: {
 "cli.r2.d": "12 sep 2026",
 "cli.r3.p": "Pan de banano",
 "cli.r3.d": "30 ago 2026",
+"cli.ful.pickup": "Recogió",
+"cli.ful.delivery": "Delivery",
+"cli.d.addr": "Direcciones de entrega",
+"cli.addr.home.t": "Casa",
+"cli.addr.home.v": "123 Main St, Apt 4B, Queens",
+"cli.addr.work.t": "Trabajo",
+"cli.addr.work.v": "45-20 Roosevelt Ave, Jackson Heights",
+"cli.addr.add": "+ Agregar",
+"cli.addr.tip": "En tu próximo pedido solo confirmas: ¿va para Casa?",
 
 /* ---- canjes · S21/S22 (v4 2026-10-03) ---- */
 "screen.canjes": "Canjes",
@@ -806,6 +815,15 @@ en: {
 "cli.r2.d": "Sep 12, 2026",
 "cli.r3.p": "Banana bread",
 "cli.r3.d": "Aug 30, 2026",
+"cli.ful.pickup": "Picked up",
+"cli.ful.delivery": "Delivery",
+"cli.d.addr": "Delivery addresses",
+"cli.addr.home.t": "Home",
+"cli.addr.home.v": "123 Main St, Apt 4B, Queens",
+"cli.addr.work.t": "Work",
+"cli.addr.work.v": "45-20 Roosevelt Ave, Jackson Heights",
+"cli.addr.add": "+ Add",
+"cli.addr.tip": "On your next order you just confirm: going to Home?",
 
 /* ---- collabs · S21/S22 (v4 2026-10-03) ---- */
 "screen.canjes": "Collabs",
