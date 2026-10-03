@@ -27,6 +27,8 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S16 | `tour` | Tour guiado | Tres gestos (tocar, deslizar, mantener) con dedito animado; respeta prefers-reduced-motion. |
 | S17 | `ajustes` | Ajustes | Idioma, apariencia claro/oscuro, respaldo + recordatorio (frecuencia día/semana/mes/nunca con vista previa del pop-up), tour; sello de versión "Mentor UI v3 (2026-09-27)". |
 | S18 | `mas` | Más · Hub | Tarjetas Negocio, Clientes, Colaboraciones, Ingredientes, Imprimibles, Aprender, Ajustes — cada una con etiqueta Herramienta / Guía / Información. |
+| S19 | `clientes` | Clientes · Lista | Lista de clientas: avatar de inicial, última compra y total gastado; buscador; botón + Nueva. Se entra desde el hub (S18). |
+| S20 | `cliente-detalle` | Ficha de cliente | Encabezado con nombre; resumen total comprado + nº de pedidos (semilla de lifetime value); datos: contacto, alergias, preferencias, cumpleaños; historial de pedidos ordenado por fecha. |
 
 ## Flujos vigentes
 - **Primera vez:** S1 → S2 → S7 → S8 (¿proteger con PIN?) → con PIN: S9 → S10 → S11 → S12 · sin PIN (omitir): S12 directo.
@@ -34,5 +36,5 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 
 ## Notas
 - El "Jump to: S1…S18" del chrome del prototipo se genera desde `SCREENS` en `app.js` (fuente única).
-- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Clientes, Ingredientes, Imprimibles, Aprender — son placeholders etiquetados, no callejones.
-- Versión del mapa: v3 (2026-09-27).
+- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Ingredientes, Imprimibles, Aprender — son placeholders etiquetados, no callejones. (Clientes dejó de ser placeholder en v4: S19/S20.)
+- Versión del mapa: v4 (2026-10-03).

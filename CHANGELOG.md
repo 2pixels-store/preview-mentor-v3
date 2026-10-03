@@ -1,5 +1,12 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S19/S20: sección Clientes
+- S19 Clientes (lista): tarjetas con avatar de inicial, última compra y total gastado; buscador; botón "+ Nueva" (toast). Se entra desde el hub (S18) — la tarjeta Clientes ya no dice "Próximamente".
+- S20 Ficha de cliente: encabezado con nombre; resumen "Total comprado + nº de pedidos" (semilla de lifetime value, solo números, sin proyecciones); datos: contacto, alergias (aviso ámbar), preferencias, cumpleaños; historial de pedidos ordenado por fecha.
+- Datos de ejemplo ficticios: 3 clientas de repostería (Doña Rosa, María Fernanda, Lucía). Ronda de diseño estática: el detalle muestra a Doña Rosa (precedente receta-detalle); la selección dinámica por clienta viene en la ronda funcional.
+- i18n ES/EN completo (inglés por defecto), paridad 337/337. Etiqueta visible "Mentor UI v4 (2026-10-03)".
+- Alcance: solo S19/S20 (+ CSS/i18n aditivos). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.
+
 ## Mentor UI v4 (2026-10-03) — Backup: pop-up recordatorio + frecuencia
 - **Pop-up recordatorio de respaldo** (bilingüe, inglés por defecto): "momento" cálido estilo clay/dorado con motivo de **disquete** (SVG clay: cuerpo crema con highlight, shutter metálico, etiqueta dorada con llave, chispas; leve inclinación -8°), copy con voz de mentor. Botones: Respaldar ahora / Recordarme después (Back up now / Remind me later). Overlay con blur glassmorphism; cierra con overlay, Escape o botones.
 - **Ajustes → nueva fila "Recordatorio de respaldo"** (badge v4): selector día/semana/mes/nunca (default: semana), persiste en `localStorage`; botón fantasma "Vista previa" abre el pop-up para revisarlo.
