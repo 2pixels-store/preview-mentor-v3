@@ -1,5 +1,10 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — FIX viewport móvil (bug bloqueante revisión de Nati)
+- En Chrome Android (Samsung de Nati) el botón CTA de S1 ("Empezar") y S2 ("Empezar") quedaba cortado bajo el fold sin forma de alcanzarlo. Causa: `100vh` en Chrome móvil = viewport grande (incluye la barra de direcciones), el `.phone` quedaba más alto que lo visible, el chrome de revisión (jump-row con ~30 chips) ocupa ~180px en 360px pero solo se restaban 70px, y `min-height:600px` del `.phone` agravaba el corte.
+- Fix solo-CSS: `100vh` → `100svh` con fallback (svh = alto visible real; garantiza que el marco nunca exceda lo visible) en `body` y `.phone`; en ≤480px `.phone` = `calc(100svh - 180px)` con `min-height:0`; `.jump-row` acotado a `max-height:72px` con scroll propio para que el alto del chrome sea predecible; `.screen` con `-webkit-overflow-scrolling: touch`.
+- Resultado: los CTA de S1/S2 (y de todas las pantallas v4 S19–S29, que comparten el marco) quedan alcanzables — directo o con scroll interno. Sin cambios visuales en desktop ni en textos/i18n. Ninguna pantalla cerrada tocada.
+
 ## Mentor UI v4 (2026-10-03) — S20: email + follow-up en ficha de cliente (idea de Diego)
 - S20: campo **Email** en "Datos de la clienta" (dona.rosa@email.com).
 - S20: nueva sub-sección **Follow-up** después del Historial de pedidos — tarjeta "Cupcakes entregados hace 3 días — ¿le escribimos?" con mensaje sugerido pre-escrito y botón "Enviar mensaje" (toast); tip de la mentora: el follow-up pide feedback y abre la próxima venta.
