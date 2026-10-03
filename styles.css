@@ -1065,3 +1065,5 @@ input[type="range"] { width: 100%; accent-color: var(--rose); height: 32px; curs
 .order-row b { display: block; }
 .order-row > div span { font-size: var(--t-small); color: var(--faint); }
 .order-row > b.num { font-size: 16px; white-space: nowrap; }
+.bpop-note{display:flex;gap:8px;align-items:flex-start;font-size:var(--t-small);color:var(--faint);background:var(--bg-soft);border-radius:var(--r-md);padding:10px 12px;margin:0 0 18px;text-align:left;line-height:1.45}
+.bpop-note svg{flex:none;margin-top:2px;color:var(--gold)}

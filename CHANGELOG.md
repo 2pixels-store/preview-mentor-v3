@@ -11,6 +11,7 @@
 - **Pop-up recordatorio de respaldo** (bilingüe, inglés por defecto): "momento" cálido estilo clay/dorado con motivo de **disquete** (SVG clay: cuerpo crema con highlight, shutter metálico, etiqueta dorada con llave, chispas; leve inclinación -8°), copy con voz de mentor. Botones: Respaldar ahora / Recordarme después (Back up now / Remind me later). Overlay con blur glassmorphism; cierra con overlay, Escape o botones.
 - **Ajustes → nueva fila "Recordatorio de respaldo"** (badge v4): selector día/semana/mes/nunca (default: semana), persiste en `localStorage`; botón fantasma "Vista previa" abre el pop-up para revisarlo.
 - JS mínimo de previsualización (abrir/cerrar, persistencia del selector, toast de confirmación). **Sin lógica real de programación del recordatorio** — queda para funcionalidad futura.
+- Línea de privacidad/offline pedida por Diego dentro del pop-up (con ícono shield): "Tus recetas, clientes y costos viven en tu teléfono — el backup es tu red de seguridad." / "Your recipes, clients and costs live on your phone — backup is your safety net." Con esto queda cubierto el disclaimer, sin pantalla separada.
 - Alcance: solo Ajustes + componente pop-up (todo aditivo). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos; respeta `prefers-reduced-motion`.
 
 ## Mentor UI v4 (2026-10-03) — S3: arte welcome back del mentor
