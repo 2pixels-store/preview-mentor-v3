@@ -10,7 +10,7 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | **Configuración inicial** (primera vez que se abre la app) | | | |
 | S1 | `onb-welcome` | Bienvenida | Pantalla inicial: ambos mentores, título de marca, botón "Empezar". |
 | S2 | `onb-mentor` | Elige tu mentor | Elegir avatar (Sofi o Matt) — ambos guían igual, sin FOMO. Nombre renombrable. Paso 1 de 5. |
-| S3 | `onb-back` | Bienvenido de nuevo | **Regreso** (segunda vez en adelante): saludo del mentor + "Entrar" → S12. |
+| S3 | `onb-back` | Bienvenido de nuevo | **Regreso** (segunda vez en adelante): arte welcome back a sangre del mentor elegido (Sofi/Matt × EN/ES, variante automática) — toque → S12. |
 | **La app** | | | |
 | S4 | `costeo` | Costeo · Tres cajones | Costo de ingredientes + merma + mano de obra + empaque; cajones 1–3; costo total. |
 | S5 | `precios` | Precios · Calculadora | Calculadora con margen: precio sugerido, slider de margen, ganancia. Anti-precio-bajo-costo. |

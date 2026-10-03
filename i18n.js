@@ -104,6 +104,8 @@ es: {
 "onb.back.title": "Bienvenida de <em>nuevo</em>, Sofi",
 "onb.back.lede": "Qué bueno verte otra vez. ¿Qué costeamos hoy?",
 "onb.back.cta": "Entrar",
+"onb.back.alt": "¡Qué bueno tenerte de vuelta! — arte de bienvenida de tu mentor",
+"onb.back.aria": "Entrar a la aplicación",
 
 /* ---- home ---- */
 "home.date": "Septiembre 2026",
@@ -452,6 +454,8 @@ en: {
 "onb.back.title": "<em>Welcome</em> back, Sofi",
 "onb.back.lede": "So good to see you again. What shall we cost today?",
 "onb.back.cta": "Enter",
+"onb.back.alt": "Welcome back! — welcome artwork from your mentor",
+"onb.back.aria": "Enter the app",
 
 /* ---- home ---- */
 "home.date": "September 2026",
@@ -717,5 +721,10 @@ function applyLang() {
   if (typeof renderHello === 'function') {
     var hs = document.getElementById('s-onb-hello');
     if (hs && hs.classList.contains('active')) renderHello();
+  }
+  /* S3: el arte depende del idioma → re-renderizarlo si está visible */
+  if (typeof renderBack === 'function') {
+    var bs = document.getElementById('s-onb-back');
+    if (bs && bs.classList.contains('active')) renderBack();
   }
 }

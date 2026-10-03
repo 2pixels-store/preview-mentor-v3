@@ -45,6 +45,8 @@ function show(id) {
   if (sel) sel.value = id;
   // S8 (PIN): al entrar, mostrar siempre la pregunta, no el teclado
   if (id === 'onb-pin' && typeof pinAskShow === 'function') pinAskShow(true);
+  // S3 (welcome back): al entrar, arte del mentor elegido + idioma actual
+  if (id === 'onb-back' && typeof renderBack === 'function') renderBack();
   // botón S activo en el jump-row
   document.querySelectorAll('#jumpRow button[data-go]').forEach(b =>
     b.classList.toggle('on', b.dataset.go === id));
@@ -151,7 +153,25 @@ function renderHello() {
   if (h) h.textContent = t('onb.hello.title').replace('{name}', helloMentor.name);
 }
 
-/* ---------- pregunta secreta ---------- */function pickQ(el, custom) {
+/* ---------- S3: welcome back (arte según mentor + idioma) ---------- */
+function renderBack() {
+  var m = 'matt';
+  var sel = document.querySelector('#mentorPick .mentor-opt.sel img');
+  if (sel) {
+    var alt = (sel.getAttribute('alt') || '').toLowerCase();
+    m = (alt.indexOf('sofi') === 0) ? 'sofi' : 'matt';
+  }
+  var img = document.getElementById('backImg');
+  if (img) {
+    img.setAttribute('src', 'img/welcome-back-' + m + '-' + LANG + '.jpg');
+    img.setAttribute('alt', t('onb.back.alt'));
+  }
+  var art = document.getElementById('backArt');
+  if (art) art.setAttribute('aria-label', t('onb.back.aria'));
+}
+
+/* ---------- pregunta secreta ---------- */
+function pickQ(el, custom) {
   document.querySelectorAll('.q-opt').forEach(o => o.classList.remove('sel'));
   el.classList.add('sel');
   document.getElementById('qCustomWrap').style.display = custom ? 'block' : 'none';

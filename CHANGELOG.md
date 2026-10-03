@@ -1,5 +1,13 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S3: arte welcome back del mentor
+- S3 Bienvenido de nuevo (recurrente): reemplaza el avatar+texto viejo por el **arte welcome back a sangre** del mentor elegido. 4 variantes: `img/welcome-back-{sofi,matt}-{en,es}.jpg`.
+- Sofi EN/ES: finales enviadas por Diego esta noche (1284×2935), integradas como están.
+- Matt EN/ES: **provisionales** del folder `files/prototipo-mentor-hifi/img/` (mismo estilo/lote, 1008×2304) — reemplazar cuando Diego envíe los finales.
+- La variante se elige sola según mentor (S2) + idioma actual (patrón `renderBack()`, como `renderHello()` en S7); al cambiar idioma con S3 visible se re-renderiza. Toque/tecla en el arte → S12 (home).
+- Nuevas claves i18n ES/EN: `onb.back.alt`, `onb.back.aria` (paridad 295/295, 0 faltantes). Etiqueta visible "Mentor UI v4 (2026-10-03)".
+- Alcance: solo S3 (+ CSS/JS/i18n aditivos). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.
+
 ## Mentor UI v4 (2026-10-03) — S9–S11: ronda de diseño
 - S9 Disclaimer: la caja pasa a "momento bóveda" — chips visuales de las dos llaves (código de recuperación + pregunta de respuesta secreta) con ícono propio `#i-key` (nuevo símbolo en el sprite, dorado); el aviso final ahora es un callout de advertencia (warn-soft + borde ámbar). Copy intacto, ES/EN.
 - S10 Código de recuperación: las 6 palabras ahora viven en una "vault card" dorada con encabezado "Guárdalo como oro" / "Guard it like gold" (nueva clave `onb.rec.vault` ES/EN).

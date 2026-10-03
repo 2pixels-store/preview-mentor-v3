@@ -273,17 +273,13 @@
   </div>
 </section>
 
-<!-- ================= DEMO · BIENVENIDO DE NUEVO ================= -->
+<!-- ================= S3 · BIENVENIDO DE NUEVO (recurrente) ================= -->
 <section class="screen" id="s-onb-back">
-  <div class="wrap" style="padding-top:40px; text-align:center">
-    <div class="kicker" style="text-align:center" data-i18n="onb.back.kicker">Demo · usuaria recurrente</div>
-    <div class="mentor-ava" style="width:120px;height:120px;margin:10px auto 18px;border-width:3px">
-      <img class="ava3d" src="img/sofi.webp" alt="Sofi">
-    </div>
-    <h1 class="onb-title" data-i18n="onb.back.title">Bienvenida de <em>nuevo</em>, Sofi</h1>
-    <p class="onb-lede" data-i18n="onb.back.lede">Qué bueno verte otra vez. ¿Qué costeamos hoy?</p>
-    <button class="btn primary" onclick="go('home')" data-i18n="onb.back.cta">Entrar</button>
+  <div class="back-art" id="backArt" role="button" tabindex="0" aria-label="Entrar"
+       onclick="go('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('home');}">
+    <img id="backImg" src="img/welcome-back-matt-en.jpg" alt="Welcome back">
   </div>
+  <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
 </section>
 
 <!-- ================= HOME ================= -->
