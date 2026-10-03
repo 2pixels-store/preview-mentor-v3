@@ -1,5 +1,11 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — Backup: pop-up recordatorio + frecuencia
+- **Pop-up recordatorio de respaldo** (bilingüe, inglés por defecto): "momento" cálido estilo clay/dorado con motivo de **disquete** (SVG clay: cuerpo crema con highlight, shutter metálico, etiqueta dorada con llave, chispas; leve inclinación -8°), copy con voz de mentor. Botones: Respaldar ahora / Recordarme después (Back up now / Remind me later). Overlay con blur glassmorphism; cierra con overlay, Escape o botones.
+- **Ajustes → nueva fila "Recordatorio de respaldo"** (badge v4): selector día/semana/mes/nunca (default: semana), persiste en `localStorage`; botón fantasma "Vista previa" abre el pop-up para revisarlo.
+- JS mínimo de previsualización (abrir/cerrar, persistencia del selector, toast de confirmación). **Sin lógica real de programación del recordatorio** — queda para funcionalidad futura.
+- Alcance: solo Ajustes + componente pop-up (todo aditivo). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos; respeta `prefers-reduced-motion`.
+
 ## Mentor UI v4 (2026-10-03) — S3: arte welcome back del mentor
 - S3 Bienvenido de nuevo (recurrente): reemplaza el avatar+texto viejo por el **arte welcome back a sangre** del mentor elegido. 4 variantes: `img/welcome-back-{sofi,matt}-{en,es}.jpg`.
 - Sofi EN/ES: finales enviadas por Diego esta noche (1284×2935), integradas como están.

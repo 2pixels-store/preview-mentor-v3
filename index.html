@@ -658,6 +658,19 @@
     </div>
 
     <div class="card set-row">
+      <div class="set-txt"><b><span data-i18n="ajustes.bfreq.t">Recordatorio de respaldo</span> <span class="vtag">v4</span></b><span data-i18n="ajustes.bfreq.d">Elige cada cuánto te avisamos</span></div>
+      <div class="bfreq-ctl">
+        <select id="bfreqSel" class="sel-soft" onchange="setBfreq(this.value)" aria-label="Backup reminder frequency">
+          <option value="daily" data-i18n="ajustes.bfreq.daily">Una vez al día</option>
+          <option value="weekly" data-i18n="ajustes.bfreq.weekly" selected>Una vez a la semana</option>
+          <option value="monthly" data-i18n="ajustes.bfreq.monthly">Una vez al mes</option>
+          <option value="never" data-i18n="ajustes.bfreq.never">Nunca</option>
+        </select>
+        <button class="btn ghost sm" onclick="openBpop()" data-i18n="ajustes.bfreq.preview">Vista previa</button>
+      </div>
+    </div>
+
+    <div class="card set-row">
       <div class="set-txt"><b data-i18n="ajustes.tour.t">Tour guiado</b><span data-i18n="ajustes.tour.d">Repasar los gestos: tocar, deslizar, mantener</span></div>
       <button class="btn ghost sm" onclick="go('tour')" data-i18n="ajustes.tour.cta">Ver tour</button>
     </div>
@@ -774,6 +787,42 @@
   <button data-go="mas" onclick="go('mas')"><svg><use href="#i-dots"/></svg><span data-i18n="tab.mas">Más</span></button>
 </nav>
 <div class="toast" id="toast"></div>
+
+<!-- ================= BACKUP POP-UP (v4) ================= -->
+<div class="bpop-ovl" id="bpopOvl" aria-hidden="true" onclick="if(event.target===this)closeBpop()">
+  <div class="bpop card" role="dialog" aria-modal="true" aria-labelledby="bpopTitle">
+    <div class="bpop-art" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="fdBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFFDF9"/><stop offset="1" stop-color="#F0E2D2"/>
+          </linearGradient>
+          <linearGradient id="fdShut" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F2E9DC"/><stop offset="1" stop-color="#C9B7A1"/>
+          </linearGradient>
+          <linearGradient id="fdLabel" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F9EED6"/><stop offset="1" stop-color="#EED5A0"/>
+          </linearGradient>
+        </defs>
+        <path d="M15 24l1.7 4.6 4.6 1.7-4.6 1.7-1.7 4.6-1.7-4.6-4.6-1.7 4.6-1.7z" fill="#E9C86E"/>
+        <path d="M103 76l1.3 3.5 3.5 1.3-3.5 1.3-1.3 3.5-1.3-3.5-3.5-1.3 3.5-1.3z" fill="#E9C86E" opacity=".75"/>
+        <rect x="24" y="16" width="72" height="88" rx="12" fill="url(#fdBody)" stroke="#E0C69E" stroke-width="1.5"/>
+        <ellipse cx="46" cy="32" rx="16" ry="8" fill="#FFFFFF" opacity=".45"/>
+        <rect x="40" y="16" width="40" height="32" rx="6" fill="url(#fdShut)" stroke="#B3A088" stroke-width="1.5"/>
+        <rect x="53" y="24" width="14" height="16" rx="3" fill="#6E5F68"/>
+        <rect x="36" y="56" width="48" height="32" rx="6" fill="url(#fdLabel)" stroke="#D9A44E" stroke-width="1.5"/>
+        <g fill="none" stroke="#8A6A1C" stroke-width="2.2" stroke-linecap="round">
+          <circle cx="59" cy="67" r="5"/><path d="M62.5 70.5L71 79"/><path d="M66.5 74.5l2.5 2.5M68.8 72.2l2.5 2.5"/>
+        </g>
+      </svg>
+    </div>
+    <p class="kicker bpop-kicker" data-i18n="bpop.kicker">A nudge from your mentor</p>
+    <h2 id="bpopTitle" data-i18n="bpop.title">Your recipes are pure gold</h2>
+    <p class="bpop-body" data-i18n="bpop.body">Your recipes, clients and costs live on this phone. Take a minute to back them up — future you will thank you.</p>
+    <button class="btn primary" onclick="bpopBackup()" data-i18n="bpop.cta">Back up now</button>
+    <button class="btn ghost" onclick="closeBpop()" data-i18n="bpop.later">Remind me later</button>
+  </div>
+</div>
 
 </div><!-- /phone -->
 

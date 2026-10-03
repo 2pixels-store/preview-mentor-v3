@@ -186,10 +186,31 @@ function setMode(m, btn) {
   document.getElementById('modeB').style.display = (m === 'b') ? 'block' : 'none';
 }
 
+/* ---------- backup: recordatorio + pop-up (diseño v4) ---------- */
+let BFREQ = 'weekly';
+try { BFREQ = localStorage.getItem('mentor_bfreq') || 'weekly'; } catch(e) {}
+function setBfreq(v){
+  BFREQ = v;
+  try { localStorage.setItem('mentor_bfreq', v); } catch(e) {}
+  const s = document.getElementById('bfreqSel'); if (s) s.value = v;
+  toast('ajustes.bfreq.saved');
+}
+function openBpop(){
+  const o = document.getElementById('bpopOvl');
+  if (o) { o.classList.add('show'); o.setAttribute('aria-hidden','false'); }
+}
+function closeBpop(){
+  const o = document.getElementById('bpopOvl');
+  if (o) { o.classList.remove('show'); o.setAttribute('aria-hidden','true'); }
+}
+function bpopBackup(){ closeBpop(); toast('bpop.cta'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeBpop(); });
+
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   applyLang();
   setTheme('light');
+  const bfs = document.getElementById('bfreqSel'); if (bfs) bfs.value = BFREQ;
   const sel = document.getElementById('screenJump');
   if (sel) sel.addEventListener('change', e => { stack.length = 0; show(e.target.value); });
   // construye el jump-row S1..S18 desde el mapa (fuente única de verdad)

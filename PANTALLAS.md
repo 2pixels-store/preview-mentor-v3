@@ -25,7 +25,7 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S14 | `receta-detalle` | Detalle de receta | Hero, escalado A/B, sub-recetas, tabla de ingredientes y costo. |
 | S15 | `colab` | Colaboraciones | Compartir recetas/costos con el equipo; roles; todo queda en el teléfono. |
 | S16 | `tour` | Tour guiado | Tres gestos (tocar, deslizar, mantener) con dedito animado; respeta prefers-reduced-motion. |
-| S17 | `ajustes` | Ajustes | Idioma, apariencia claro/oscuro, respaldo, tour; sello de versión "Mentor UI v3 (2026-09-27)". |
+| S17 | `ajustes` | Ajustes | Idioma, apariencia claro/oscuro, respaldo + recordatorio (frecuencia día/semana/mes/nunca con vista previa del pop-up), tour; sello de versión "Mentor UI v3 (2026-09-27)". |
 | S18 | `mas` | Más · Hub | Tarjetas Negocio, Clientes, Colaboraciones, Ingredientes, Imprimibles, Aprender, Ajustes — cada una con etiqueta Herramienta / Guía / Información. |
 
 ## Flujos vigentes
