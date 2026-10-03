@@ -1,5 +1,10 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S20: email + follow-up en ficha de cliente (idea de Diego)
+- S20: campo **Email** en "Datos de la clienta" (dona.rosa@email.com).
+- S20: nueva sub-sección **Follow-up** después del Historial de pedidos — tarjeta "Cupcakes entregados hace 3 días — ¿le escribimos?" con mensaje sugerido pre-escrito y botón "Enviar mensaje" (toast); tip de la mentora: el follow-up pide feedback y abre la próxima venta.
+- i18n ES/EN completo (inglés por defecto), paridad 6/6 en claves nuevas. Etiqueta v4 sin cambios (ajuste menor). Alcance: solo S20 (+ CSS/i18n aditivos: `.fu-title`, `.fu-msg`). Ninguna pantalla cerrada tocada.
+
 ## Mentor UI v4 (2026-10-03) — S26/S27: sección Recetas v4 (idea de Diego)
 - S26 Biblioteca de recetas (ronda v4; convive con S13 de v1 sin tocarla): buscador + chips de categoría (Tortas · Cupcakes · Galletas · Panes); 4 tarjetas (Torta de vainilla, Cupcakes de chocolate, Pan de banano, Galletas de mantequilla) con costo por porción y última vez horneada; botón "+ Nueva" (toast).
 - S27 Ficha de receta (ronda v4; convive con S14 de v1 sin tocarla): ejemplo Torta de vainilla — hero con foto + costo por porción ($1.62) y margen (39%); tabla de ingredientes con costo atado ($5.68); 3 pasos numerados; **Versiones**: v1 Original vs v2 "Menos azúcar" (compara costo por tanda y nota); **Notas de la repostera**: bitácora por tanda (qué salió bien/mal) + **feedback de la clienta** ("Un poquito dulce para mi gusto, pero la miga perfecta." — Doña Rosa); **Foto del resultado** (placeholder con fecha de tanda + "Agregar foto"); acciones Escalar receta / Tarjeta imprimible / Compartir (toasts); tip de la mentora.

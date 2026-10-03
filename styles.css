@@ -1142,3 +1142,13 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
   padding:20px 18px; text-align:center; margin-bottom:12px;
 }
 .photo-slot span { font-size:0.8125rem; }
+
+/* ---- follow-up · S20 (v4 2026-10-03) ---- */
+.fu-title { font-weight:700; font-size:0.9375rem; margin:0 0 10px; }
+.fu-msg {
+  background:var(--card-soft, #F6EFE7);
+  border-left:3px solid var(--gold, #C9A227);
+  border-radius:0 10px 10px 0;
+  padding:10px 12px; font-size:0.875rem; font-style:italic;
+  color:var(--ink-soft); margin:0 0 12px; line-height:1.45;
+}

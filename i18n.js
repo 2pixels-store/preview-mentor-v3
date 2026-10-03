@@ -412,6 +412,12 @@ es: {
 "cli.addr.work.v": "45-20 Roosevelt Ave, Jackson Heights",
 "cli.addr.add": "+ Agregar",
 "cli.addr.tip": "En tu próximo pedido solo confirmas: ¿va para Casa?",
+"cli.d.email": "Email",
+"cli.d.followup": "Follow-up",
+"cli.fu.title": "Cupcakes entregados hace 3 días — ¿le escribimos?",
+"cli.fu.msg": "¡Hola Doña Rosa! ¿Cómo les fue con los cupcakes? Si tienes alguna duda, aquí estoy 🎂",
+"cli.fu.send": "Enviar mensaje",
+"cli.fu.tip": "El follow-up pide feedback y abre la próxima venta.",
 
 /* ---- canjes · S21/S22 (v4 2026-10-03) ---- */
 "screen.canjes": "Canjes",
@@ -892,6 +898,12 @@ en: {
 "cli.addr.work.v": "45-20 Roosevelt Ave, Jackson Heights",
 "cli.addr.add": "+ Add",
 "cli.addr.tip": "On your next order you just confirm: going to Home?",
+"cli.d.email": "Email",
+"cli.d.followup": "Follow-up",
+"cli.fu.title": "Cupcakes delivered 3 days ago — shall we message her?",
+"cli.fu.msg": "Hi Doña Rosa! How did the cupcakes go? If you have any questions, I'm here 🎂",
+"cli.fu.send": "Send message",
+"cli.fu.tip": "Follow-up asks for feedback and opens the next sale.",
 
 /* ---- collabs · S21/S22 (v4 2026-10-03) ---- */
 "screen.canjes": "Collabs",

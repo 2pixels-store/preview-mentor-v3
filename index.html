@@ -815,6 +815,7 @@
     <div class="kicker" data-i18n="cli.d.data">Datos de la clienta</div>
     <div class="card">
       <div class="kv-row"><span data-i18n="cli.d.contact">Contacto</span><b class="num">(347) 555-0132</b></div>
+      <div class="kv-row"><span data-i18n="cli.d.email">Email</span><b class="num">dona.rosa@email.com</b></div>
       <div class="kv-row warn"><span class="kv-lab"><svg width="14" height="14"><use href="#i-alert"/></svg><span data-i18n="cli.d.allergies">Alergias</span></span><b data-i18n="cli.c1.al">Nuez</b></div>
       <div class="kv-row"><span data-i18n="cli.d.prefs">Preferencias</span><b data-i18n="cli.c1.pr">Poco dulce, sin fondant</b></div>
       <div class="kv-row"><span data-i18n="cli.d.birthday">Cumplea&ntilde;os</span><b data-i18n="cli.c1.bd">14 de marzo</b></div>
@@ -838,6 +839,20 @@
       <div class="order-row"><div><b data-i18n="cli.r1.p">Torta de vainilla &middot; 12 porciones</b><span data-i18n="cli.r1.d">28 sep 2026</span></div><div class="order-side"><b class="num">$31.99</b><span class="status-pill good" data-i18n="cli.ful.pickup">Recogió</span></div></div>
       <div class="order-row"><div><b data-i18n="cli.r2.p">Cupcakes de chocolate &middot; 24 u.</b><span data-i18n="cli.r2.d">12 sep 2026</span></div><div class="order-side"><b class="num">$36.00</b><span class="status-pill warn" data-i18n="cli.ful.delivery">Delivery</span></div></div>
       <div class="order-row"><div><b data-i18n="cli.r3.p">Pan de banano</b><span data-i18n="cli.r3.d">30 ago 2026</span></div><div class="order-side"><b class="num">$12.99</b><span class="status-pill good" data-i18n="cli.ful.pickup">Recogió</span></div></div>
+    </div>
+
+    <div class="kicker" data-i18n="cli.d.followup">Follow-up</div>
+    <div class="card">
+      <p class="fu-title" data-i18n="cli.fu.title">Cupcakes entregados hace 3 días — ¿le escribimos?</p>
+      <div class="fu-msg" data-i18n="cli.fu.msg">¡Hola Doña Rosa! ¿Cómo les fue con los cupcakes? Si tienes alguna duda, aquí estoy 🎂</div>
+      <button class="btn primary sm" onclick="toast('toast.r2')"><span data-i18n="cli.fu.send">Enviar mensaje</span></button>
+    </div>
+    <div class="tip-mentor">
+      <span class="mentor-ava"><img class="ava3d" src="img/sofi.webp" alt="Sofi"></span>
+      <div>
+        <span class="mentor-tag" data-i18n="home.mentor.tag">Tu mentora dice</span>
+        <p style="font-size:0.8125rem;color:var(--ink-soft)" data-i18n="cli.fu.tip">El follow-up pide feedback y abre la próxima venta.</p>
+      </div>
     </div>
 
     <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
