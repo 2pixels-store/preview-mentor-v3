@@ -309,6 +309,12 @@ es: {
 "ajustes.tour.t": "Tour guiado",
 "ajustes.tour.d": "Repasar los gestos: tocar, deslizar, mantener",
 "ajustes.tour.cta": "Ver tour",
+"ajustes.a11y.kicker": "Accesibilidad",
+"ajustes.a11y.t": "Tamaño del texto",
+"ajustes.a11y.d": "Más grande, sin que nada se rompa",
+"ajustes.a11y.normal": "Normal",
+"ajustes.a11y.large": "Grande",
+"ajustes.a11y.xl": "Extra grande",
 
 /* ---- convertidor ---- */
 "conv.kicker": "Herramienta",
@@ -364,7 +370,7 @@ es: {
 "more.set.d": "Idioma, tema y respaldo",
 "onb.w.tour": "Ver tour guiado",
 
-"version.tag": "Mentor UI v3 (2026-09-27)",
+"version.tag": "Mentor UI v4 (2026-10-03)",
 "made": "Hecho en NYC · Two Pixels"
 },
 /* ---- clientes · S19/S20 (v4 2026-10-03) ---- */
@@ -816,6 +822,12 @@ en: {
 "ajustes.tour.t": "Guided tour",
 "ajustes.tour.d": "Review the gestures: tap, swipe, hold",
 "ajustes.tour.cta": "View tour",
+"ajustes.a11y.kicker": "Accessibility",
+"ajustes.a11y.t": "Text size",
+"ajustes.a11y.d": "Bigger text, nothing breaks",
+"ajustes.a11y.normal": "Normal",
+"ajustes.a11y.large": "Large",
+"ajustes.a11y.xl": "Extra large",
 
 /* ---- converter ---- */
 "conv.kicker": "Tool",
@@ -871,7 +883,7 @@ en: {
 "more.set.d": "Language, theme & backup",
 "onb.w.tour": "View guided tour",
 
-"version.tag": "Mentor UI v3 (2026-09-27)",
+"version.tag": "Mentor UI v4 (2026-10-03)",
 "made": "Crafted in NYC · Two Pixels"
 }
 };

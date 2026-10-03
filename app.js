@@ -88,6 +88,14 @@ function setTheme(mode) {
     b.classList.toggle('on', b.dataset.theme === mode));
 }
 
+/* ---------- tamaño del texto · accesibilidad ---------- */
+function setTextSize(size) {
+  const s = (size === 'large' || size === 'xl') ? size : 'normal';
+  document.documentElement.dataset.textsize = s;
+  document.querySelectorAll('.textSegX button').forEach(b =>
+    b.classList.toggle('on', b.dataset.textsize === s));
+}
+
 /* ---------- convertidor (demo funcional) ---------- */
 const CONV_DEFAULT_QTY = 2;
 function convCalc() {
@@ -217,6 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLang();
   setTheme('light');
   const bfs = document.getElementById('bfreqSel'); if (bfs) bfs.value = BFREQ;
+  setTextSize('normal');
   const sel = document.getElementById('screenJump');
   if (sel) sel.addEventListener('change', e => { stack.length = 0; show(e.target.value); });
   // construye el jump-row S1..S18 desde el mapa (fuente única de verdad)

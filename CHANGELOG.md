@@ -21,6 +21,11 @@
 - JS mínimo de previsualización (abrir/cerrar, persistencia del selector, toast de confirmación). **Sin lógica real de programación del recordatorio** — queda para funcionalidad futura.
 - Línea de privacidad/offline pedida por Diego dentro del pop-up (con ícono shield): "Tus recetas, clientes y costos viven en tu teléfono — el backup es tu red de seguridad." / "Your recipes, clients and costs live on your phone — backup is your safety net." Con esto queda cubierto el disclaimer, sin pantalla separada.
 - Alcance: solo Ajustes + componente pop-up (todo aditivo). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos; respeta `prefers-reduced-motion`.
+## Mentor UI v4 (2026-10-03) — Accesibilidad: tamaño del texto
+- Ajustes → nueva sección "Accesibilidad": selector "Tamaño del texto" (Normal / Grande / Extra grande), bilingüe ES/EN, inglés por defecto.
+- Toda la tipografía migrada de px a rem (37 reglas en styles.css + 3 inline en index.html + tokens --t-*); la escala vive en `html[data-textsize]` (Normal 16px · Grande 19px · XL 22px). Layouts flex/scroll se adaptan sin romperse; el toast puede envolverse en XL.
+- El selector aplica en vivo en el preview (demo funcional) para validar cada tamaño.
+- Alcance: tokens.css, styles.css, index.html (solo Ajustes), app.js, i18n.js (6 claves nuevas ES/EN). Tipografía del sibling (Clientes/backup) también migrada a rem para que la escala aplique en todo. Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.
 
 ## Mentor UI v4 (2026-10-03) — S3: arte welcome back del mentor
 - S3 Bienvenido de nuevo (recurrente): reemplaza el avatar+texto viejo por el **arte welcome back a sangre** del mentor elegido. 4 variantes: `img/welcome-back-{sofi,matt}-{en,es}.jpg`.

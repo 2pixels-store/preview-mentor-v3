@@ -4,6 +4,14 @@
    Modo claro + modo oscuro · 100% offline (sin CDNs)
    ============================================================ */
 
+/* ---- accesibilidad · tamaño del texto ----
+   Toda la tipografía usa rem: al cambiar el font-size raíz,
+   la letra escala y los layouts (flex, scroll) se adaptan
+   sin romperse. Niveles: Normal 16px · Grande 19px · XL 22px. */
+html { font-size: 16px; }
+html[data-textsize="large"] { font-size: 19px; }
+html[data-textsize="xl"] { font-size: 22px; }
+
 :root {
   /* ---- color · modo claro ---- */
   --bg:        #FDF9F4;   /* crema base */
@@ -39,12 +47,12 @@
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                "Helvetica Neue", Arial, sans-serif;
 
-  --t-hero:    30px;
-  --t-h1:      22px;
-  --t-h2:      17px;
-  --t-body:    15px;
-  --t-small:   13px;
-  --t-micro:   11px;
+  --t-hero:    1.875rem;
+  --t-h1:      1.375rem;
+  --t-h2:      1.0625rem;
+  --t-body:    0.9375rem;
+  --t-small:   0.8125rem;
+  --t-micro:   0.6875rem;
 
   /* ---- forma ---- */
   --r-sm: 10px;
