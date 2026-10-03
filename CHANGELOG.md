@@ -4,6 +4,11 @@
 - S20: campo **Email** en "Datos de la clienta" (dona.rosa@email.com).
 - S20: nueva sub-sección **Follow-up** después del Historial de pedidos — tarjeta "Cupcakes entregados hace 3 días — ¿le escribimos?" con mensaje sugerido pre-escrito y botón "Enviar mensaje" (toast); tip de la mentora: el follow-up pide feedback y abre la próxima venta.
 - i18n ES/EN completo (inglés por defecto), paridad 6/6 en claves nuevas. Etiqueta v4 sin cambios (ajuste menor). Alcance: solo S20 (+ CSS/i18n aditivos: `.fu-title`, `.fu-msg`). Ninguna pantalla cerrada tocada.
+- S28 Tarjetas de agradecimiento: galería con 3 diseños CSS (clásico "Gracias por tu compra" · cálido "Gracias por apoyarnos" · minimal "Hecho con amor"), ya con branding de la bakery (nombre + colores); selección con `pickCard()`; botón "Imprimir" (toast); tip de la mentora: "Se ofrece como paso final después del invoice"; enlace a S29 ("¿Vas a cobrar? Genera tu QR de pago"). Se entra desde el hub (S18) — la tarjeta Imprimibles ya no dice "Próximamente".
+- S29 QR de pago: dos pestañas — "Para cobrar" (campo de método ej. $cashtag de Cash App + botón "Generar QR" que revela QR placeholder SVG inline, nota "este QR aparece impreso en tu invoice", tip "se genera 100% offline") y "Para mis redes" (link de Instagram/TikTok + QR placeholder + nota para empaque/mostrador). Cero CDNs: QR dibujado con SVG inline (placeholder visual, no código real en esta ronda).
+- i18n ES/EN completo (inglés por defecto), paridad 26/26 en claves nuevas. Etiqueta visible "Mentor UI v4 (2026-10-03)". `SCREENS` extendido a S29 (jump-row).
+- FIX: las 216 claves ES de pantallas v4 (S19+) estaban a nivel raíz de I18N en vez de dentro de `es:{}` → en modo español mostraban la clave cruda. Movidas dentro de `es:{}`; paridad total verificada 516/516 (0 faltantes en ES y EN).
+- Alcance: S28/S29 (+ CSS/i18n/JS aditivos: `.tk-card`, `.tk-mini`, `.qr-box`, `pickCard()`, `qrTab()`, `qrGen()`). Ninguna pantalla cerrada tocada.
 
 ## Mentor UI v4 (2026-10-03) — S26/S27: sección Recetas v4 (idea de Diego)
 - S26 Biblioteca de recetas (ronda v4; convive con S13 de v1 sin tocarla): buscador + chips de categoría (Tortas · Cupcakes · Galletas · Panes); 4 tarjetas (Torta de vainilla, Cupcakes de chocolate, Pan de banano, Galletas de mantequilla) con costo por porción y última vez horneada; botón "+ Nueva" (toast).

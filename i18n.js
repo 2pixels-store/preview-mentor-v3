@@ -371,8 +371,7 @@ es: {
 "onb.w.tour": "Ver tour guiado",
 
 "version.tag": "Mentor UI v4 (2026-10-03)",
-"made": "Hecho en NYC · Two Pixels"
-},
+"made": "Hecho en NYC · Two Pixels",
 /* ---- clientes · S19/S20 (v4 2026-10-03) ---- */
 "screen.clientes": "Clientes",
 "screen.cliente-detalle": "Ficha de cliente",
@@ -601,7 +600,34 @@ es: {
 "rf.act.card": "Tarjeta imprimible",
 "rf.act.share": "Compartir",
 "rf.tip": "Cada tanda te ense\u00f1a algo: an\u00f3talo aqu\u00ed y tu pr\u00f3xima torta sale mejor.",
-
+/* ---- tarjetas + QR · S28/S29 (v4 2026-10-03) ---- */
+"screen.tarjetas": "Tarjetas de agradecimiento",
+"screen.qr-pago": "QR de pago",
+"tk.title": "Tarjetas de agradecimiento",
+"tk.lede": "Elige un dise\u00f1o con tu marca. Se ofrece al final, despu\u00e9s del invoice.",
+"tk.d1.t": "Gracias por tu compra",
+"tk.d1.s": "Dise\u00f1o cl\u00e1sico",
+"tk.d2.t": "Gracias por apoyarnos",
+"tk.d2.s": "Dise\u00f1o c\u00e1lido",
+"tk.d3.t": "Hecho con amor",
+"tk.d3.s": "Dise\u00f1o minimal",
+"tk.bakery": "Mi Reposter\u00eda",
+"tk.print": "Imprimir",
+"tk.tip": "Se ofrece como paso final despu\u00e9s del invoice: la clienta paga\u2026 y se lleva tu tarjeta.",
+"tk.goqr": "\u00bfVas a cobrar? Genera tu QR de pago \u2192",
+"qr.title": "QR de pago",
+"qr.tab.pay": "Para cobrar",
+"qr.tab.social": "Para mis redes",
+"qr.pay.label": "Tu m\u00e9todo de pago",
+"qr.pay.ph": "Ej.: $tunombre en Cash App",
+"qr.gen": "Generar QR",
+"qr.pay.note": "Este QR aparece impreso en tu invoice: la clienta escanea y paga.",
+"qr.pay.tip": "Se genera 100% offline, en tu tel\u00e9fono \u2014 sin internet.",
+"qr.soc.label": "Tu red social",
+"qr.soc.ph": "Pega tu link de Instagram o TikTok",
+"qr.soc.note": "Ponlo en tu empaque o mostrador: la clienta escanea y te sigue.",
+"qr.demo.cap": "Ejemplo",
+},
 
 en: {
 
@@ -1200,7 +1226,34 @@ en: {
 "onb.w.tour": "View guided tour",
 
 "version.tag": "Mentor UI v4 (2026-10-03)",
-"made": "Crafted in NYC · Two Pixels"
+"made": "Crafted in NYC · Two Pixels",
+/* ---- thank-you cards + QR · S28/S29 (v4 2026-10-03) ---- */
+"screen.tarjetas": "Thank-you cards",
+"screen.qr-pago": "Payment QR",
+"tk.title": "Thank-you cards",
+"tk.lede": "Pick a design with your branding. Offer it at the end, after the invoice.",
+"tk.d1.t": "Thank you for your purchase",
+"tk.d1.s": "Classic design",
+"tk.d2.t": "Thanks for supporting us",
+"tk.d2.s": "Warm design",
+"tk.d3.t": "Made with love",
+"tk.d3.s": "Minimal design",
+"tk.bakery": "My Bakery",
+"tk.print": "Print",
+"tk.tip": "Offer it as the final step after the invoice: the customer pays\u2026 and takes your card home.",
+"tk.goqr": "Getting paid? Generate your payment QR \u2192",
+"qr.title": "Payment QR",
+"qr.tab.pay": "To get paid",
+"qr.tab.social": "For my socials",
+"qr.pay.label": "Your payment method",
+"qr.pay.ph": "E.g.: $yourname on Cash App",
+"qr.gen": "Generate QR",
+"qr.pay.note": "This QR prints on your invoice: the customer scans and pays.",
+"qr.pay.tip": "Generated 100% offline, on your phone \u2014 no internet needed.",
+"qr.soc.label": "Your social profile",
+"qr.soc.ph": "Paste your Instagram or TikTok link",
+"qr.soc.note": "Put it on your packaging or counter: the customer scans and follows you.",
+"qr.demo.cap": "Example",
 }
 };
 

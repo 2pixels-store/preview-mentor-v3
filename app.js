@@ -19,7 +19,8 @@ const SCREENS = [
   ['tour','S16'], ['ajustes','S17'], ['mas','S18'], ['clientes','S19'], ['cliente-detalle','S20'],
   ['canjes','S21'], ['canje-detalle','S22'],
   ['ingredientes','S23'], ['ingrediente-detalle','S24'], ['lista-compras','S25'],
-  ['recetas-biblio','S26'], ['receta-ficha','S27']
+  ['recetas-biblio','S26'], ['receta-ficha','S27'],
+  ['tarjetas','S28'], ['qr-pago','S29']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 
@@ -76,6 +77,21 @@ function toast(msgKey) {
   toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
 }
 function toastRound2() { toast('toast.r2'); }
+
+/* ---- S28/S29 (v4 2026-10-03): selección de tarjeta, pestañas QR, demo QR ---- */
+function pickCard(el) {
+  el.parentElement.querySelectorAll('.tk-card').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+}
+function qrTab(el, paneId) {
+  el.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  document.querySelectorAll('.qr-pane').forEach(p => { p.hidden = (p.id !== paneId); });
+}
+function qrGen(boxId) {
+  const b = document.getElementById(boxId);
+  if (b) b.hidden = false;
+}
 
 /* ---------- idioma ---------- */
 function setLang(l) {

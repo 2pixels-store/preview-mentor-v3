@@ -36,6 +36,8 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S25 | `lista-compras` | Lista de compras | Insumos sumados de los pedidos de la semana, agrupados (Secos · Lácteos y huevos · Otros) con checkboxes visuales (1 marcado de ejemplo). Se entra desde tarjeta al final de S23. |
 | S26 | `recetas-biblio` | Biblioteca de recetas | Ronda v4 (convive con S13 `recetas` de v1): buscador + chips de categoría (Tortas · Cupcakes · Galletas · Panes); tarjetas con costo por porción y última vez horneada (Torta de vainilla, Cupcakes de chocolate, Pan de banano, Galletas de mantequilla). Todas abren a S27. Botón + Nueva (toast). |
 | S27 | `receta-ficha` | Ficha de receta | Ronda v4 (convive con S14 `receta-detalle` de v1): ejemplo Torta de vainilla — hero con foto + costo por porción y margen; tabla de ingredientes con costo; pasos numerados; **versiones** v1 vs v2 "Menos azúcar" (compara costo y nota); **notas de la repostera** (bitácora por tanda + feedback de clienta: "Un poquito dulce para mi gusto" — Doña Rosa); foto del resultado (placeholder con fecha de tanda); acciones Escalar / Tarjeta imprimible / Compartir (toasts); tip de la mentora. Ronda estática: todas las recetas abren a Torta de vainilla. |
+| S28 | `tarjetas` | Tarjetas de agradecimiento | Galería de 3 diseños con branding ("Gracias por tu compra" · "Gracias por apoyarnos" · "Hecho con amor"); selección, botón Imprimir (toast), tip "paso final después del invoice" y enlace a S29. Se entra desde el hub (S18 → Imprimibles). |
+| S29 | `qr-pago` | QR de pago | Dos pestañas: "Para cobrar" (método ej. $cashtag + Generar QR → placeholder SVG inline; nota: se imprime en el invoice; tip 100% offline) y "Para mis redes" (link Instagram/TikTok + QR para empaque/mostrador). Se entra desde S28 o el jump-row. |
 
 ## Flujos vigentes
 - **Primera vez:** S1 → S2 → S7 → S8 (¿proteger con PIN?) → con PIN: S9 → S10 → S11 → S12 · sin PIN (omitir): S12 directo.
@@ -43,5 +45,5 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 
 ## Notas
 - El "Jump to: S1…S18" del chrome del prototipo se genera desde `SCREENS` en `app.js` (fuente única).
-- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Imprimibles, Aprender — son placeholders etiquetados, no callejones. (Clientes dejó de ser placeholder en v4: S19/S20.)
-- Versión del mapa: v4 (2026-10-03) + S23/S24/S25 + S26/S27.
+- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Aprender — son placeholders etiquetados, no callejones. (Clientes dejó de ser placeholder en v4: S19/S20.)
+- Versión del mapa: v4 (2026-10-03) + S23/S24/S25 + S26/S27 + S28/S29.

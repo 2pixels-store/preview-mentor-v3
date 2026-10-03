@@ -1152,3 +1152,39 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
   padding:10px 12px; font-size:0.875rem; font-style:italic;
   color:var(--ink-soft); margin:0 0 12px; line-height:1.45;
 }
+/* ============ S28 · TARJETAS DE AGRADECIMIENTO (v4 2026-10-03) ============ */
+.tk-lede { font-size:0.875rem; color:var(--ink-soft); line-height:1.5; margin:0 0 14px; }
+.tk-grid { display:grid; gap:12px; margin-bottom:14px; }
+.tk-card { text-align:left; background:var(--surface); border:2px solid var(--line);
+  border-radius:var(--r-md); padding:12px; cursor:pointer; width:100%; color:inherit; font:inherit; }
+.tk-card.on { border-color:var(--gold); box-shadow:0 0 0 3px var(--gold-soft); }
+.tk-mini { border-radius:12px; padding:24px 16px 20px; text-align:center; margin-bottom:10px; }
+.tk-mini .tk-t { display:block; font-size:1.25rem; font-weight:800; line-height:1.3; margin-bottom:8px; }
+.tk-mini .tk-biz { display:block; font-size:0.6875rem; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; }
+.tk-v1 { background:#FFFDF6; border:1.5px solid var(--gold-line); outline:1px solid var(--gold-line); outline-offset:4px; }
+.tk-v1 .tk-t { color:var(--rose-deep); }
+.tk-v1 .tk-biz { color:var(--gold); }
+.tk-v2 { background:linear-gradient(135deg,#C4705A,#A85640); }
+.tk-v2 .tk-t { color:#FFF8F0; }
+.tk-v2 .tk-biz { color:#F7DDD2; }
+.tk-v3 { background:#FFFFFF; border:1px solid var(--line); }
+.tk-v3 .tk-t { color:var(--ink); font-weight:700; }
+.tk-v3 .tk-biz { color:var(--faint); }
+.tk-cap { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.tk-cap b { font-size:0.875rem; }
+.tk-cap span { font-size:0.75rem; color:var(--faint); }
+.tk-check { color:var(--gold); visibility:hidden; flex:none; }
+.tk-card.on .tk-check { visibility:visible; }
+.tk-qr-link { width:100%; margin:4px 0 14px; }
+
+/* ============ S29 · QR DE PAGO (v4 2026-10-03) ============ */
+.qr-tabs { display:flex; gap:8px; margin-bottom:14px; }
+.qr-pane[hidden] { display:none; }
+.f-label { display:block; font-size:0.75rem; font-weight:700; letter-spacing:.4px;
+  text-transform:uppercase; color:var(--ink-soft); margin:0 0 8px; }
+.qr-box { background:#fff; border:1px solid var(--line); border-radius:var(--r-md);
+  padding:20px; display:flex; flex-direction:column; align-items:center; gap:10px; margin:14px 0; }
+.qr-box svg { width:172px; height:172px; }
+.qr-cap { font-size:0.75rem; color:var(--faint); }
+.qr-note { font-size:0.8125rem; color:var(--ink-soft); line-height:1.5; margin:0 0 12px;
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-sm); padding:10px 12px; }
