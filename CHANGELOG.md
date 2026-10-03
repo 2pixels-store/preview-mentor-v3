@@ -4,8 +4,7 @@
 - S3 Bienvenido de nuevo (recurrente): reemplaza el avatar+texto viejo por el **arte welcome back a sangre** del mentor elegido. 4 variantes: `img/welcome-back-{sofi,matt}-{en,es}.jpg`.
 - Sofi EN/ES: finales enviadas por Diego esta noche (1284×2935), integradas como están.
 - Matt EN: `files/prototipo-mentor-hifi/img/mentor-matt-welcomeback.jpg` (sin gafas, verificado visualmente) — 1008×2304.
-- Matt ES: ⏳ **PENDIENTE** — el único conocido (`media_library/image/27/...`) lleva gafas y fue rechazado (Matt no usa gafas). Temporalmente, con Matt en ES, S3 muestra el arte EN (fallback en `renderBack()`); al llegar el final se copia como `img/welcome-back-matt-es.jpg` y se quita el fallback.
-- Nota: existe `files/prototipo-mentor-hifi/img/mentor-matt-welcomeback-es.jpg` SIN gafas (archivo distinto al rechazado, checksums diferentes) — pendiente que Diego confirme si la cara es la correcta; de ser así es un reemplazo de 1 archivo.
+- Matt EN/ES: **regenerados esta noche y aprobados por Diego** — sin gafas (Matt no usa gafas), cara ajustada a la referencia oficial del personaje. La versión con gafas quedó rechazada y eliminada. Fallback Matt+ES→EN removido de `renderBack()`.
 - La variante se elige sola según mentor (S2) + idioma actual (patrón `renderBack()`, como `renderHello()` en S7); al cambiar idioma con S3 visible se re-renderiza. Toque/tecla en el arte → S12 (home).
 - Nuevas claves i18n ES/EN: `onb.back.alt`, `onb.back.aria` (paridad 295/295, 0 faltantes). Etiqueta visible "Mentor UI v4 (2026-10-03)".
 - Alcance: solo S3 (+ CSS/JS/i18n aditivos). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.

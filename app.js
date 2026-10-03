@@ -162,10 +162,7 @@ function renderBack() {
     m = (alt.indexOf('sofi') === 0) ? 'sofi' : 'matt';
   }
   var img = document.getElementById('backImg');
-  // PENDIENTE Matt ES: aún no hay asset final (el único conocido lleva gafas, rechazado por Diego).
-  // Temporal: con Matt en ES se muestra el arte EN hasta que llegue el final.
   var lang = LANG;
-  if (m === 'matt' && lang === 'es') lang = 'en';
   if (img) {
     img.setAttribute('src', 'img/welcome-back-' + m + '-' + lang + '.jpg');
     img.setAttribute('alt', t('onb.back.alt'));
