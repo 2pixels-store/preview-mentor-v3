@@ -1,5 +1,12 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S23/S24/S25: sección Ingredientes (idea de Diego)
+- S23 Ingredientes (catálogo): 7 insumos (harina, azúcar, mantequilla, huevos, leche, vainilla, chocolate) con precio de compra + unidad, costo unitario automático ($/kg, $/100 g, $/u, $/L, $/100 ml) y semáforo de stock (En stock verde · Bajo ámbar · Agotado rojo); buscador; botón "+ Nuevo" (toast); tarjeta final "Lista de compras" → S25. Se entra desde el hub (S18) — la tarjeta Ingredientes ya no dice "Próximamente".
+- S24 Ficha de ingrediente: hero con costo unitario destacado + stock; compra (presentación, proveedor actual); comparativa de 2 proveedores (mejor precio marcado); mini-histórico de precios con barras (ago/sep/oct 2026 + aviso ámbar "Subió 9% en 2 meses"); equivalencias/sustitutos con delta de costo; stock con punto de reorden. Ronda estática: todos los insumos abren a Harina (precedente S20/Doña Rosa).
+- S25 Lista de compras: insumos de los pedidos de la semana agrupados (Secos · Lácteos y huevos · Otros) con checkboxes visuales (1 marcado de ejemplo).
+- i18n ES/EN completo (inglés por defecto), paridad 73/73 en claves nuevas. Etiqueta visible "Mentor UI v4 (2026-10-03)". `SCREENS` en app.js extendido a S25 (fuente única del jump-row).
+- Alcance: solo S23/S24/S25 (+ CSS/i18n/JS aditivos: `.hist-row`, `.hist-bar`, `.hist-note`). Ninguna otra pantalla tocada. Cero CDNs; claro/oscuro intactos.
+
 ## Mentor UI v4 (2026-10-03) — S21/S22: sección Canjes (idea nueva de Diego)
 - S21 Canjes (lista): tarjeta por trato con aliado, tipo (influencer/proveedor/negocio local), "Yo doy / Recibo", fecha límite y píldora de estado (Pendiente ámbar · Cumplido verde · Vencido rojo); buscador; botón "+ Nuevo". Se entra desde el hub (S18) con tarjeta nueva "Canjes".
 - S22 Nuevo canje: formulario (aliado, tipo con selector, qué doy, qué recibo, fecha límite, notas; Guardar → ronda 2). Ronda de diseño estática.

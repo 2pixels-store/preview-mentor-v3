@@ -1082,3 +1082,11 @@ input[type="range"] { width: 100%; accent-color: var(--rose); height: 32px; curs
 .a11y-card .seg button { padding: 12px 8px; }
 /* El toast es nowrap: en XL se permite envolver para que no se corte. */
 html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-height: 1.4; }
+
+/* ingredientes · S23/S24/S25 (v4 2026-10-03) */
+.hist-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.hist-row:last-of-type { border-bottom: 0; }
+.hist-row > span:first-child { color: var(--ink-soft); font-size: var(--t-small); flex: none; width: 76px; }
+.hist-bar { flex: 1; height: 10px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.hist-bar i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--gold), var(--rose)); }
+.hist-note { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 10px 12px; border-radius: var(--r-sm); background: var(--warn-soft); color: var(--warn); font-size: var(--t-small); font-weight: 600; }

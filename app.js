@@ -6,7 +6,7 @@
 const stack = [];
 const TAB_SCREENS = ['home', 'recetas', 'costeo', 'precios', 'mas'];
 
-/* ---------- mapa de pantallas S1..S22 (contrato estable, ver PANTALLAS.md) ----------
+/* ---------- mapa de pantallas S1..S25 (contrato estable, ver PANTALLAS.md) ----------
    S1-S6 conservan el significado de la UI v1. Las nuevas se agregan AL FINAL,
    nunca se renumeran las existentes.
    S7 = saludo del mentor estilo v1 (foto + nombre dinámicos), va tras S2. */
@@ -17,7 +17,8 @@ const SCREENS = [
   ['onb-recovery','S10'], ['onb-question','S11'], ['home','S12'],
   ['recetas','S13'], ['receta-detalle','S14'], ['colab','S15'],
   ['tour','S16'], ['ajustes','S17'], ['mas','S18'], ['clientes','S19'], ['cliente-detalle','S20'],
-  ['canjes','S21'], ['canje-detalle','S22']
+  ['canjes','S21'], ['canje-detalle','S22'],
+  ['ingredientes','S23'], ['ingrediente-detalle','S24'], ['lista-compras','S25']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 

@@ -617,7 +617,7 @@
       <button class="hub-card" onclick="go('clientes')"><svg><use href="#i-users"/></svg><b data-i18n="more.clientes.t">Clientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.clientes.d">Fichas de clientes y pedidos</span></button>
       <button class="hub-card" onclick="go('colab')"><svg><use href="#i-link"/></svg><b data-i18n="more.colab.t">Colaboraciones</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.colab.d">Comparte recetas con tu equipo</span></button>
       <button class="hub-card" onclick="go('canjes')"><svg><use href="#i-tag"/></svg><b data-i18n="more.canjes.t">Canjes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.canjes.d">Trueques con influencers y proveedores</span></button>
-      <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-box"/></svg><b data-i18n="more.ing.t">Ingredientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.ing.d">Catálogo de ingredientes y stock</span></button>
+      <button class="hub-card" onclick="go('ingredientes')"><svg><use href="#i-box"/></svg><b data-i18n="more.ing.t">Ingredientes</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.ing.d">Catálogo de ingredientes y stock</span></button>
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-print"/></svg><b data-i18n="more.print.t">Imprimibles</b><span class="kind-tag tool" data-i18n="more.kind.tool">Herramienta</span><span class="hub-d" data-i18n="more.print.d">Tarjetas y etiquetas para imprimir</span></button>
       <button class="hub-card" onclick="toastRound2()"><span class="soon" data-i18n="toast.r2">Próximamente</span><svg><use href="#i-grad"/></svg><b data-i18n="more.learn.t">Aprender</b><span class="kind-tag guide" data-i18n="more.kind.guide">Guía</span><span class="hub-d" data-i18n="more.learn.d">Ebook y glosario para aprender</span></button>
       <button class="hub-card" onclick="go('ajustes')"><svg><use href="#i-gear"/></svg><b data-i18n="more.set.t">Ajustes</b><span class="kind-tag info" data-i18n="more.kind.info">Información</span><span class="hub-d" data-i18n="more.set.d">Idioma, tema y respaldo</span></button>
@@ -902,6 +902,176 @@
     <div class="field"><span class="lbl" data-i18n="cnj.f.due">Fecha límite</span><input type="date"></div>
     <div class="field"><span class="lbl" data-i18n="cnj.f.notes">Notas</span><textarea data-i18n-ph="cnj.f.notes.ph" placeholder="Ej.: Etiquetar @mi_bakery en la historia"></textarea></div>
     <button class="btn primary" onclick="toastRound2()" data-i18n="cnj.f.save">Guardar canje</button>
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
+
+
+<!-- ================= INGREDIENTES · S23 ================= -->
+<section class="screen" id="s-ingredientes">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="ing.title">Ingredientes</h1>
+    <button class="btn primary sm" onclick="toastRound2()"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="ing.new">+ Nuevo</span></button>
+  </div>
+  <div class="wrap">
+    <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="ing.search.ph">Buscar ingrediente&hellip;</span></div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><span style="color:#9A7420">H</span></div>
+      <div class="info">
+        <b data-i18n="ing.i1.name">Harina</b>
+        <span class="cat"><span data-i18n="ing.i1.buy">$3.50 / 5 kg</span> &middot; <b class="num" data-i18n="ing.i1.unit">$0.70/kg</b></span>
+        <div class="nums"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span><span class="num" data-i18n="ing.i1.stock">3.2 kg</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#F7DDD2,#E8B4A0)"><span style="color:#A85640">A</span></div>
+      <div class="info">
+        <b data-i18n="ing.i2.name">Az&uacute;car</b>
+        <span class="cat"><span data-i18n="ing.i2.buy">$2.80 / 4 kg</span> &middot; <b class="num" data-i18n="ing.i2.unit">$0.70/kg</b></span>
+        <div class="nums"><span class="status-pill warn" data-i18n="ing.st.low">Bajo</span><span class="num" data-i18n="ing.i2.stock">1.1 kg</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><span style="color:#9A7420">M</span></div>
+      <div class="info">
+        <b data-i18n="ing.i3.name">Mantequilla</b>
+        <span class="cat"><span data-i18n="ing.i3.buy">$4.99 / 454 g</span> &middot; <b class="num" data-i18n="ing.i3.unit">$1.10/100 g</b></span>
+        <div class="nums"><span class="status-pill warn" data-i18n="ing.st.low">Bajo</span><span class="num" data-i18n="ing.i3.stock">200 g</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#E3F0E5,#D9EAD9)"><span style="color:#3E7C4F">H</span></div>
+      <div class="info">
+        <b data-i18n="ing.i4.name">Huevos</b>
+        <span class="cat"><span data-i18n="ing.i4.buy">$3.20 / docena</span> &middot; <b class="num" data-i18n="ing.i4.unit">$0.27/u</b></span>
+        <div class="nums"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span><span class="num" data-i18n="ing.i4.stock">18 u</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#DCE9F5,#C4D9EC)"><span style="color:#3A6A9A">L</span></div>
+      <div class="info">
+        <b data-i18n="ing.i5.name">Leche</b>
+        <span class="cat"><span data-i18n="ing.i5.buy">$4.30 / 3.78 L</span> &middot; <b class="num" data-i18n="ing.i5.unit">$1.14/L</b></span>
+        <div class="nums"><span class="status-pill bad" data-i18n="ing.st.out">Agotado</span><span class="num" data-i18n="ing.i5.stock">0 L</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#EAD9C9,#D9C6CF)"><span style="color:#7A4A5A">V</span></div>
+      <div class="info">
+        <b data-i18n="ing.i6.name">Vainilla</b>
+        <span class="cat"><span data-i18n="ing.i6.buy">$8.99 / 118 ml</span> &middot; <b class="num" data-i18n="ing.i6.unit">$7.62/100 ml</b></span>
+        <div class="nums"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span><span class="num" data-i18n="ing.i6.stock">60 ml</span></div>
+      </div>
+    </div>
+
+    <div class="recipe-card" onclick="go('ingrediente-detalle')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#E8D5C4,#D4B89E)"><span style="color:#7A5230">C</span></div>
+      <div class="info">
+        <b data-i18n="ing.i7.name">Chocolate</b>
+        <span class="cat"><span data-i18n="ing.i7.buy">$5.40 / 340 g</span> &middot; <b class="num" data-i18n="ing.i7.unit">$1.59/100 g</b></span>
+        <div class="nums"><span class="status-pill warn" data-i18n="ing.st.low">Bajo</span><span class="num" data-i18n="ing.i7.stock">120 g</span></div>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.shop.k">Compra semanal</div>
+    <div class="recipe-card" onclick="go('lista-compras')">
+      <div class="recipe-thumb avatar" style="background:linear-gradient(135deg,#E3F0E5,#D9EAD9)"><span style="color:#3E7C4F"><svg width="18" height="18"><use href="#i-check"/></svg></span></div>
+      <div class="info">
+        <b data-i18n="ing.shop.card">Lista de compras</b>
+        <span class="cat" data-i18n="ing.shop.card.d">7 insumos para los pedidos de la semana</span>
+      </div>
+    </div>
+
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
+
+<!-- ================= FICHA DE INGREDIENTE · S24 ================= -->
+<section class="screen" id="s-ingrediente-detalle">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="ing.i1.name">Harina</h1>
+  </div>
+  <div class="wrap">
+    <div class="detail-hero">
+      <div class="recipe-thumb avatar big" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><span style="color:#9A7420">H</span></div>
+      <div class="body">
+        <h2 data-i18n="ing.i1.name">Harina</h2>
+        <div class="stat-duo">
+          <div class="stat"><b class="num" data-i18n="ing.i1.unit">$0.70/kg</b><span data-i18n="ing.d.unitcost">Costo unitario</span></div>
+          <div class="stat"><b class="num" data-i18n="ing.i1.stock">3.2 kg</b><span data-i18n="ing.d.stock">Stock</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.d.buy">Compra</div>
+    <div class="card">
+      <div class="kv-row"><span data-i18n="ing.d.pack">Presentaci&oacute;n</span><b class="num" data-i18n="ing.i1.buy">$3.50 / 5 kg</b></div>
+      <div class="kv-row"><span class="kv-lab"><svg width="14" height="14"><use href="#i-truck"/></svg><span data-i18n="ing.d.supplier">Proveedor actual</span></span><b data-i18n="ing.d.s1">Surtidora La Rosa</b></div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.d.compare">Comparativa de proveedores</div>
+    <div class="card">
+      <div class="order-row"><div><b data-i18n="ing.d.s1">Surtidora La Rosa</b><span data-i18n="ing.d.best">Mejor precio &middot; actual</span></div><b class="num">$0.70/kg</b></div>
+      <div class="order-row"><div><b data-i18n="ing.d.s2">Distribuidora El Trigal</b><span data-i18n="ing.d.alt">Alternativa</span></div><b class="num">$0.78/kg</b></div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.d.hist">Historial de precios</div>
+    <div class="card">
+      <div class="hist-row"><span data-i18n="ing.d.h1">ago 2026</span><div class="hist-bar"><i style="width:91%"></i></div><b class="num">$3.20</b></div>
+      <div class="hist-row"><span data-i18n="ing.d.h2">sep 2026</span><div class="hist-bar"><i style="width:96%"></i></div><b class="num">$3.35</b></div>
+      <div class="hist-row"><span data-i18n="ing.d.h3">oct 2026</span><div class="hist-bar"><i style="width:100%"></i></div><b class="num">$3.50</b></div>
+      <div class="hist-note"><svg width="14" height="14"><use href="#i-chart"/></svg><span data-i18n="ing.d.hnote">Subi&oacute; 9% en 2 meses</span></div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.d.subs">Equivalencias y sustitutos</div>
+    <div class="card">
+      <div class="order-row"><div><b data-i18n="ing.d.sub1">Harina integral</b><span data-i18n="ing.d.sub1.d">M&aacute;s fibra, cambia la textura</span></div><b class="num" data-i18n="ing.d.sub1.c">+$0.15/kg</b></div>
+      <div class="order-row"><div><b data-i18n="ing.d.sub2">Harina de avena</b><span data-i18n="ing.d.sub2.d">Sin gluten, miga m&aacute;s densa</span></div><b class="num" data-i18n="ing.d.sub2.c">+$0.42/kg</b></div>
+    </div>
+
+    <div class="kicker" data-i18n="ing.d.stockk">Stock</div>
+    <div class="card">
+      <div class="kv-row"><span data-i18n="ing.d.avail">Disponible</span><b class="num" data-i18n="ing.i1.stock">3.2 kg</b></div>
+      <div class="kv-row"><span data-i18n="ing.d.reorder">Punto de reorden</span><b class="num" data-i18n="ing.d.reorder.v">1 kg</b></div>
+      <div class="nums" style="margin-top:10px"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span></div>
+    </div>
+
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
+
+<!-- ================= LISTA DE COMPRAS · S25 ================= -->
+<section class="screen" id="s-lista-compras">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="ing.shop.title">Lista de compras</h1>
+  </div>
+  <div class="wrap">
+    <div class="kicker" data-i18n="ing.shop.wk">Esta semana &middot; 4 pedidos</div>
+    <div class="card">
+      <div class="kicker" data-i18n="ing.shop.g1">Secos</div>
+      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span><b data-i18n="ing.i1.name">Harina</b> &middot; <span class="num">2 kg</span></span></div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i2.name">Az&uacute;car</b> &middot; <span class="num">1.5 kg</span></span></div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i7.name">Chocolate</b> &middot; <span class="num">340 g</span></span></div>
+    </div>
+    <div class="card">
+      <div class="kicker" data-i18n="ing.shop.g2">L&aacute;cteos y huevos</div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i3.name">Mantequilla</b> &middot; <span class="num">500 g</span></span></div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i5.name">Leche</b> &middot; <span class="num">2 L</span></span></div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i4.name">Huevos</b> &middot; <span class="num" data-i18n="ing.shop.doz">1 docena</span></span></div>
+    </div>
+    <div class="card">
+      <div class="kicker" data-i18n="ing.shop.g3">Otros</div>
+      <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i6.name">Vainilla</b> &middot; <span class="num" data-i18n="ing.shop.jar">1 frasco</span></span></div>
+    </div>
     <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
   </div>
 </section>

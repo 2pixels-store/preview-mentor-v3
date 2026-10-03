@@ -31,6 +31,9 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S20 | `cliente-detalle` | Ficha de cliente | Encabezado con nombre; resumen total comprado + nº de pedidos (semilla de lifetime value); datos: contacto, alergias, preferencias, cumpleaños; historial de pedidos ordenado por fecha. |
 | S21 | `canjes` | Canjes · Lista | Canjes con influencers y proveedores: tarjeta por trato (aliado, tipo, qué doy / qué recibo, fecha límite, estado pendiente · cumplido · vencido), buscador, + Nuevo. Se entra desde el hub (S18). NUEVA — distinta de S15 `colab` (equipo). |
 | S22 | `canje-detalle` | Nuevo canje | Formulario: aliado, tipo (influencer/proveedor), qué doy, qué recibo, fecha límite, notas. Estático (Guardar → ronda 2). |
+| S23 | `ingredientes` | Ingredientes · Catálogo | Lista de insumos con buscador: precio de compra + unidad, costo unitario automático (ej. $0.70/kg) y semáforo de stock (En stock verde · Bajo ámbar · Agotado rojo); botón + Nuevo; tarjeta final enlaza a S25. Se entra desde el hub (S18). |
+| S24 | `ingrediente-detalle` | Ficha de ingrediente | Detalle del insumo (ronda estática: todos abren a Harina): costo unitario destacado + stock en hero; compra (presentación, proveedor actual); comparativa simple de 2 proveedores; mini-histórico de precios con barras (3 puntos + nota “subió 9%”); equivalencias/sustitutos con delta de costo; stock con punto de reorden. |
+| S25 | `lista-compras` | Lista de compras | Insumos sumados de los pedidos de la semana, agrupados (Secos · Lácteos y huevos · Otros) con checkboxes visuales (1 marcado de ejemplo). Se entra desde tarjeta al final de S23. |
 
 ## Flujos vigentes
 - **Primera vez:** S1 → S2 → S7 → S8 (¿proteger con PIN?) → con PIN: S9 → S10 → S11 → S12 · sin PIN (omitir): S12 directo.
@@ -38,5 +41,5 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 
 ## Notas
 - El "Jump to: S1…S18" del chrome del prototipo se genera desde `SCREENS` en `app.js` (fuente única).
-- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Ingredientes, Imprimibles, Aprender — son placeholders etiquetados, no callejones. (Clientes dejó de ser placeholder en v4: S19/S20.)
-- Versión del mapa: v4 (2026-10-03).
+- Pantallas marcadas "Próximamente" (toast) en S18: Negocio, Imprimibles, Aprender — son placeholders etiquetados, no callejones. (Clientes dejó de ser placeholder en v4: S19/S20.)
+- Versión del mapa: v4 (2026-10-03) + S23/S24/S25.
