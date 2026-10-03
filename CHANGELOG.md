@@ -1,5 +1,13 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — S26/S27: sección Recetas v4 (idea de Diego)
+- S26 Biblioteca de recetas (ronda v4; convive con S13 de v1 sin tocarla): buscador + chips de categoría (Tortas · Cupcakes · Galletas · Panes); 4 tarjetas (Torta de vainilla, Cupcakes de chocolate, Pan de banano, Galletas de mantequilla) con costo por porción y última vez horneada; botón "+ Nueva" (toast).
+- S27 Ficha de receta (ronda v4; convive con S14 de v1 sin tocarla): ejemplo Torta de vainilla — hero con foto + costo por porción ($1.62) y margen (39%); tabla de ingredientes con costo atado ($5.68); 3 pasos numerados; **Versiones**: v1 Original vs v2 "Menos azúcar" (compara costo por tanda y nota); **Notas de la repostera**: bitácora por tanda (qué salió bien/mal) + **feedback de la clienta** ("Un poquito dulce para mi gusto, pero la miga perfecta." — Doña Rosa); **Foto del resultado** (placeholder con fecha de tanda + "Agregar foto"); acciones Escalar receta / Tarjeta imprimible / Compartir (toasts); tip de la mentora.
+- Ronda estática: todas las recetas de S26 abren a Torta de vainilla (precedente S20/Doña Rosa, S24/Harina).
+- Nota: la tarjeta "Recetas" no existe en el hub S18 (Recetas vive en la barra de pestañas → S13 de v1); no se duplicó. S26/S27 se revisan desde el jump-row del chrome.
+- i18n ES/EN completo (inglés por defecto), paridad 66/66 en claves nuevas. Etiqueta visible "Mentor UI v4 (2026-10-03)".
+- Alcance: solo S26/S27 (+ CSS/i18n/JS aditivos: `.step-row`, `.ver-compare`, `.log-entry`, `.fb-quote`, `.photo-slot`, `.ph-img.vanilla`). Ninguna pantalla cerrada tocada. Cero CDNs; claro/oscuro intactos.
+
 ## Mentor UI v4 (2026-10-03) — S20: delivery en ficha de cliente (idea de Diego)
 - S20: cada pedido del historial muestra píldora de fulfillment — "Recogió" (verde) o "Delivery" (ámbar). Ejemplos: Torta de vainilla 28 sep → Recogió; Cupcakes 12 sep → Delivery; Pan de banano 30 ago → Recogió.
 - S20: nueva sub-sección "Direcciones de entrega" (después de Contacto): Casa (123 Main St, Apt 4B, Queens) y Trabajo (45-20 Roosevelt Ave, Jackson Heights); botón "+ Agregar" (toast); tip de la mentora: "En tu próximo pedido solo confirmas: ¿va para Casa?".

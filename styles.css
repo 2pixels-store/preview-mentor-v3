@@ -1097,3 +1097,48 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
 .addr-row:last-child { border-bottom: 0; }
 .addr-row b { display: block; }
 .addr-row > div span { display: block; margin-top: 2px; font-size: var(--t-small); color: var(--faint); }
+
+/* ============ RECETAS v4 · S26/S27 (2026-10-03) — solo aditivo ============ */
+.detail-hero .ph-img.vanilla {
+  background: linear-gradient(140deg, #F7DDD2, #E8B4A0 60%, #C98F6F);
+}
+[data-theme="dark"] .detail-hero .ph-img.vanilla {
+  background: linear-gradient(140deg, #8A5A44, #5E3A2E 60%, #33202A);
+}
+.step-row { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+.step-row:last-child { border-bottom:none; }
+.step-row span:last-child { font-size:0.875rem; line-height:1.45; }
+.step-n {
+  flex:0 0 28px; width:28px; height:28px; border-radius:50%;
+  background:var(--gold-soft); border:1px solid var(--gold-line);
+  font-weight:800; font-size:0.8125rem;
+  display:flex; align-items:center; justify-content:center;
+}
+.ver-compare { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+.ver-box {
+  border:1px solid var(--line); border-radius:var(--r-md);
+  padding:12px; background:var(--surface);
+  display:flex; flex-direction:column; gap:6px;
+}
+.ver-box.winner { border-color:var(--good); box-shadow:0 0 0 1px var(--good) inset; }
+.ver-box .vtag { font-size:0.6875rem; font-weight:800; letter-spacing:.6px; text-transform:uppercase; color:var(--ink-soft); }
+.ver-box .num { font-size:1rem; font-weight:800; }
+.ver-box p { margin:0; font-size:0.75rem; color:var(--ink-soft); line-height:1.4; }
+.log-entry { padding:10px 0; border-bottom:1px solid var(--line); }
+.log-entry:last-child { border-bottom:none; }
+.log-entry > p { margin:6px 0 0; font-size:0.875rem; line-height:1.45; }
+.log-date { font-size:0.6875rem; font-weight:700; color:var(--faint); letter-spacing:.4px; text-transform:uppercase; }
+.fb-quote {
+  margin:10px 0 0; padding:10px 12px;
+  border-left:3px solid var(--gold-line); background:var(--gold-soft);
+  border-radius:0 var(--r-sm) var(--r-sm) 0;
+  font-style:italic; font-size:0.875rem; line-height:1.45;
+}
+.fb-who { display:block; margin-top:6px; font-style:normal; font-weight:700; font-size:0.75rem; color:var(--ink-soft); }
+.photo-slot {
+  border:2px dashed var(--line); border-radius:var(--r-md);
+  min-height:150px; display:flex; flex-direction:column; gap:10px;
+  align-items:center; justify-content:center; color:var(--faint);
+  padding:20px 18px; text-align:center; margin-bottom:12px;
+}
+.photo-slot span { font-size:0.8125rem; }

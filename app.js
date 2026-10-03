@@ -18,7 +18,8 @@ const SCREENS = [
   ['recetas','S13'], ['receta-detalle','S14'], ['colab','S15'],
   ['tour','S16'], ['ajustes','S17'], ['mas','S18'], ['clientes','S19'], ['cliente-detalle','S20'],
   ['canjes','S21'], ['canje-detalle','S22'],
-  ['ingredientes','S23'], ['ingrediente-detalle','S24'], ['lista-compras','S25']
+  ['ingredientes','S23'], ['ingrediente-detalle','S24'], ['lista-compras','S25'],
+  ['recetas-biblio','S26'], ['receta-ficha','S27']
 ];
 function sNum(id) { const f = SCREENS.find(s => s[0] === id); return f ? f[1] : ''; }
 
