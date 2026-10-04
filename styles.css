@@ -92,6 +92,11 @@ body {
   display: none;
   background: var(--bg);
   transition: background var(--dur) var(--ease);
+  /* FIX 2026-10-03: capa de composición propia. En Chrome Android el texto
+     quedaba "fantasma" (cifras duplicadas/encimadas) tras scroll o pinch-zoom
+     porque el compositor no invalidaba los tiles de texto del contenedor con
+     scroll. translateZ(0) no cambia layout ni la animación screenIn. */
+  transform: translateZ(0);
 }
 .screen.active { display: block; }
 /* transición entre niveles: cine solo al cambiar de pantalla */

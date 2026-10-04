@@ -1,5 +1,10 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-03) — FIX: texto fantasma en dashboard (Chrome Android)
+- En el Samsung de Nati (Chrome Android) los números del dashboard (SALES $486.00, COSTS $172.40, EXPENSES $84.00, NET PROFIT $229.60) se veían duplicados/encimados tras hacer scroll o pinch-zoom — y el texto fantasma afectaba a toda la pantalla, no solo al dashboard.
+- Causa (verificada en el video del reporte + inspección del código): NO hay elementos duplicados en el DOM (cada cifra existe una sola vez), ni doble render EN+ES (i18n reemplaza, no agrega), ni text-shadow/pseudo-elementos. Es un artefacto del compositor de Chrome Android: no invalida los tiles de texto del contenedor `.screen` (absolute + overflow-y:auto) tras scroll/zoom y deja copias fantasma del texto en posiciones anteriores.
+- Fix solo-CSS: `.screen { transform: translateZ(0); }` — capa de composición propia para que el scroll/zoom repinte el texto correctamente. Sin cambios de layout, textos, i18n ni pantallas (la animación `screenIn` sigue intacta). Ninguna pantalla cerrada tocada.
+
 ## Mentor UI v4 (2026-10-03) — FIX viewport móvil (bug bloqueante revisión de Nati)
 - En Chrome Android (Samsung de Nati) el botón CTA de S1 ("Empezar") y S2 ("Empezar") quedaba cortado bajo el fold sin forma de alcanzarlo. Causa: `100vh` en Chrome móvil = viewport grande (incluye la barra de direcciones), el `.phone` quedaba más alto que lo visible, el chrome de revisión (jump-row con ~30 chips) ocupa ~180px en 360px pero solo se restaban 70px, y `min-height:600px` del `.phone` agravaba el corte.
 - Fix solo-CSS: `100vh` → `100svh` con fallback (svh = alto visible real; garantiza que el marco nunca exceda lo visible) en `body` y `.phone`; en ≤480px `.phone` = `calc(100svh - 180px)` con `min-height:0`; `.jump-row` acotado a `max-height:72px` con scroll propio para que el alto del chrome sea predecible; `.screen` con `-webkit-overflow-scrolling: touch`.
