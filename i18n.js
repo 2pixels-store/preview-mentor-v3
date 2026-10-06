@@ -621,6 +621,13 @@ es: {
 "nr.unit.serv": "porción",
 "nr.unit.units": "unidades",
 "nr.unit.loaf": "unidad",
+"nr.cat.new": "+ Nueva",
+"cat.form.ph": "Ej.: Postres fríos",
+"cat.save": "Guardar",
+"cat.cancel": "Cancelar",
+"cat.saved": "Categoría guardada",
+"cat.err.empty": "Escribe un nombre para la categoría",
+"cat.err.dup": "Esa categoría ya existe",
 "rv.cost.per": "Costo por",
 "rv.cost.total": "Costo total",
 "rv.created": "Creada el",
@@ -1161,6 +1168,13 @@ en: {
 "nr.unit.serv": "serving",
 "nr.unit.units": "units",
 "nr.unit.loaf": "loaf",
+"nr.cat.new": "+ New",
+"cat.form.ph": "E.g.: Cold desserts",
+"cat.save": "Save",
+"cat.cancel": "Cancel",
+"cat.saved": "Category saved",
+"cat.err.empty": "Type a category name",
+"cat.err.dup": "That category already exists",
 "rv.cost.per": "Cost per",
 "rv.cost.total": "Total cost",
 "rv.created": "Created",
@@ -1335,6 +1349,7 @@ function applyLang() {
   }
   /* recetas de la usuaria: el contenido dinámico se re-renderiza con el idioma actual */
   if (typeof renderUserRecipes === 'function') renderUserRecipes();
+  if (typeof renderUserCats === 'function') renderUserCats();
   if (typeof renderRecipeDetail === 'function' && typeof currentRecipeId !== 'undefined' && currentRecipeId) {
     var rv = document.getElementById('s-receta-ver');
     if (rv && rv.classList.contains('active')) renderRecipeDetail(currentRecipeId);

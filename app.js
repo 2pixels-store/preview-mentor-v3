@@ -289,7 +289,7 @@ function renderUserRecipes() {
       '<div class="recipe-thumb" style="background:linear-gradient(135deg,' + th[0] + ',' + th[1] + ')">' +
       '<svg width="40" height="40" style="color:' + th[2] + '"><use href="#i-cup"/></svg></div>' +
       '<div class="info"><b>' + esc(r.name) + '</b>' +
-      '<span class="cat">' + esc(t('rb.chip.' + r.cat)) + ' &middot; ' + r.yield + ' ' + esc(t('nr.yield.lab')) + '</span>' +
+      '<span class="cat">' + esc(catLabel(r.cat)) + ' &middot; ' + r.yield + ' ' + esc(t('nr.yield.lab')) + '</span>' +
       '<div class="nums"><span><span>' + esc(t('rb.costlab')) + '</span> <b class="num">' +
       fmtMoney(per) + ' / ' + esc(recipeUnitSing(r)) + '</b></span></div>' +
       '</div></div>';
@@ -338,8 +338,7 @@ function nrReset() {
   document.getElementById('nrYield').value = '12';
   document.getElementById('nrSteps').value = '';
   document.getElementById('nrNotes').value = '';
-  var chips = document.querySelectorAll('#nrCats .chip');
-  chips.forEach(function (c, i) { c.classList.toggle('on', i === 0); });
+  nrRenderCats();
   var box = document.getElementById('nrIngs');
   if (box) { box.innerHTML = ''; nrEnsureRows(); }
 }
@@ -347,7 +346,7 @@ function nrSave() {
   var name = document.getElementById('nrName').value.trim();
   if (!name) { toast('nr.err.name'); return; }
   var catBtn = document.querySelector('#nrCats .chip.on');
-  var cat = catBtn ? catBtn.dataset.cat : 'tortas';
+  var cat = catBtn ? catBtn.dataset.cat : nrSelCat();
   var yld = Math.max(1, parseInt(document.getElementById('nrYield').value, 10) || 1);
   var ings = [];
   document.querySelectorAll('#nrIngs .ing-row').forEach(function (row) {
@@ -374,6 +373,153 @@ function nrSave() {
   renderUserRecipes();
   toast('nr.saved');
   go('recetas-biblio');
+}
+
+/* ---------- categorías de la usuaria (funcional 2026-10-05) ----------
+   Offline-first: viven en localStorage ('mentor_categories_v1') como array
+   de nombres tal cual los escribió la usuaria. Las 4 por defecto se resuelven
+   por i18n (rb.chip.*); las de usuaria se muestran tal cual. */
+var CKEY = 'mentor_categories_v1';
+var DEFCATS = ['tortas', 'cupcakes', 'galletas', 'panes'];
+function loadCats() {
+  try { var l = JSON.parse(localStorage.getItem(CKEY)); return Array.isArray(l) ? l : []; }
+  catch (e) { return []; }
+}
+function saveCats(list) {
+  try { localStorage.setItem(CKEY, JSON.stringify(list)); } catch (e) {}
+}
+function catLabel(cat) {
+  if (DEFCATS.indexOf(cat) !== -1) return t('rb.chip.' + cat);
+  return cat;
+}
+function addCategory(name) {
+  name = String(name == null ? '' : name).trim().replace(/\s+/g, ' ');
+  if (!name) return { error: 'cat.err.empty' };
+  var low = name.toLowerCase();
+  var taken = DEFCATS.some(function (k) {
+    return k === low || String(t('rb.chip.' + k)).toLowerCase() === low;
+  });
+  var list = loadCats();
+  if (taken || list.some(function (c) { return String(c).toLowerCase() === low; })) {
+    return { error: 'cat.err.dup' };
+  }
+  list.push(name);
+  saveCats(list);
+  renderUserCats();
+  return { name: name };
+}
+/* categoría seleccionada en el formulario */
+function nrSelCat() {
+  var b = document.querySelector('#nrCats .chip.on');
+  return b ? b.dataset.cat : 'tortas';
+}
+/* render de chips del formulario: por defecto + usuaria + "+ Nueva" */
+function nrRenderCats(sel) {
+  var box = document.getElementById('nrCats');
+  if (!box) return;
+  if (!sel) sel = 'tortas';
+  var html = DEFCATS.map(function (k) {
+    return '<button type="button" class="chip' + (sel === k ? ' on' : '') +
+      '" data-cat="' + k + '" onclick="nrPickCat(this)">' + esc(t('rb.chip.' + k)) + '</button>';
+  }).join('');
+  html += loadCats().map(function (c) {
+    return '<button type="button" class="chip' + (sel === c ? ' on' : '') +
+      '" data-cat="' + esc(c) + '" data-custom="1" onclick="nrPickCat(this)">' + esc(c) + '</button>';
+  }).join('');
+  html += '<button type="button" class="chip add" onclick="nrNewCatInline(this)">' + esc(t('nr.cat.new')) + '</button>';
+  box.innerHTML = html;
+}
+/* "+ Nueva" dentro del formulario: el chip se vuelve input, Enter guarda */
+function nrNewCatInline(btn) {
+  var cur = nrSelCat();
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.id = 'nrCatInput';
+  input.className = 'chip-edit';
+  input.maxLength = 30;
+  input.placeholder = t('cat.form.ph');
+  input.setAttribute('aria-label', t('cat.form.ph'));
+  btn.replaceWith(input);
+  input.focus();
+  var done = false;
+  function commit() {
+    if (done) return;
+    done = true;
+    var v = input.value;
+    if (v.trim()) {
+      var r = addCategory(v);
+      if (r.error) { toast(r.error); nrRenderCats(cur); return; }
+      nrRenderCats(r.name);
+      toast('cat.saved');
+    } else {
+      nrRenderCats(cur);
+    }
+  }
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); commit(); }
+    else if (e.key === 'Escape') { done = true; nrRenderCats(cur); }
+  });
+  input.addEventListener('blur', commit);
+}
+/* pinta las categorías de usuaria en S13, S26 y el formulario */
+function renderUserCats() {
+  var cats = loadCats();
+  var s13 = document.getElementById('s13Cats');
+  if (s13) {
+    s13.querySelectorAll('.chip.user').forEach(function (c) { c.remove(); });
+    var addBtn = document.getElementById('s13NewCat');
+    cats.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip user';
+      b.textContent = c;
+      s13.insertBefore(b, addBtn);
+    });
+  }
+  var bib = document.getElementById('bibCats');
+  if (bib) {
+    bib.querySelectorAll('.chip.user').forEach(function (c) { c.remove(); });
+    cats.forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip user';
+      b.textContent = c;
+      bib.appendChild(b);
+    });
+  }
+  var box = document.getElementById('nrCats');
+  if (box) {
+    var on = box.querySelector('.chip.on');
+    nrRenderCats(on ? on.dataset.cat : null);
+  }
+}
+/* S13: mini-formulario inline para nueva categoría */
+function s13CatToggle() {
+  var f = document.getElementById('s13CatForm');
+  if (!f) return;
+  var show = f.hasAttribute('hidden');
+  if (show) {
+    f.removeAttribute('hidden');
+    var inp = document.getElementById('s13CatInput');
+    inp.value = '';
+    setTimeout(function () { inp.focus(); }, 50);
+  } else {
+    f.setAttribute('hidden', '');
+  }
+}
+function s13CatSave() {
+  var inp = document.getElementById('s13CatInput');
+  var r = addCategory(inp ? inp.value : '');
+  if (r.error) { toast(r.error); return; }
+  inp.value = '';
+  document.getElementById('s13CatForm').setAttribute('hidden', '');
+  toast('cat.saved');
+}
+function s13CatCancel() {
+  var f = document.getElementById('s13CatForm');
+  var inp = document.getElementById('s13CatInput');
+  if (inp) inp.value = '';
+  if (f) f.setAttribute('hidden', '');
 }
 
 /* detalle de receta creada (S26c) */
@@ -415,7 +561,7 @@ function renderRecipeDetail(id) {
       '<div class="body"><h2>' + esc(r.name) + '</h2>' +
       '<div class="meta-row">' +
       '<span class="meta-pill"><svg width="14" height="14"><use href="#i-users"/></svg><span>' + r.yield + ' ' + esc(t('nr.yield.lab')) + '</span></span>' +
-      '<span class="meta-pill"><svg width="14" height="14"><use href="#i-tag"/></svg><span>' + esc(t('rb.chip.' + r.cat)) + '</span></span>' +
+      '<span class="meta-pill"><svg width="14" height="14"><use href="#i-tag"/></svg><span>' + esc(catLabel(r.cat)) + '</span></span>' +
       '</div>' +
       '<div class="stat-duo">' +
       '<div class="stat"><b class="num">' + fmtMoney(per) + '</b><span>' + esc(t('rv.cost.per')) + ' ' + esc(unitS) + '</span></div>' +
@@ -448,6 +594,7 @@ function delRecipe() {
 }
 document.addEventListener('DOMContentLoaded', function () {
   renderUserRecipes();
+  renderUserCats();
   nrEnsureRows();
 });
 

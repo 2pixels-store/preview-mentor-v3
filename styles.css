@@ -1216,3 +1216,9 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
   background: var(--surface); color: var(--faint); font-size: 1.25rem; line-height: 1; cursor: pointer; }
 .ing-del:active { color: var(--rose); border-color: var(--rose); }
 #userRecipes .recipe-card { border: 1.5px dashed var(--rose); }
+
+/* ---------- categorías de la usuaria (2026-10-05) ---------- */
+.cat-inline { display: flex; gap: 8px; margin-top: 10px; align-items: center; }
+.cat-inline[hidden] { display: none; }
+.cat-inline input { flex: 1; min-width: 0; }
+input.chip-edit { flex: none; width: 120px; font-size: var(--t-small); font-weight: 600; padding: 9px 12px; border-radius: var(--r-pill); border: 1.5px dashed var(--rose); background: transparent; color: var(--ink); }

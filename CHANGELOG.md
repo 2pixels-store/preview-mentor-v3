@@ -1,6 +1,13 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
-## Mentor UI v4 (2026-10-05) — S26b/S26c: flujo "New recipe" funcional (pedido de Diego)
+## Mentor UI v4 (2026-10-05) — Categorías de recetas funcionales (pedido de Diego)
+- Dos huecos reportados por Diego: (1) el formulario New Recipe no dejaba agregar categoría nueva (solo chips fijos); (2) en S13 el chip "+ Nueva categoría" seguía mostrando "coming soon".
+- **Categorías de la usuaria** en localStorage (`mentor_categories_v1`, array de nombres tal cual los escribe; offline-first). Deduplicación insensible a mayúsculas contra las 4 por defecto y las existentes, con toasts de error i18n.
+- **S13**: el chip "+ Nueva categoría" abre un mini-formulario inline acorde al diseño (input + Guardar/Cancelar, Enter guarda, Escape cancela); el chip nuevo aparece en la fila de categorías y persiste tras recargar.
+- **Formulario (S26b)**: los chips se renderizan por JS (por defecto i18n + usuaria) con un chip "+ Nueva" al final que se convierte en input inline: Enter guarda, la categoría queda seleccionada de inmediato sin salir del formulario.
+- **S26 Biblioteca**: los chips muestran también las de la usuaria (visuales, como los existentes).
+- i18n ES/EN completo (7 claves nuevas: `nr.cat.new`, `cat.form.ph`, `cat.save`, `cat.cancel`, `cat.saved`, `cat.err.empty`, `cat.err.dup`); los nombres de usuaria se guardan tal cual y sobreviven al cambio de idioma (helper `catLabel()`).
+- QA headless 14/14 (agregar en S13 → persiste → visible en formulario y S26 → receta con categoría personalizada → detalle → ES/EN → duplicados rechazados → sin errores JS). CSS aditivo (`.cat-inline`, `input.chip-edit`).
 - El botón "+ Nueva" de S26 dejaba de ser toast: abre el formulario **Nueva receta** (S26b) — nombre, categoría (chips Tortas/Cupcakes/Galletas/Panes), rendimiento (porciones), lista dinámica de ingredientes (nombre, cantidad, unidad g/kg/ml/L/u/taza/cda/cdta, costo; agregar/quitar filas), pasos (uno por línea) y notas.
 - Guardar valida (nombre + al menos un ingrediente con nombre) y persiste en **localStorage** (`mentor_recipes_v1`, offline-first, sin backend). La receta aparece en S26 como tarjeta con costo por porción calculado (costo total ÷ rendimiento); las tarjetas de usuaria llevan borde punteado para distinguirlas de las demo.
 - **Ver receta** (S26c): hero con costo por porción y costo total, tabla de ingredientes con costos y total, pasos numerados, notas, fecha de creación y botón Eliminar (con confirmación). Edición diferida a propósito (fuera del MVP).

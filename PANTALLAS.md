@@ -21,7 +21,7 @@ las existentes. S1–S6 conservan el significado de la UI v1.
 | S10 | `onb-recovery` | Código de recuperación | 6 palabras para anotar/tomar pantallazo. Paso 4 de 5. |
 | S11 | `onb-question` | Pregunta de respuesta secreta | Segunda llave: pregunta + respuesta secreta. Paso 5 de 5. |
 | S12 | `home` | Inicio · Panel | Home-top v1 (mentor + Ajustes siempre visible), accesos rápidos, panel del negocio, checklist, temporada. |
-| S13 | `recetas` | Recetas | Lista de recetas con costo/precio/margen, buscador y filtros. |
+| S13 | `recetas` | Recetas | Lista de recetas con costo/precio/margen, buscador y filtros. Chip "+ Nueva categoría" funcional (2026-10-05): mini-form inline → guarda en `mentor_categories_v1` (localStorage). |
 | S14 | `receta-detalle` | Detalle de receta | Hero, escalado A/B, sub-recetas, tabla de ingredientes y costo. |
 | S15 | `colab` | Colaboraciones | Compartir recetas/costos con el equipo; roles; todo queda en el teléfono. |
 | S16 | `tour` | Tour guiado | Tres gestos (tocar, deslizar, mantener) con dedito animado; respeta prefers-reduced-motion. |
