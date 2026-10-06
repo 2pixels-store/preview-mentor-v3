@@ -1108,7 +1108,7 @@
 <section class="screen" id="s-recetas-biblio">
   <div class="hdr">
     <h1 data-i18n="rb.title">Biblioteca</h1>
-    <button class="btn primary sm" onclick="toastRound2()"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="rb.new">+ Nueva</span></button>
+    <button class="btn primary sm" onclick="go('receta-nueva')"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="rb.new">+ Nueva</span></button>
   </div>
   <div class="wrap">
     <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="rb.search.ph">Buscar receta&hellip;</span></div>
@@ -1119,6 +1119,8 @@
       <button class="chip" data-i18n="rb.chip.galletas">Galletas</button>
       <button class="chip" data-i18n="rb.chip.panes">Panes</button>
     </div>
+
+    <div id="userRecipes"></div>
 
     <div class="recipe-card" onclick="go('receta-ficha')">
       <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7DDD2,#E8B4A0)"><svg width="40" height="40" style="color:#A85640"><use href="#i-cup"/></svg></div>
@@ -1257,6 +1259,64 @@
 
     <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
   </div>
+</section>
+
+<!-- ================= NUEVA RECETA · S26b (funcional 2026-10-05) ================= -->
+<section class="screen" id="s-receta-nueva">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 data-i18n="nr.title">Nueva receta</h1>
+  </div>
+  <div class="wrap">
+    <div class="field">
+      <span class="lbl" data-i18n="nr.name">Nombre de la receta</span>
+      <input type="text" id="nrName" data-i18n-ph="nr.name.ph" placeholder="Ej.: Torta de zanahoria">
+    </div>
+    <div class="field">
+      <span class="lbl" data-i18n="nr.cat">Categoría</span>
+      <div class="chips" id="nrCats">
+        <button class="chip on" data-cat="tortas" data-i18n="rb.chip.tortas" onclick="nrPickCat(this)">Tortas</button>
+        <button class="chip" data-cat="cupcakes" data-i18n="rb.chip.cupcakes" onclick="nrPickCat(this)">Cupcakes</button>
+        <button class="chip" data-cat="galletas" data-i18n="rb.chip.galletas" onclick="nrPickCat(this)">Galletas</button>
+        <button class="chip" data-cat="panes" data-i18n="rb.chip.panes" onclick="nrPickCat(this)">Panes</button>
+      </div>
+    </div>
+    <div class="field">
+      <span class="lbl" data-i18n="nr.yield">Rendimiento</span>
+      <div class="yield-row">
+        <input type="number" id="nrYield" min="1" step="1" value="12" inputmode="numeric">
+        <span class="yield-lab" data-i18n="nr.yield.lab">porciones</span>
+      </div>
+    </div>
+
+    <div class="kicker" data-i18n="rf.k.ing">Ingredientes</div>
+    <div id="nrIngs"></div>
+    <button class="chip add" onclick="nrAddIng()"><svg width="14" height="14"><use href="#i-plus"/></svg> <span data-i18n="nr.ing.add">Agregar ingrediente</span></button>
+
+    <div class="kicker" style="margin-top:18px" data-i18n="rf.k.steps">Pasos</div>
+    <div class="field">
+      <textarea id="nrSteps" data-i18n-ph="nr.steps.ph" placeholder="Un paso por línea"></textarea>
+    </div>
+
+    <div class="kicker" data-i18n="rf.k.notes">Notas de la repostera</div>
+    <div class="field">
+      <textarea id="nrNotes" data-i18n-ph="nr.notes.ph" placeholder="Tips, ajustes, lo que aprendiste"></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" onclick="nrSave()"><svg width="17" height="17"><use href="#i-check"/></svg><span data-i18n="nr.save">Guardar receta</span></button>
+    </div>
+    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  </div>
+</section>
+
+<!-- ================= VER RECETA (creada por la usuaria) · S26c ================= -->
+<section class="screen" id="s-receta-ver">
+  <div class="hdr">
+    <button class="back-btn" onclick="back()"><svg width="18" height="18"><use href="#i-chevL"/></svg></button>
+    <h1 id="rvTitle">Receta</h1>
+  </div>
+  <div class="wrap" id="rvBody"></div>
 </section>
 
 <!-- ================= TARJETAS DE AGRADECIMIENTO · S28 ================= -->

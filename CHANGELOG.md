@@ -1,5 +1,12 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v4 (2026-10-05) — S26b/S26c: flujo "New recipe" funcional (pedido de Diego)
+- El botón "+ Nueva" de S26 dejaba de ser toast: abre el formulario **Nueva receta** (S26b) — nombre, categoría (chips Tortas/Cupcakes/Galletas/Panes), rendimiento (porciones), lista dinámica de ingredientes (nombre, cantidad, unidad g/kg/ml/L/u/taza/cda/cdta, costo; agregar/quitar filas), pasos (uno por línea) y notas.
+- Guardar valida (nombre + al menos un ingrediente con nombre) y persiste en **localStorage** (`mentor_recipes_v1`, offline-first, sin backend). La receta aparece en S26 como tarjeta con costo por porción calculado (costo total ÷ rendimiento); las tarjetas de usuaria llevan borde punteado para distinguirlas de las demo.
+- **Ver receta** (S26c): hero con costo por porción y costo total, tabla de ingredientes con costos y total, pasos numerados, notas, fecha de creación y botón Eliminar (con confirmación). Edición diferida a propósito (fuera del MVP).
+- i18n ES/EN completo (inglés por defecto), paridad 26/26 en claves nuevas (`nr.*`, `rv.*`); el contenido de la usuaria nunca usa `data-i18n` (se re-renderiza con `t()` al cambiar idioma para no perder datos).
+- Alcance: solo S26 (+ pantallas nuevas S26b/S26c, NO registradas en SCREENS para no tocar el chrome de revisión). CSS aditivo (`.ing-row`, `.yield-row`, `.ing-del`). Cero CDNs; ninguna pantalla cerrada tocada; S27 demo intacta.
+
 ## Mentor UI v4 (2026-10-03) — FIX: texto fantasma en dashboard (Chrome Android)
 - En el Samsung de Nati (Chrome Android) los números del dashboard (SALES $486.00, COSTS $172.40, EXPENSES $84.00, NET PROFIT $229.60) se veían duplicados/encimados tras hacer scroll o pinch-zoom — y el texto fantasma afectaba a toda la pantalla, no solo al dashboard.
 - Causa (verificada en el video del reporte + inspección del código): NO hay elementos duplicados en el DOM (cada cifra existe una sola vez), ni doble render EN+ES (i18n reemplaza, no agrega), ni text-shadow/pseudo-elementos. Es un artefacto del compositor de Chrome Android: no invalida los tiles de texto del contenedor `.screen` (absolute + overflow-y:auto) tras scroll/zoom y deja copias fantasma del texto en posiciones anteriores.

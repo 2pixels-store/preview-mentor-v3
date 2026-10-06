@@ -1204,3 +1204,15 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
 .qr-cap { font-size:0.75rem; color:var(--faint); }
 .qr-note { font-size:0.8125rem; color:var(--ink-soft); line-height:1.5; margin:0 0 12px;
   background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-sm); padding:10px 12px; }
+
+/* ============ NUEVA RECETA · S26b/S26c (funcional 2026-10-05) ============ */
+.yield-row { display: flex; gap: 10px; align-items: center; }
+.yield-row input { width: 110px; flex: none; }
+.yield-lab { color: var(--ink-soft); font-size: var(--t-small); }
+#nrIngs { margin-bottom: 10px; }
+.ing-row { display: grid; grid-template-columns: 1fr 58px 64px 70px 32px; gap: 7px; margin-bottom: 8px; align-items: center; }
+.ing-row input, .ing-row select { padding: 10px 8px; font-size: .875rem; }
+.ing-del { width: 32px; height: 42px; border: 1.5px solid var(--line); border-radius: var(--r-sm);
+  background: var(--surface); color: var(--faint); font-size: 1.25rem; line-height: 1; cursor: pointer; }
+.ing-del:active { color: var(--rose); border-color: var(--rose); }
+#userRecipes .recipe-card { border: 1.5px dashed var(--rose); }

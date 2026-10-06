@@ -600,6 +600,33 @@ es: {
 "rf.act.card": "Tarjeta imprimible",
 "rf.act.share": "Compartir",
 "rf.tip": "Cada tanda te ense\u00f1a algo: an\u00f3talo aqu\u00ed y tu pr\u00f3xima torta sale mejor.",
+/* ---- nueva receta + ver receta · S26b/S26c (funcional 2026-10-05) ---- */
+"nr.title": "Nueva receta",
+"nr.name": "Nombre de la receta",
+"nr.name.ph": "Ej.: Torta de zanahoria",
+"nr.cat": "Categoría",
+"nr.yield": "Rendimiento",
+"nr.yield.lab": "porciones",
+"nr.ing.add": "Agregar ingrediente",
+"nr.ing.name": "Ingrediente",
+"nr.ing.qty": "Cant.",
+"nr.ing.cost": "Costo $",
+"nr.ing.del": "Quitar ingrediente",
+"nr.steps.ph": "Un paso por línea",
+"nr.notes.ph": "Tips, ajustes, lo que aprendiste",
+"nr.save": "Guardar receta",
+"nr.err.name": "Ponle un nombre a la receta",
+"nr.err.ing": "Agrega al menos un ingrediente con nombre",
+"nr.saved": "Receta guardada",
+"nr.unit.serv": "porción",
+"nr.unit.units": "unidades",
+"nr.unit.loaf": "unidad",
+"rv.cost.per": "Costo por",
+"rv.cost.total": "Costo total",
+"rv.created": "Creada el",
+"rv.delete": "Eliminar receta",
+"rv.deleted": "Receta eliminada",
+"rv.confirm.del": "¿Eliminar esta receta? No se puede deshacer.",
 /* ---- tarjetas + QR · S28/S29 (v4 2026-10-03) ---- */
 "screen.tarjetas": "Tarjetas de agradecimiento",
 "screen.qr-pago": "QR de pago",
@@ -1113,6 +1140,33 @@ en: {
 "rf.act.card": "Printable card",
 "rf.act.share": "Share",
 "rf.tip": "Every batch teaches you something: write it here and your next cake turns out better.",
+/* ---- new recipe + view recipe · S26b/S26c (functional 2026-10-05) ---- */
+"nr.title": "New recipe",
+"nr.name": "Recipe name",
+"nr.name.ph": "E.g.: Carrot cake",
+"nr.cat": "Category",
+"nr.yield": "Yield",
+"nr.yield.lab": "servings",
+"nr.ing.add": "Add ingredient",
+"nr.ing.name": "Ingredient",
+"nr.ing.qty": "Qty",
+"nr.ing.cost": "Cost $",
+"nr.ing.del": "Remove ingredient",
+"nr.steps.ph": "One step per line",
+"nr.notes.ph": "Tips, tweaks, lessons learned",
+"nr.save": "Save recipe",
+"nr.err.name": "Give the recipe a name",
+"nr.err.ing": "Add at least one named ingredient",
+"nr.saved": "Recipe saved",
+"nr.unit.serv": "serving",
+"nr.unit.units": "units",
+"nr.unit.loaf": "loaf",
+"rv.cost.per": "Cost per",
+"rv.cost.total": "Total cost",
+"rv.created": "Created",
+"rv.delete": "Delete recipe",
+"rv.deleted": "Recipe deleted",
+"rv.confirm.del": "Delete this recipe? This can't be undone.",
 
 
 /* ---- onboarding · welcome (S1) ---- */
@@ -1278,5 +1332,11 @@ function applyLang() {
   if (typeof renderBack === 'function') {
     var bs = document.getElementById('s-onb-back');
     if (bs && bs.classList.contains('active')) renderBack();
+  }
+  /* recetas de la usuaria: el contenido dinámico se re-renderiza con el idioma actual */
+  if (typeof renderUserRecipes === 'function') renderUserRecipes();
+  if (typeof renderRecipeDetail === 'function' && typeof currentRecipeId !== 'undefined' && currentRecipeId) {
+    var rv = document.getElementById('s-receta-ver');
+    if (rv && rv.classList.contains('active')) renderRecipeDetail(currentRecipeId);
   }
 }
