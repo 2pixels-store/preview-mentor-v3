@@ -1,5 +1,19 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v5 (2026-10-07) — Quitar los muros en el camino de la repostera (pedido de Diego)
+- Nati va a probar con una receta real (calculadora de precios, transformador de medidas, escalado, tarjeta imprimible): cero botones muertos en ese camino. Todo lo implementado es funcional de verdad, nada escondido, ningún "próximamente" nuevo.
+- **Detalle demo (s-receta-detalle):** las 3 tarjetas demo del home que daban "Próximamente" ahora abren el detalle; "Escalar receta" enfoca el escalador; el escalador Modo A (por porciones) y Modo B (por ingrediente disponible, con lb/kg/oz/g) calculan de verdad con los datos de la receta demo; "Tarjeta" imprime la tarjeta de la receta.
+- **Ficha demo (s-receta-ficha):** "Agregar foto" (input file → reduce a máx 800px vía canvas → persiste en localStorage, sobrevive recargas); "Escalar receta" abre panel inline con recálculo de ingredientes; "Tarjeta imprimible" y "Compartir" funcionales (Web Share API con fallback a portapapeles).
+- **Vista real de receta (s-receta-ver):** la receta que Nati cree ahora tiene Escalado (por porciones, recalcula cantidades y costos), Foto del resultado (persistida en `mentor_recipes_v1`), Tarjeta imprimible y Compartir.
+- **Costeo:** los "+" de Merma y Depreciación expanden/colapsan su explicación de verdad.
+- **Precios:** el slider de margen objetivo calcula de verdad (precio = costo/(1−margen), precio psicológico .99, ganancia); el héroe se actualiza.
+- **Convertidor:** ya era funcional (verificado, sin cambios).
+- i18n ES/EN completo (16 claves nuevas `sc.*`, `rv.scale.*`, `rv.photo.*`, `share.*`, `print.brand`, `cos.merma.det`, `cos.depre.det`); inglés por defecto como siempre.
+- Fuera de alcance (siguen con toast por diseño): flujo S30+ (Cotizar→Invoice→QR), tarjetas Negocio/Aprender, Colaborar, "Empezar modo guiado".
+- Sin botones muertos de redes sociales en la app (verificado: no existen).
+- QA headless con playwright (local + URL desplegada): crear receta → ver → escalar → foto → tarjeta → compartir → escalar demo A/B → toggles costeo → slider precios → convertidor; 0 errores de consola.
+- Cache-bust ?v=20261007b en i18n.js/app.js.
+
 ## Mentor UI v4 (2026-10-05) — Categorías de recetas funcionales (pedido de Diego)
 - Dos huecos reportados por Diego: (1) el formulario New Recipe no dejaba agregar categoría nueva (solo chips fijos); (2) en S13 el chip "+ Nueva categoría" seguía mostrando "coming soon".
 - **Categorías de la usuaria** en localStorage (`mentor_categories_v1`, array de nombres tal cual los escribe; offline-first). Deduplicación insensible a mayúsculas contra las 4 por defecto y las existentes, con toasts de error i18n.

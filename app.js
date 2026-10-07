@@ -529,6 +529,18 @@ function openRecipe(id) {
   renderRecipeDetail(id);
   go('receta-ver');
 }
+function rvPhotoHtml(r) {
+  if (r.photo) {
+    return '<img src="' + r.photo + '" alt="" style="width:100%;border-radius:12px;display:block">' +
+      '<span>' + esc(t('rv.photo.cap')) + '</span>' +
+      '<button class="btn soft sm" onclick="rvPhotoPick()">' +
+      '<svg width="15" height="15"><use href="#i-plus"/></svg><span>' + esc(t('rf.photo.add')) + '</span></button>';
+  }
+  return '<svg width="34" height="34" style="opacity:.55"><use href="#i-cup"/></svg>' +
+    '<span>' + esc(t('rv.photo.cap')) + '</span>' +
+    '<button class="btn soft sm" onclick="rvPhotoPick()">' +
+    '<svg width="15" height="15"><use href="#i-plus"/></svg><span>' + esc(t('rf.photo.add')) + '</span></button>';
+}
 function renderRecipeDetail(id) {
   var r = loadRecipes().find(function (x) { return x.id === id; });
   if (!r) return;
@@ -579,9 +591,20 @@ function renderRecipeDetail(id) {
     '<div class="kicker">' + esc(t('rf.k.steps')) + '</div>' +
     '<div class="card" style="padding:6px 16px">' + stepsHtml + '</div>' +
     (notesHtml ? '<div class="kicker">' + esc(t('rf.k.notes')) + '</div>' + notesHtml : '') +
+    '<div class="kicker">' + esc(t('rv.scale.k')) + '</div>' +
+    '<div class="card"><div class="field"><span class="lbl">' + esc(t('rv.scale.lab')) + '</span>' +
+    '<input type="number" id="rvScalePortions" value="' + r.yield + '" min="1" oninput="rvScaleCalc()"></div>' +
+    '<div id="rvScaleOut"></div></div>' +
+    '<div class="kicker">' + esc(t('rv.photo.k')) + '</div>' +
+    '<div class="photo-slot" id="rvPhotoSlot">' + rvPhotoHtml(r) + '</div>' +
+    '<input type="file" id="rvPhotoInput" accept="image/*" hidden onchange="rvPhotoChange(this)">' +
+    '<div class="btn-row">' +
+    '<button class="btn ghost" onclick="rvPrintCard()"><svg width="16" height="16"><use href="#i-print"/></svg><span>' + esc(t('rf.act.card')) + '</span></button>' +
+    '<button class="btn ghost" onclick="rvShare()"><svg width="16" height="16"><use href="#i-link"/></svg><span>' + esc(t('rf.act.share')) + '</span></button>' +
+    '</div>' +
     '<div class="btn-row"><button class="btn ghost" onclick="delRecipe()">' +
     '<svg width="16" height="16"><use href="#i-dots"/></svg><span>' + esc(t('rv.delete')) + '</span></button></div>' +
-    '<div class="ver-tag">Mentor UI v4 (2026-10-03)</div>';
+    '<div class="ver-tag">' + esc(t('version.tag')) + '</div>';
 }
 function delRecipe() {
   if (!currentRecipeId) return;
@@ -594,9 +617,273 @@ function delRecipe() {
 }
 document.addEventListener('DOMContentLoaded', function () {
   renderUserRecipes();
+  if (typeof renderFichaPhoto === 'function') renderFichaPhoto();
   renderUserCats();
   nrEnsureRows();
 });
+
+
+/* ============================================================
+   v5 (2026-10-07) · Quitar muros: acciones reales en el camino
+   de la repostera (detalle demo, ficha demo, costeo, precios,
+   y vista real de receta de usuaria s-receta-ver).
+   ============================================================ */
+
+/* ---------- datos demo para escalado (Torta de vainilla, base 12 porciones) ---------- */
+const DEMO_BASE_YIELD = 12;
+const DEMO_INGS = [
+  { name: 'Harina', qty: 500, unit: 'g' },
+  { name: 'Azúcar', qty: 400, unit: 'g' },
+  { name: 'Mantequilla', qty: 250, unit: 'g' },
+  { name: 'Huevos', qty: 4, unit: 'u' },
+  { name: 'Leche', qty: 200, unit: 'ml' },
+  { name: 'Vainilla', qty: 10, unit: 'ml' },
+  { name: 'Polvo de hornear', qty: 15, unit: 'g' }
+];
+function fmtQty(qty, unit) {
+  var q = qty, u = unit;
+  if (unit === 'g' && qty >= 1000) { q = qty / 1000; u = 'kg'; }
+  if (unit === 'ml' && qty >= 1000) { q = qty / 1000; u = 'L'; }
+  q = Math.round(q * 10) / 10;
+  return q + ' ' + u;
+}
+function demoWeight(f) {
+  var g = 0;
+  DEMO_INGS.forEach(function (it) {
+    g += (it.unit === 'u' ? it.qty * 50 : it.qty) * f;
+  });
+  return g >= 1000 ? (Math.round(g / 100) / 10) + ' kg' : Math.round(g) + ' g';
+}
+
+/* ---------- escalado demo s-receta-detalle · Modo A (por porciones) ---------- */
+function demoScaleCalc() {
+  var target = parseFloat(document.getElementById('demoPortions').value);
+  if (!(target > 0)) target = DEMO_BASE_YIELD;
+  var f = target / DEMO_BASE_YIELD;
+  var fr = Math.round(f * 10) / 10;
+  document.getElementById('demoScaleFactor').textContent = '×' + fr + ' · ' + t('sc.times');
+  document.getElementById('demoScaleBig').textContent = target + ' ' + t('sc.serv') + ' ≈ ' + demoWeight(f);
+  document.getElementById('demoScaleNote').textContent = DEMO_INGS.slice(0, 3).map(function (g) {
+    return g.name + ' ' + fmtQty(g.qty, g.unit) + ' → ' + fmtQty(g.qty * f, g.unit);
+  }).join(' · ');
+}
+function demoScaleFocus() {
+  var inp = document.getElementById('demoPortions');
+  if (!inp) return;
+  inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(function () { try { inp.focus({ preventScroll: true }); inp.select(); } catch (e) {} }, 350);
+}
+
+/* ---------- escalado demo · Modo B (por ingrediente disponible) ---------- */
+function demoScaleBCalc() {
+  var sel = document.getElementById('demoIngSel');
+  var opt = sel.options[sel.selectedIndex];
+  var base = parseFloat(opt.getAttribute('data-base')) || 500;
+  var name = opt.textContent.trim();
+  var raw = (document.getElementById('demoIngQty').value || '').trim().toLowerCase().replace(',', '.');
+  var m = raw.match(/([\d.]+)\s*(lbra|lb|kg|oz|g)?/);
+  var grams = 0;
+  if (m) {
+    var v = parseFloat(m[1]) || 0, u = m[2] || 'g';
+    grams = v * (u === 'kg' ? 1000 : (u === 'lb' || u === 'lbra') ? 453.6 : u === 'oz' ? 28.35 : 1);
+  }
+  var perPortion = base / DEMO_BASE_YIELD;
+  var portions = perPortion > 0 ? Math.floor(grams / perPortion) : 0;
+  var batches = base > 0 ? Math.round((grams / base) * 10) / 10 : 0;
+  document.getElementById('demoScaleBBig').textContent = '≈ ' + portions + ' ' + t('sc.serv');
+  document.getElementById('demoScaleBNote').textContent =
+    t('sc.bnote1') + ' ' + raw + ' ' + t('sc.bnote2') + ' ' + name +
+    ' (' + Math.round(grams) + ' g) ' + t('sc.bnote3') + ' ' + batches + ' ' + t('sc.bnote4');
+}
+
+/* ---------- costeo: cajones expandibles ---------- */
+function toggleCostDetail(id, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  var open = el.hidden;
+  el.hidden = !open;
+  btn.textContent = open ? '−' : '+';
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+/* ---------- precios: calculadora con margen (demo) ---------- */
+var PRICE_BASE_COST = 19.48;
+function priceCalc() {
+  var m = parseFloat(document.getElementById('priceMargin').value);
+  if (isNaN(m)) m = 40;
+  var calc = m >= 100 ? PRICE_BASE_COST : PRICE_BASE_COST / (1 - m / 100);
+  var psy = Math.floor(calc) - 0.01;
+  if (psy < PRICE_BASE_COST) psy = Math.ceil(calc * 100) / 100;
+  var profit = psy - PRICE_BASE_COST;
+  document.getElementById('priceMarginVal').textContent = m + '%';
+  document.getElementById('priceCalcVal').textContent = fmtMoney(calc);
+  document.getElementById('pricePsyVal').textContent = fmtMoney(psy);
+  document.getElementById('priceProfitVal').textContent = fmtMoney(profit);
+  document.getElementById('priceHeroVal').textContent = fmtMoney(psy);
+}
+
+/* ---------- tarjeta imprimible ---------- */
+function printCard(title, sub, bodyHtml) {
+  var area = document.getElementById('printArea');
+  if (!area) {
+    area = document.createElement('div');
+    area.id = 'printArea';
+    document.body.appendChild(area);
+  }
+  area.innerHTML = '<div class="print-card"><div class="print-brand">' + esc(t('print.brand')) + '</div>' +
+    '<h1>' + esc(title) + '</h1><p class="print-sub">' + esc(sub) + '</p>' + bodyHtml + '</div>';
+  document.body.classList.add('printing');
+  window.print();
+}
+window.addEventListener('afterprint', function () { document.body.classList.remove('printing'); });
+
+function demoCardRows() {
+  return '<table class="cost">' + DEMO_INGS.map(function (g) {
+    return '<tr><td>' + esc(g.name) + '</td><td class="num">' + fmtQty(g.qty, g.unit) + '</td></tr>';
+  }).join('') + '</table>';
+}
+function demoPrintCard() {
+  printCard(t('rec.c1.t'), DEMO_BASE_YIELD + ' ' + t('sc.serv'), demoCardRows());
+}
+
+/* ---------- compartir ---------- */
+function shareText(title, text) {
+  var full = title + '\n' + text;
+  if (navigator.share) {
+    navigator.share({ title: title, text: text }).catch(function () {});
+  } else if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(full).then(function () { toast('share.copied'); },
+      function () { toast('share.copied'); });
+  } else {
+    window.prompt(t('share.copytitle'), full);
+  }
+}
+function demoShare() {
+  var lines = DEMO_INGS.map(function (g) { return '• ' + g.name + ': ' + fmtQty(g.qty, g.unit); });
+  shareText(t('rec.c1.t'), t('sc.serv') + ': ' + DEMO_BASE_YIELD + '\n' + lines.join('\n'));
+}
+
+/* ---------- foto: leer y reducir antes de guardar ---------- */
+function readAndShrink(file, cb) {
+  var rd = new FileReader();
+  rd.onload = function (e) {
+    var img = new Image();
+    img.onload = function () {
+      var s = Math.min(1, 800 / Math.max(img.width, img.height));
+      var c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(img.width * s));
+      c.height = Math.max(1, Math.round(img.height * s));
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      cb(c.toDataURL('image/jpeg', 0.82));
+    };
+    img.src = e.target.result;
+  };
+  rd.readAsDataURL(file);
+}
+
+/* ---------- ficha demo (s-receta-ficha): foto ---------- */
+function fichaPhotoPick() { var i = document.getElementById('fichaPhotoInput'); if (i) i.click(); }
+function fichaPhotoChange(input) {
+  var f = input.files && input.files[0];
+  if (!f) return;
+  readAndShrink(f, function (url) {
+    try { localStorage.setItem('mentor_demo_ficha_photo', url); } catch (e) {}
+    renderFichaPhoto();
+    toast('rv.photo.saved');
+  });
+}
+function renderFichaPhoto() {
+  var slot = document.getElementById('fichaPhotoSlot');
+  if (!slot) return;
+  var url = null;
+  try { url = localStorage.getItem('mentor_demo_ficha_photo'); } catch (e) {}
+  if (url) {
+    slot.innerHTML = '<img src="' + url + '" alt="" style="width:100%;border-radius:12px;display:block">' +
+      '<span>' + esc(t('rf.photo.cap')) + '</span>' +
+      '<button class="btn soft sm" onclick="fichaPhotoPick()">' +
+      '<svg width="15" height="15"><use href="#i-plus"/></svg><span>' + esc(t('rf.photo.add')) + '</span></button>';
+  }
+}
+
+/* ---------- ficha demo: escalado ---------- */
+function fichaScaleToggle() {
+  var box = document.getElementById('fichaScaleBox');
+  if (!box) return;
+  box.hidden = !box.hidden;
+  if (!box.hidden) {
+    fichaScaleCalc();
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+function fichaScaleCalc() {
+  var target = parseFloat(document.getElementById('fichaPortions').value);
+  if (!(target > 0)) target = DEMO_BASE_YIELD;
+  var f = target / DEMO_BASE_YIELD;
+  var rows = DEMO_INGS.map(function (g) {
+    return '<tr><td>' + esc(g.name) + '</td><td class="num">' + fmtQty(g.qty * f, g.unit) + '</td></tr>';
+  }).join('');
+  document.getElementById('fichaScaleOut').innerHTML =
+    '<p class="num" style="font-weight:700;margin:0 0 8px">×' + (Math.round(f * 10) / 10) + ' · ' + esc(t('sc.times')) + '</p>' +
+    '<table class="cost">' + rows + '</table>';
+}
+
+/* ---------- vista real de receta (s-receta-ver): foto ---------- */
+function rvPhotoPick() { var i = document.getElementById('rvPhotoInput'); if (i) i.click(); }
+function rvPhotoChange(input) {
+  var f = input.files && input.files[0];
+  if (!f || !currentRecipeId) return;
+  readAndShrink(f, function (url) {
+    var list = loadRecipes();
+    var r = list.find(function (x) { return x.id === currentRecipeId; });
+    if (r) {
+      r.photo = url;
+      saveRecipes(list);
+      renderRecipeDetail(currentRecipeId);
+      toast('rv.photo.saved');
+    }
+  });
+}
+
+/* ---------- vista real: escalado ---------- */
+function rvScaleCalc() {
+  var list = loadRecipes();
+  var r = list.find(function (x) { return x.id === currentRecipeId; });
+  var out = document.getElementById('rvScaleOut');
+  if (!r || !out) return;
+  var target = parseFloat(document.getElementById('rvScalePortions').value);
+  if (!(target > 0)) target = r.yield;
+  var f = target / Math.max(1, r.yield);
+  var rows = r.ingredients.map(function (g) {
+    var qn = parseFloat(g.qty);
+    var q = isNaN(qn) ? esc(g.qty || '—') + (g.unit ? ' ' + esc(g.unit) : '')
+                      : fmtQty(qn * f, g.unit || '');
+    var c = isNaN(qn) ? fmtMoney(g.cost) : fmtMoney((parseFloat(g.cost) || 0) * f);
+    return '<tr><td>' + esc(g.name) + '</td><td class="num">' + q + '</td><td class="num">' + c + '</td></tr>';
+  }).join('');
+  out.innerHTML = '<p class="num" style="font-weight:700;margin:0 0 8px">×' + (Math.round(f * 10) / 10) +
+    ' · ' + esc(t('sc.times')) + '</p>' +
+    '<table class="cost"><tr><th>' + esc(t('rf.th.ing')) + '</th><th>' + esc(t('rf.th.qty')) +
+    '</th><th>' + esc(t('rf.th.cost')) + '</th></tr>' + rows + '</table>';
+}
+
+/* ---------- vista real: tarjeta y compartir ---------- */
+function rvPrintCard() {
+  var r = loadRecipes().find(function (x) { return x.id === currentRecipeId; });
+  if (!r) return;
+  var rows = r.ingredients.map(function (g) {
+    return '<tr><td>' + esc(g.name) + '</td><td class="num">' + esc(g.qty || '') + ' ' + esc(g.unit || '') + '</td></tr>';
+  }).join('');
+  var steps = (r.steps || '').split('\n').map(function (s) { return s.trim(); }).filter(Boolean)
+    .map(function (s, i) { return '<p><b>' + (i + 1) + '.</b> ' + esc(s) + '</p>'; }).join('');
+  printCard(r.name, r.yield + ' ' + t('sc.serv') + ' · ' + fmtMoney(recipeCost(r)),
+    '<table class="cost">' + rows + '</table>' + steps);
+}
+function rvShare() {
+  var r = loadRecipes().find(function (x) { return x.id === currentRecipeId; });
+  if (!r) return;
+  var lines = r.ingredients.map(function (g) { return '• ' + g.name + ': ' + (g.qty || '') + ' ' + (g.unit || ''); });
+  shareText(r.name, t('sc.serv') + ': ' + r.yield + '\n' + lines.join('\n'));
+}
 
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded', () => {

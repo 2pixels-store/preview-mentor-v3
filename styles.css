@@ -1222,3 +1222,22 @@ html[data-textsize="xl"] .toast { white-space: normal; text-align: center; line-
 .cat-inline[hidden] { display: none; }
 .cat-inline input { flex: 1; min-width: 0; }
 input.chip-edit { flex: none; width: 120px; font-size: var(--t-small); font-weight: 600; padding: 9px 12px; border-radius: var(--r-pill); border: 1.5px dashed var(--rose); background: transparent; color: var(--ink); }
+
+/* ============ v5 (2026-10-07) · tarjeta imprimible ============ */
+#printArea { display: none; }
+@media print {
+  body.printing .proto-bar,
+  body.printing .screen,
+  body.printing #tabbar,
+  body.printing .toast,
+  body.printing #screenJump { display: none !important; }
+  body.printing #printArea { display: block !important; }
+  .print-card { font-family: inherit; color: #111; max-width: 640px; margin: 0 auto; }
+  .print-card .print-brand { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: #666; margin-bottom: 6px; }
+  .print-card h1 { font-size: 24px; margin: 0 0 4px; }
+  .print-card .print-sub { font-size: 13px; color: #444; margin: 0 0 14px; }
+  .print-card table.cost { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  .print-card table.cost td, .print-card table.cost th { border-bottom: 1px solid #ddd; padding: 6px 4px; font-size: 13px; text-align: left; }
+  .print-card table.cost td.num, .print-card table.cost th.num { text-align: right; }
+  .print-card p { font-size: 13px; margin: 6px 0; }
+}

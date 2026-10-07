@@ -210,7 +210,7 @@
     </div>
 
     <button class="btn primary" onclick="go('onb-recovery')" data-i18n="onb.dis.cta">Entendí</button>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -241,7 +241,7 @@
       <button class="btn ghost sm" onclick="toast('toast.copied')"><svg width="16" height="16"><use href="#i-copy"/></svg><span data-i18n="onb.rec.copy">Copiar</span></button>
       <button class="btn primary" style="flex:2" onclick="go('onb-question')" data-i18n="onb.rec.cta">Ya lo guardé</button>
     </div>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -269,7 +269,7 @@
     </div>
 
     <button class="btn primary" onclick="go('home')" data-i18n="onb.q.cta">Guardar y entrar</button>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -279,7 +279,7 @@
        onclick="go('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('home');}">
     <img id="backImg" src="img/welcome-back-matt-en.jpg" alt="Welcome back">
   </div>
-  <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+  <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -375,7 +375,7 @@
       </div>
     </div>
 
-    <div class="recipe-card" onclick="toastRound2()">
+    <div class="recipe-card" onclick="go('receta-detalle')">
       <div class="recipe-thumb" style="background:linear-gradient(135deg,#EAD9C9,#C9A24B)"><svg width="40" height="40" style="color:#7A5A1E"><use href="#i-cup"/></svg></div>
       <div class="info">
         <b data-i18n="rec.c2.t">Cupcakes de chocolate</b>
@@ -385,7 +385,7 @@
       </div>
     </div>
 
-    <div class="recipe-card" onclick="toastRound2()">
+    <div class="recipe-card" onclick="go('receta-detalle')">
       <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><svg width="40" height="40" style="color:#9A7420"><use href="#i-cup"/></svg></div>
       <div class="info">
         <b data-i18n="rec.c3.t">Pan de banano</b>
@@ -395,7 +395,7 @@
       </div>
     </div>
 
-    <div class="recipe-card" onclick="toastRound2()">
+    <div class="recipe-card" onclick="go('receta-detalle')">
       <div class="recipe-thumb" style="background:linear-gradient(135deg,#D9C6CF,#A68E9B)"><svg width="40" height="40" style="color:#5B3A4E"><use href="#i-cup"/></svg></div>
       <div class="info">
         <b data-i18n="rec.c4.t">Alfajores</b>
@@ -434,7 +434,7 @@
 
     <div class="kicker" data-i18n="det.scale">Escalado de receta</div>
     <div class="card">
-      <button class="btn primary" onclick="toastRound2()"><svg width="17" height="17"><use href="#i-scale"/></svg><span data-i18n="det.scale.cta">Escalar receta</span></button>
+      <button class="btn primary" onclick="demoScaleFocus()"><svg width="17" height="17"><use href="#i-scale"/></svg><span data-i18n="det.scale.cta">Escalar receta</span></button>
       <div style="height:12px"></div>
       <div class="seg" id="modeSeg">
         <button class="on" onclick="setMode('a',this)" data-i18n="det.mode.a">Modo A · Por cantidad</button>
@@ -442,21 +442,21 @@
       </div>
       <div id="modeA">
         <div class="field"><span class="lbl" data-i18n="det.a.label">¿Cuántas porciones quieres hacer?</span>
-          <input type="number" value="200"></div>
+          <input type="number" id="demoPortions" value="200" min="1" oninput="demoScaleCalc()"></div>
         <div class="scale-result">
-          <span class="num" style="color:var(--faint);font-size:0.75rem" data-i18n="det.a.result">×16.7 tu receta</span>
-          <span class="big num" data-i18n="det.a.big">200 porciones ≈ 4.2 kg</span>
-          <span style="color:var(--ink-soft)" data-i18n="det.a.note">Harina 500 g → 8.3 kg · Huevos 4 → 67 · Las sub-recetas escalan solas.</span>
+          <span class="num" style="color:var(--faint);font-size:0.75rem" id="demoScaleFactor">×16.7 · tu receta</span>
+          <span class="big num" id="demoScaleBig">200 porciones ≈ 26.3 kg</span>
+          <span style="color:var(--ink-soft)" id="demoScaleNote"></span>
         </div>
       </div>
       <div id="modeB" style="display:none">
         <div class="field"><span class="lbl" data-i18n="det.b.ing">¿Qué ingrediente tienes?</span>
-          <select><option>Harina</option><option>Azúcar</option><option>Mantequilla</option></select></div>
+          <select id="demoIngSel" onchange="demoScaleBCalc()"><option data-base="500">Harina</option><option data-base="400">Azúcar</option><option data-base="250">Mantequilla</option></select></div>
         <div class="field"><span class="lbl" data-i18n="det.b.qty">¿Cuánto tienes?</span>
-          <input type="text" value="5 lb"></div>
+          <input type="text" id="demoIngQty" value="5 lb" oninput="demoScaleBCalc()"></div>
         <div class="scale-result">
-          <span class="big num" data-i18n="det.b.big">≈ 54 porciones</span>
-          <span style="color:var(--ink-soft)" data-i18n="det.b.note">Con 5 lb de harina (2.27 kg) rindes 4.5 tandas de esta receta.</span>
+          <span class="big num" id="demoScaleBBig">≈ 54 porciones</span>
+          <span style="color:var(--ink-soft)" id="demoScaleBNote"></span>
         </div>
       </div>
     </div>
@@ -490,7 +490,7 @@
     <button class="btn primary" onclick="go('costeo')" data-i18n="det.cta.cost">Costear esta receta</button>
     <div class="btn-row">
       <button class="btn ghost" onclick="go('convertidor')" data-i18n="det.cta.conv">Convertidor</button>
-      <button class="btn ghost" onclick="toastRound2()" data-i18n="det.cta.card">Tarjeta</button>
+      <button class="btn ghost" onclick="demoPrintCard()" data-i18n="det.cta.card">Tarjeta</button>
     </div>
   </div>
 </section>
@@ -515,7 +515,8 @@
     <div class="card" style="padding:8px 14px">
       <table class="cost">
         <tr><td>Harina 500 g + 6 más</td><td class="num"><b>$5.68</b></td></tr>
-        <tr><td><span data-i18n="cos.merma">Merma (5%)</span><button class="plus" onclick="toastRound2()">+</button></td><td class="num"><b>$0.28</b></td></tr>
+        <tr><td><span data-i18n="cos.merma">Merma (5%)</span><button class="plus" onclick="toggleCostDetail('costDetMerma',this)" aria-expanded="false">+</button></td><td class="num"><b>$0.28</b></td></tr>
+        <tr id="costDetMerma" hidden><td colspan="2" style="border:none;padding-top:0"><span class="hint" style="margin:0" data-i18n="cos.merma.det"></span></td></tr>
         <tr><td colspan="2" style="border:none;padding-top:0"><span class="hint" style="margin:0" data-i18n="cos.merma.note">Pérdida natural del proceso — va dentro del costo.</span></td></tr>
         <tr><td data-i18n="cos.labor">Mano de obra · 1.5 h × $8</td><td class="num"><b>$12.00</b></td></tr>
       </table>
@@ -543,7 +544,8 @@
       <div class="d-body">
         <div class="rowline"><span data-i18n="cos.d2.r1">Durables: batidora, horno</span></div>
         <div class="rowline"><span data-i18n="cos.d2.r2">Consumibles: papel, mangas</span></div>
-        <div class="rowline"><span><span data-i18n="cos.d2.r3">Depreciación simple</span><button class="plus" onclick="toastRound2()">+</button></span><b class="num">$0.42</b></div>
+        <div class="rowline"><span><span data-i18n="cos.d2.r3">Depreciación simple</span><button class="plus" onclick="toggleCostDetail('costDetDepre',this)" aria-expanded="false">+</button></span><b class="num">$0.42</b></div>
+        <div class="rowline" id="costDetDepre" hidden><span class="hint" style="margin:0" data-i18n="cos.depre.det"></span></div>
       </div>
     </div>
 
@@ -578,19 +580,19 @@
     <div class="card">
       <div class="price-hero">
         <div class="k" data-i18n="pre.sug">Precio sugerido</div>
-        <div class="big num">$31.99</div>
+        <div class="big num" id="priceHeroVal">$31.99</div>
         <div class="per" data-i18n="pre.per">por torta · 12 porciones</div>
       </div>
       <div class="slider-row">
-        <div class="lab"><span data-i18n="pre.margin">Margen objetivo</span><b class="num">40%</b></div>
-        <input type="range" min="0" max="90" value="40">
+        <div class="lab"><span data-i18n="pre.margin">Margen objetivo</span><b class="num" id="priceMarginVal">40%</b></div>
+        <input type="range" id="priceMargin" min="0" max="90" value="40" oninput="priceCalc()">
       </div>
       <div style="height:8px"></div>
       <div class="break-row"><span data-i18n="pre.c.cost">Costo total</span><span class="num">$19.48</span></div>
       <div class="break-row"><span data-i18n="pre.c.margin">Margen aplicado</span><span class="num">40%</span></div>
-      <div class="break-row"><span data-i18n="pre.c.calc">Precio calculado</span><span class="num">$32.47</span></div>
-      <div class="break-row total"><span data-i18n="pre.c.psy">Precio psicológico</span><span class="num">$31.99</span></div>
-      <div class="break-row profit"><span data-i18n="pre.c.profit">Ganancia por torta</span><span class="num">$12.51</span></div>
+      <div class="break-row"><span data-i18n="pre.c.calc">Precio calculado</span><span class="num" id="priceCalcVal">$32.47</span></div>
+      <div class="break-row total"><span data-i18n="pre.c.psy">Precio psicológico</span><span class="num" id="pricePsyVal">$31.99</span></div>
+      <div class="break-row profit"><span data-i18n="pre.c.profit">Ganancia por torta</span><span class="num" id="priceProfitVal">$12.51</span></div>
     </div>
 
     <div class="mentor-card anti">
@@ -795,7 +797,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -860,7 +862,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -915,7 +917,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -935,7 +937,7 @@
     <div class="field"><span class="lbl" data-i18n="cnj.f.due">Fecha límite</span><input type="date"></div>
     <div class="field"><span class="lbl" data-i18n="cnj.f.notes">Notas</span><textarea data-i18n-ph="cnj.f.notes.ph" placeholder="Ej.: Etiquetar @mi_bakery en la historia"></textarea></div>
     <button class="btn primary" onclick="toastRound2()" data-i18n="cnj.f.save">Guardar canje</button>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1022,7 +1024,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1077,7 +1079,7 @@
       <div class="nums" style="margin-top:10px"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span></div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1105,7 +1107,7 @@
       <div class="kicker" data-i18n="ing.shop.g3">Otros</div>
       <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i6.name">Vainilla</b> &middot; <span class="num" data-i18n="ing.shop.jar">1 frasco</span></span></div>
     </div>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1163,7 +1165,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1240,18 +1242,24 @@
     </div>
 
     <div class="kicker" data-i18n="rf.k.photo">Foto del resultado</div>
-    <div class="photo-slot">
+    <div class="photo-slot" id="fichaPhotoSlot">
       <svg width="34" height="34" style="opacity:.55"><use href="#i-cup"/></svg>
       <span data-i18n="rf.photo.cap">Tanda del 28 de septiembre &middot; emplatado y empaque</span>
-      <button class="btn soft sm" onclick="toastRound2()"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="rf.photo.add">Agregar foto</span></button>
+      <button class="btn soft sm" onclick="fichaPhotoPick()"><svg width="15" height="15"><use href="#i-plus"/></svg><span data-i18n="rf.photo.add">Agregar foto</span></button>
     </div>
+    <input type="file" id="fichaPhotoInput" accept="image/*" hidden onchange="fichaPhotoChange(this)">
 
     <div class="btn-row">
-      <button class="btn primary" onclick="toastRound2()"><svg width="17" height="17"><use href="#i-scale"/></svg><span data-i18n="rf.act.scale">Escalar receta</span></button>
+      <button class="btn primary" onclick="fichaScaleToggle()"><svg width="17" height="17"><use href="#i-scale"/></svg><span data-i18n="rf.act.scale">Escalar receta</span></button>
+    <div class="card" id="fichaScaleBox" hidden style="margin-top:10px">
+      <div class="field"><span class="lbl" data-i18n="rv.scale.lab">¿Cuántas porciones quieres hacer?</span>
+        <input type="number" id="fichaPortions" value="12" min="1" oninput="fichaScaleCalc()"></div>
+      <div id="fichaScaleOut"></div>
+    </div>
     </div>
     <div class="btn-row">
-      <button class="btn ghost" onclick="toastRound2()"><svg width="16" height="16"><use href="#i-print"/></svg><span data-i18n="rf.act.card">Tarjeta imprimible</span></button>
-      <button class="btn ghost" onclick="toastRound2()"><svg width="16" height="16"><use href="#i-link"/></svg><span data-i18n="rf.act.share">Compartir</span></button>
+      <button class="btn ghost" onclick="demoPrintCard()"><svg width="16" height="16"><use href="#i-print"/></svg><span data-i18n="rf.act.card">Tarjeta imprimible</span></button>
+      <button class="btn ghost" onclick="demoShare()"><svg width="16" height="16"><use href="#i-link"/></svg><span data-i18n="rf.act.share">Compartir</span></button>
     </div>
 
     <div class="tip-mentor">
@@ -1262,7 +1270,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1306,7 +1314,7 @@
     <div class="btn-row">
       <button class="btn primary" onclick="nrSave()"><svg width="17" height="17"><use href="#i-check"/></svg><span data-i18n="nr.save">Guardar receta</span></button>
     </div>
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1362,7 +1370,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1406,7 +1414,7 @@
       <p class="qr-note" data-i18n="qr.soc.note">Ponlo en tu empaque o mostrador: la clienta escanea y te sigue.</p>
     </div>
 
-    <div class="ver-tag">Mentor UI v4 (2026-10-03)</div>
+    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
   </div>
 </section>
 
@@ -1494,7 +1502,7 @@
 
 </div><!-- /phone -->
 
-<script src="i18n.js?v=20261007a"></script>
-<script src="app.js?v=20261007a"></script>
+<script src="i18n.js?v=20261007b"></script>
+<script src="app.js?v=20261007b"></script>
 </body>
 </html>
