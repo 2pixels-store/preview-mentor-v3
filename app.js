@@ -493,6 +493,26 @@ function renderUserCats() {
     nrRenderCats(on ? on.dataset.cat : null);
   }
 }
+/* S13: receta de ejemplo opcional (primer uso) — no toca los datos de la usuaria */
+var SAMPLE_KEY = 'mentor_sample_v1';
+function s13SampleOn() {
+  try { return localStorage.getItem(SAMPLE_KEY) === '1'; } catch (e) { return false; }
+}
+function s13SampleRender() {
+  var on = s13SampleOn();
+  var w = document.getElementById('s13SampleWrap');
+  var e = document.getElementById('s13Empty');
+  if (w) { if (on) w.removeAttribute('hidden'); else w.setAttribute('hidden', ''); }
+  if (e) { if (on) e.setAttribute('hidden', ''); else e.removeAttribute('hidden'); }
+}
+function s13SampleShow() {
+  try { localStorage.setItem(SAMPLE_KEY, '1'); } catch (e) {}
+  s13SampleRender();
+}
+function s13SampleHide() {
+  try { localStorage.removeItem(SAMPLE_KEY); } catch (e) {}
+  s13SampleRender();
+}
 /* S13: mini-formulario inline para nueva categoría */
 function s13CatToggle() {
   var f = document.getElementById('s13CatForm');
@@ -619,6 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
   renderUserRecipes();
   if (typeof renderFichaPhoto === 'function') renderFichaPhoto();
   renderUserCats();
+  s13SampleRender();
   nrEnsureRows();
 });
 

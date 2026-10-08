@@ -1,5 +1,16 @@
 # CHANGELOG — Repostería Mentor · Prototipo Hi-Fi
 
+## Mentor UI v6 (2026-10-08) — Primer uso en ceros + ejemplo opcional (pedido de Diego y Nati)
+- **Estado vacío de primer uso:** el Panel del negocio (S12) arranca en $0.00 (sin datos demo) con tarjeta de estado vacío: ilustración, invitación a crear la primera receta, CTA directo al formulario y línea de confianza. El checklist de costeo arranca sin marcar (antes venía con 2 ítems tildados).
+- **S13 Recetas en vacío:** las 4 tarjetas demo salieron; en su lugar estado vacío con CTA "Crear mi primera receta", botón secundario "Ver ejemplo" y línea de confianza.
+- **Botón "Ver ejemplo" / "See example":** carga UNA receta de ejemplo (Torta de vainilla) con banner ámbar y badge "Receta de ejemplo" / "Sample recipe", claramente separada; "Borrar ejemplo" la quita y vuelve al estado vacío. Vive en `mentor_sample_v1` (localStorage) — no toca ni contamina los datos ni los totales de la usuaria.
+- **Merma con ejemplo inline:** `cos.merma.note` ahora incluye ejemplo corto — ES: alfajores bañados en chocolate (lo que queda en el mat y pegado en la batidora no se recupera); EN: cake pops (referencia USA, el alfajor es muy argentino).
+- **S14 i18n:** los resultados del escalado demo se re-renderizan con el idioma actual en `applyLang()` (antes el HTML traía "tu receta / 200 porciones" hardcodeado en español y se veía en modo inglés). Los nombres de ingredientes que escribe la usuaria no se traducen (correcto).
+- **Línea de confianza:** "Tus recetas solo viven en tu teléfono." / "Your recipes live only on your phone." en los estados vacíos de S12 y S13.
+- i18n ES/EN completo (11 claves nuevas, paridad verificada); inglés por defecto. Cero CDNs; claro/oscuro intacto (ilustración con variante dark).
+- QA headless (Chromium): primer uso → estado vacío; crear receta desde cero; ejemplo (cargar/borrar); ES/EN en S14; merma con ejemplo; 0 errores de consola.
+- Cache-bust ?v=20261008 en i18n.js/app.js.
+
 ## Mentor UI v5 (2026-10-07) — Quitar los muros en el camino de la repostera (pedido de Diego)
 - Nati va a probar con una receta real (calculadora de precios, transformador de medidas, escalado, tarjeta imprimible): cero botones muertos en ese camino. Todo lo implementado es funcional de verdad, nada escondido, ningún "próximamente" nuevo.
 - **Detalle demo (s-receta-detalle):** las 3 tarjetas demo del home que daban "Próximamente" ahora abren el detalle; "Escalar receta" enfoca el escalador; el escalador Modo A (por porciones) y Modo B (por ingrediente disponible, con lb/kg/oz/g) calculan de verdad con los datos de la receta demo; "Tarjeta" imprime la tarjeta de la receta.

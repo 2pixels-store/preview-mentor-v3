@@ -130,6 +130,10 @@ es: {
 "home.season.t": "San Valentín",
 "home.season.p": "¿Ya tienes tus precios de temporada?",
 "home.season.cta": "Ver calendario",
+"home.empty.t": "Tus números aparecerán aquí",
+"home.empty.p": "Crea tu primera receta y registra tus ventas: este panel cobrará vida con tus datos reales.",
+"home.empty.cta": "Crear mi primera receta",
+"empty.trust": "Tus recetas solo viven en tu teléfono.",
 
 /* ---- recetas ---- */
 "rec.title": "Recetas",
@@ -141,6 +145,12 @@ es: {
 "rec.chip.galletas": "Galletas",
 "rec.chip.temp": "Temporada",
 "rec.chip.new": "+ Nueva categoría",
+"rec.empty.t": "Aún no tienes recetas",
+"rec.empty.p": "Crea tu primera receta para costearla, ponerle precio y escalarla.",
+"rec.empty.cta": "Crear mi primera receta",
+"rec.empty.sample": "Ver ejemplo",
+"rec.sample.badge": "Receta de ejemplo",
+"rec.sample.del": "Borrar ejemplo",
 "rec.c1.t": "Torta de vainilla",
 "rec.c1.c": "Tortas · 12 porciones",
 "rec.c2.t": "Cupcakes de chocolate",
@@ -207,7 +217,7 @@ es: {
 "cos.mentor.cta": "Empezar modo guiado",
 "cos.ing": "Costo de ingredientes",
 "cos.merma": "Merma (5%)",
-"cos.merma.note": "Pérdida natural del proceso — va dentro del costo.",
+"cos.merma.note": "Pérdida natural del proceso — va dentro del costo. Ej.: al bañar alfajores en chocolate, siempre queda chocolate en el mat y pegado en la batidora que no se recupera.",
 "cos.labor": "Mano de obra · 1.5 h × $8",
 "cos.pack.t": "Empaque · costo directo",
 "cos.pack.p": "Caja + base + etiqueta: <b>$1.10 por unidad</b>. Se suma, no se prorratea. Si no lo metes, lo regalas.",
@@ -386,7 +396,7 @@ es: {
 "more.set.d": "Idioma, tema y respaldo",
 "onb.w.tour": "Ver tour guiado",
 
-"version.tag": "Mentor UI v5 (2026-10-07)",
+"version.tag": "Mentor UI v6 (2026-10-08)",
 "made": "Hecho en NYC · Two Pixels",
 /* ---- clientes · S19/S20 (v4 2026-10-03) ---- */
 "screen.clientes": "Clientes",
@@ -806,6 +816,10 @@ en: {
 "home.season.t": "Valentine's Day",
 "home.season.p": "Do you have your seasonal prices ready?",
 "home.season.cta": "View calendar",
+"home.empty.t": "Your numbers will appear here",
+"home.empty.p": "Create your first recipe and log your sales: this dashboard will come alive with your real data.",
+"home.empty.cta": "Create my first recipe",
+"empty.trust": "Your recipes live only on your phone.",
 
 /* ---- recipes ---- */
 "rec.title": "Recipes",
@@ -817,6 +831,12 @@ en: {
 "rec.chip.galletas": "Cookies",
 "rec.chip.temp": "Seasonal",
 "rec.chip.new": "+ New category",
+"rec.empty.t": "You don't have any recipes yet",
+"rec.empty.p": "Create your first recipe to cost it, price it and scale it.",
+"rec.empty.cta": "Create my first recipe",
+"rec.empty.sample": "See example",
+"rec.sample.badge": "Sample recipe",
+"rec.sample.del": "Delete sample",
 "rec.c1.t": "Vanilla cake",
 "rec.c1.c": "Cakes · 12 servings",
 "rec.c2.t": "Chocolate cupcakes",
@@ -883,7 +903,7 @@ en: {
 "cos.mentor.cta": "Start guided mode",
 "cos.ing": "Ingredients cost",
 "cos.merma": "Shrinkage (5%)",
-"cos.merma.note": "Natural process loss — it goes inside the cost.",
+"cos.merma.note": "Natural process loss — it goes inside the cost. E.g.: when dipping cake pops in chocolate, some always stays on the mat and stuck to the bowl \u2014 you never get it back.",
 "cos.labor": "Labor · 1.5 h × $8",
 "cos.pack.t": "Packaging · direct cost",
 "cos.pack.p": "Box + base + label: <b>$1.10 per unit</b>. Added, not prorated. If you skip it, you're giving it away.",
@@ -1325,7 +1345,7 @@ en: {
 "more.set.d": "Language, theme & backup",
 "onb.w.tour": "View guided tour",
 
-"version.tag": "Mentor UI v5 (2026-10-07)",
+"version.tag": "Mentor UI v6 (2026-10-08)",
 "made": "Crafted in NYC · Two Pixels",
 /* ---- thank-you cards + QR · S28/S29 (v4 2026-10-03) ---- */
 "screen.tarjetas": "Thank-you cards",
@@ -1386,4 +1406,7 @@ function applyLang() {
     var rv = document.getElementById('s-receta-ver');
     if (rv && rv.classList.contains('active')) renderRecipeDetail(currentRecipeId);
   }
+  /* S14: los resultados del escalado demo los genera JS con el idioma actual → re-renderizarlos */
+  if (typeof demoScaleCalc === 'function') { try { demoScaleCalc(); } catch (e) {} }
+  if (typeof demoScaleBCalc === 'function') { try { demoScaleBCalc(); } catch (e) {} }
 }

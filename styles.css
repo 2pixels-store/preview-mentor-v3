@@ -1241,3 +1241,45 @@ input.chip-edit { flex: none; width: 120px; font-size: var(--t-small); font-weig
   .print-card table.cost td.num, .print-card table.cost th.num { text-align: right; }
   .print-card p { font-size: 13px; margin: 6px 0; }
 }
+
+/* ============ v6 (2026-10-08) · estados vacíos de primer uso ============ */
+.empty-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 26px 20px 20px;
+  text-align: center;
+  margin: 14px 0;
+  box-shadow: var(--sh-1);
+}
+.empty-ill {
+  width: 84px; height: 84px; margin: 0 auto 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--rose-soft), var(--bg-soft));
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--rose-deep);
+}
+[data-theme="dark"] .empty-ill {
+  background: radial-gradient(circle at 35% 30%, #4A2C33, #33222B);
+  color: var(--rose);
+}
+.empty-card h3 { font-family: var(--font-display); font-size: 1.125rem; margin: 0 0 6px; color: var(--ink); }
+.empty-card > p { font-size: 0.875rem; color: var(--ink-soft); margin: 0 0 14px; }
+.empty-card .btn-row { margin-bottom: 14px; }
+.trust-line {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 0.75rem; color: var(--faint); margin: 0 !important;
+}
+.trust-line svg { color: var(--gold); flex: none; }
+.sample-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--warn-soft); border: 1px dashed var(--warn);
+  border-radius: var(--r-md); padding: 8px 12px; margin-bottom: 10px;
+}
+.sample-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.75rem; font-weight: 700; color: var(--warn);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+#s13SampleWrap[hidden] { display: none; }

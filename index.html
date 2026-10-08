@@ -210,7 +210,7 @@
     </div>
 
     <button class="btn primary" onclick="go('onb-recovery')" data-i18n="onb.dis.cta">Entendí</button>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -241,7 +241,7 @@
       <button class="btn ghost sm" onclick="toast('toast.copied')"><svg width="16" height="16"><use href="#i-copy"/></svg><span data-i18n="onb.rec.copy">Copiar</span></button>
       <button class="btn primary" style="flex:2" onclick="go('onb-question')" data-i18n="onb.rec.cta">Ya lo guardé</button>
     </div>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -269,7 +269,7 @@
     </div>
 
     <button class="btn primary" onclick="go('home')" data-i18n="onb.q.cta">Guardar y entrar</button>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -279,7 +279,7 @@
        onclick="go('home')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();go('home');}">
     <img id="backImg" src="img/welcome-back-matt-en.jpg" alt="Welcome back">
   </div>
-  <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+  <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
 </section>
 
 <!-- ================= HOME ================= -->
@@ -314,19 +314,27 @@
 
     <div class="kicker" data-i18n="home.panel">Panel del negocio</div>
     <div class="stats">
-      <div class="stat"><small data-i18n="home.s.ventas">Ventas</small><b class="num">$486.00</b></div>
-      <div class="stat"><small data-i18n="home.s.costos">Costos</small><b class="num">$172.40</b></div>
-      <div class="stat"><small data-i18n="home.s.gastos">Gastos</small><b class="num">$84.00</b></div>
-      <div class="stat good"><small data-i18n="home.s.neta">Utilidad neta</small><b class="num">$229.60</b></div>
+      <div class="stat"><small data-i18n="home.s.ventas">Ventas</small><b class="num">$0.00</b></div>
+      <div class="stat"><small data-i18n="home.s.costos">Costos</small><b class="num">$0.00</b></div>
+      <div class="stat"><small data-i18n="home.s.gastos">Gastos</small><b class="num">$0.00</b></div>
+      <div class="stat good"><small data-i18n="home.s.neta">Utilidad neta</small><b class="num">$0.00</b></div>
     </div>
     <div class="formula-note" data-i18n="home.formula">Ingresos − costos = utilidad bruta [+] · Utilidad bruta − gastos = utilidad neta [+]</div>
+
+    <div class="empty-card">
+      <div class="empty-ill"><svg width="44" height="44"><use href="#i-chart"/></svg></div>
+      <h3 data-i18n="home.empty.t">Tus números aparecerán aquí</h3>
+      <p data-i18n="home.empty.p">Crea tu primera receta y registra tus ventas: este panel cobrará vida con tus datos reales.</p>
+      <button class="btn primary sm" onclick="go('receta-nueva')"><span data-i18n="home.empty.cta">Crear mi primera receta</span></button>
+      <p class="trust-line"><svg width="14" height="14"><use href="#i-shield"/></svg><span data-i18n="empty.trust">Tus recetas solo viven en tu teléfono.</span></p>
+    </div>
 
     <div class="search"><svg width="18" height="18"><use href="#i-search"/></svg><span data-i18n="home.search.ph">Buscar receta, cliente o gasto…</span></div>
 
     <div class="kicker" data-i18n="home.check">Checklist de costeo</div>
     <div class="card" style="padding:6px 16px">
-      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="home.check.1">Ingredientes costeados</span></div>
-      <div class="check-item done"><span class="box-c"><svg width="14" height="14"><use href="#i-check"/></svg></span><span data-i18n="home.check.2">Merma aplicada</span></div>
+      <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.1">Ingredientes costeados</span></div>
+      <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.2">Merma aplicada</span></div>
       <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.3">Mi hora incluida</span></div>
       <div class="check-item"><span class="box-c"></span><span data-i18n="home.check.4">Precio con margen</span></div>
     </div>
@@ -365,44 +373,31 @@
       <button class="btn ghost sm" onclick="s13CatCancel()"><span data-i18n="cat.cancel">Cancelar</span></button>
     </div>
 
-    <div class="recipe-card" onclick="go('receta-detalle')">
-      <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7DDD2,#E8B4A0)"><svg width="40" height="40" style="color:#A85640"><use href="#i-cup"/></svg></div>
-      <div class="info">
-        <b data-i18n="rec.c1.t">Torta de vainilla</b>
-        <span class="cat" data-i18n="rec.c1.c">Tortas · 12 porciones</span>
-        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$19.48</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$31.99</b></span></div>
-        <div class="recipe-actions"><span class="margin-badge num">39% <span data-i18n="rec.margin">Margen</span></span></div>
+    <div id="s13SampleWrap" hidden>
+      <div class="sample-banner">
+        <span class="sample-badge"><svg width="13" height="13"><use href="#i-spark"/></svg><span data-i18n="rec.sample.badge">Receta de ejemplo</span></span>
+        <button class="link-quiet" onclick="s13SampleHide()"><span data-i18n="rec.sample.del">Borrar ejemplo</span></button>
+      </div>
+      <div class="recipe-card" onclick="go('receta-detalle')">
+        <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7DDD2,#E8B4A0)"><svg width="40" height="40" style="color:#A85640"><use href="#i-cup"/></svg></div>
+        <div class="info">
+          <b data-i18n="rec.c1.t">Torta de vainilla</b>
+          <span class="cat" data-i18n="rec.c1.c">Tortas · 12 porciones</span>
+          <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$19.48</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$31.99</b></span></div>
+          <div class="recipe-actions"><span class="margin-badge num">39% <span data-i18n="rec.margin">Margen</span></span></div>
+        </div>
       </div>
     </div>
 
-    <div class="recipe-card" onclick="go('receta-detalle')">
-      <div class="recipe-thumb" style="background:linear-gradient(135deg,#EAD9C9,#C9A24B)"><svg width="40" height="40" style="color:#7A5A1E"><use href="#i-cup"/></svg></div>
-      <div class="info">
-        <b data-i18n="rec.c2.t">Cupcakes de chocolate</b>
-        <span class="cat" data-i18n="rec.c2.c">Cupcakes · 24 unidades</span>
-        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$9.60</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$36.00</b></span></div>
-        <div class="recipe-actions"><span class="margin-badge num">73% <span data-i18n="rec.margin">Margen</span></span></div>
+    <div class="empty-card" id="s13Empty">
+      <div class="empty-ill"><svg width="44" height="44"><use href="#i-cup"/></svg></div>
+      <h3 data-i18n="rec.empty.t">Aún no tienes recetas</h3>
+      <p data-i18n="rec.empty.p">Crea tu primera receta para costearla, ponerle precio y escalarla.</p>
+      <div class="btn-row" style="justify-content:center">
+        <button class="btn primary sm" onclick="go('receta-nueva')"><span data-i18n="rec.empty.cta">Crear mi primera receta</span></button>
+        <button class="btn ghost sm" onclick="s13SampleShow()"><span data-i18n="rec.empty.sample">Ver ejemplo</span></button>
       </div>
-    </div>
-
-    <div class="recipe-card" onclick="go('receta-detalle')">
-      <div class="recipe-thumb" style="background:linear-gradient(135deg,#F7ECD4,#EAD9AE)"><svg width="40" height="40" style="color:#9A7420"><use href="#i-cup"/></svg></div>
-      <div class="info">
-        <b data-i18n="rec.c3.t">Pan de banano</b>
-        <span class="cat" data-i18n="rec.c3.c">Panes · 1 unidad</span>
-        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$4.20</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$12.99</b></span></div>
-        <div class="recipe-actions"><span class="margin-badge num">68% <span data-i18n="rec.margin">Margen</span></span></div>
-      </div>
-    </div>
-
-    <div class="recipe-card" onclick="go('receta-detalle')">
-      <div class="recipe-thumb" style="background:linear-gradient(135deg,#D9C6CF,#A68E9B)"><svg width="40" height="40" style="color:#5B3A4E"><use href="#i-cup"/></svg></div>
-      <div class="info">
-        <b data-i18n="rec.c4.t">Alfajores</b>
-        <span class="cat" data-i18n="rec.c4.c">Galletas · 12 unidades</span>
-        <div class="nums"><span><span data-i18n="rec.cost">Costo</span> <b class="num">$5.10</b></span><span><span data-i18n="rec.price">Precio</span> <b class="num">$18.00</b></span></div>
-        <div class="recipe-actions"><span class="margin-badge num">72% <span data-i18n="rec.margin">Margen</span></span></div>
-      </div>
+      <p class="trust-line"><svg width="14" height="14"><use href="#i-shield"/></svg><span data-i18n="empty.trust">Tus recetas solo viven en tu teléfono.</span></p>
     </div>
   </div>
 </section>
@@ -797,7 +792,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -862,7 +857,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -917,7 +912,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -937,7 +932,7 @@
     <div class="field"><span class="lbl" data-i18n="cnj.f.due">Fecha límite</span><input type="date"></div>
     <div class="field"><span class="lbl" data-i18n="cnj.f.notes">Notas</span><textarea data-i18n-ph="cnj.f.notes.ph" placeholder="Ej.: Etiquetar @mi_bakery en la historia"></textarea></div>
     <button class="btn primary" onclick="toastRound2()" data-i18n="cnj.f.save">Guardar canje</button>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1024,7 +1019,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1079,7 +1074,7 @@
       <div class="nums" style="margin-top:10px"><span class="status-pill good" data-i18n="ing.st.ok">En stock</span></div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1107,7 +1102,7 @@
       <div class="kicker" data-i18n="ing.shop.g3">Otros</div>
       <div class="check-item"><span class="box-c"></span><span><b data-i18n="ing.i6.name">Vainilla</b> &middot; <span class="num" data-i18n="ing.shop.jar">1 frasco</span></span></div>
     </div>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1165,7 +1160,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1270,7 +1265,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1314,7 +1309,7 @@
     <div class="btn-row">
       <button class="btn primary" onclick="nrSave()"><svg width="17" height="17"><use href="#i-check"/></svg><span data-i18n="nr.save">Guardar receta</span></button>
     </div>
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1370,7 +1365,7 @@
       </div>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1414,7 +1409,7 @@
       <p class="qr-note" data-i18n="qr.soc.note">Ponlo en tu empaque o mostrador: la clienta escanea y te sigue.</p>
     </div>
 
-    <div class="ver-tag">Mentor UI v5 (2026-10-07)</div>
+    <div class="ver-tag">Mentor UI v6 (2026-10-08)</div>
   </div>
 </section>
 
@@ -1502,7 +1497,7 @@
 
 </div><!-- /phone -->
 
-<script src="i18n.js?v=20261007b"></script>
-<script src="app.js?v=20261007b"></script>
+<script src="i18n.js?v=20261008"></script>
+<script src="app.js?v=20261008"></script>
 </body>
 </html>
